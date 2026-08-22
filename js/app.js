@@ -40,8 +40,22 @@
     });
   })();
 
+  /* Backgrounds and frame sequences are fetched by script, so they never
+     carried the ?v= that index.html puts on css and js - which meant a
+     rebuilt background stayed stale in the browser forever. That is what
+     kept the picture jumping: the cached still was 2400x1340 (1.7910) while
+     the new frames were 1.7778, and object-fit: cover crops those two
+     differently. The version is read off this file's own URL so one bump in
+     index.html moves everything together. */
+  var ASSET_V = (function () {
+    var el = document.querySelector('script[src*="js/app.js"]');
+    var m = el && el.getAttribute('src').match(/[?&]v=([^&]+)/);
+    return m ? m[1] : '';
+  })();
+  function ver(url) { return ASSET_V ? url + '?v=' + ASSET_V : url; }
+
   function srcFor(key) {
-    return 'img/' + key + (isMobile() ? '-m' : '-w') + '.webp';
+    return ver('img/' + key + (isMobile() ? '-m' : '-w') + '.webp');
   }
 
   function load(i) {
@@ -110,7 +124,7 @@
       var done = function () { if (--left === 0) { tr.ready = true; onScroll(); } };
       im.onload = done;
       im.onerror = done;
-      im.src = 'frames/' + tr.id + '/' + pre + pad2(i) + '.webp';
+      im.src = ver('frames/' + tr.id + '/' + pre + pad2(i) + '.webp');
       tr.imgs.push(im);
     }
   }
@@ -126,7 +140,7 @@
   }
 
   if (!reduced && window.fetch) {
-    fetch('frames/manifest.json').then(function (r) {
+    fetch(ver('frames/manifest.json')).then(function (r) {
       return r.ok ? r.json() : null;
     }).then(function (man) {
       if (!man) return;
