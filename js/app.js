@@ -111,6 +111,16 @@
 
   function pad2(n) { return (n < 10 ? '0' : '') + n; }
 
+  /* The scale a panel opens at. Footage that dollies carries its own move and
+     opens at 1; everything else opens at the top of the Ken Burns travel.
+     A, B and the canvas all read this, because when they disagreed the
+     background jumped 4.7% the moment the canvas took over. */
+  function openScale(sectionIndex) {
+    if (!kenBurns) return 1;
+    var t = trans[sectionIndex];
+    return (t && t.camera === 'dolly') ? 1 : 1 + kbRange();
+  }
+
   /* Frame 0 is, by construction, the same picture as the panel's own still -
      the extractor builds them from one source and refuses to ship them if
      they differ. So it is never downloaded: the canvas draws the still's own
@@ -296,11 +306,11 @@
          the panel — the same one every other panel has. */
       /* footage that already dollies carries its own move - stacking the
          page's zoom on top of it is the doubling-up that read as coarse */
-      if (kenBurns && tr.camera !== 'dolly') {
+      var o = openScale(active);
+      if (o === 1) { scrub.style.transform = ''; }
+      else {
         scrub.style.transform =
-          'scale(' + (1 + kbRange() - prog * kbRange()).toFixed(4) + ')';
-      } else {
-        scrub.style.transform = '';
+          'scale(' + (o - prog * kbRange()).toFixed(4) + ')';
       }
     } else if (useScrub && kenBurns) {
       /* Pick the zoom up exactly where layer A left it and hand it to layer B
@@ -324,16 +334,26 @@
       fa.el.style.willChange = 'opacity, transform';
       /* the still must sit at whatever scale the canvas will take over at,
          or the picture jumps the instant the visitor scrolls */
-      if (!kenBurns || (tr && tr.camera === 'dolly')) { fa.el.style.transform = ''; }
-      else { fa.el.style.transform = 'scale(' + (1 + kbRange() - prog * kbRange()).toFixed(4) + ')'; }
+      var aOpen = openScale(active);
+      if (aOpen === 1) { fa.el.style.transform = ''; }
+      else { fa.el.style.transform = 'scale(' + (aOpen - prog * kbRange()).toFixed(4) + ')'; }
       live.push(aFrame);
     }
     if (showB > 0) {
       var fb = frames[bFrame];
       fb.el.style.opacity = showB;
       fb.el.style.willChange = 'opacity, transform';
+      /* B must arrive at exactly the scale its own panel will open at. It used
+         to land on 1.0496 regardless, so a panel whose footage dollies - and
+         therefore opens at 1 - jumped 4.7% the instant it became active. */
+      var bOpen = openScale(active + 1);
       if (!kenBurns) { fb.el.style.transform = ''; }
-      else { fb.el.style.transform = 'scale(' + (1 + kbRange() * 1.4 - showB * kbRange() * 0.5).toFixed(4) + ')'; }
+      else if (bOpen === 1) { fb.el.style.transform = ''; }
+      else {
+        var bFrom = 1 + kbRange() * 1.4;
+        fb.el.style.transform =
+          'scale(' + (bFrom + (bOpen - bFrom) * showB).toFixed(4) + ')';
+      }
       live.push(bFrame);
     }
 
