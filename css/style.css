@@ -134,6 +134,13 @@ section{position:relative}
   transition:opacity .12s linear;      /* smooths the step between scroll samples */
 }
 .stage__layer img{width:100%;height:100%;object-fit:cover;object-position:center}
+/* the scrubbed transition. Sits above the still layers, below the vignette.
+   No opacity transition here — it must answer the finger on the same frame. */
+.stage__scrub{
+  position:absolute;inset:0;z-index:2;opacity:0;
+  width:100%;height:100%;
+  transform:translateZ(0);backface-visibility:hidden;
+}
 .stage::after{
   content:"";position:absolute;inset:0;z-index:3;
   background:
@@ -565,7 +572,7 @@ section{position:relative}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
-  .stage__layer{transform:none!important}
+  .stage__layer,.stage__scrub{transform:none!important}
 }
 
 @media print{

@@ -69,6 +69,82 @@
   function kbRange() { return isMobile() ? 0.030 : 0.055; }
 
   /* ------------------------------------------------------------
+     1c. SCRUBBED TRANSITIONS
+     Where a rendered transition exists for a pair of backgrounds, the
+     handover stops being a crossfade and becomes a camera move the finger
+     drives: a canvas draws one frame of the sequence per scroll position.
+     Everything here is additive — no sequence, no network, or reduced
+     motion, and the original crossfade runs untouched.
+     ------------------------------------------------------------ */
+  var TRANS_FADE = 0.42;          // video panels hand over across a longer run
+  var trans = [];                 // section index -> transition, sparse
+  var scrub = document.createElement('canvas');
+  scrub.className = 'stage__scrub';
+  scrub.setAttribute('aria-hidden', 'true');
+  stage.appendChild(scrub);
+  var sctx = scrub.getContext('2d', { alpha: false });
+  var scrubOn = false;
+
+  function sizeScrub() {
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var w = Math.round(stage.clientWidth * dpr);
+    var h = Math.round(stage.clientHeight * dpr);
+    if (scrub.width !== w || scrub.height !== h) {
+      scrub.width = w; scrub.height = h;
+      for (var i = 0; i < trans.length; i++) if (trans[i]) trans[i].at = -1;
+    }
+  }
+
+  function pad2(n) { return (n < 10 ? '0' : '') + n; }
+
+  function prime(tr) {
+    if (tr.primed) return;
+    tr.primed = true;
+    var pre = isMobile() ? 'm' : 'd', left = tr.n;
+    tr.imgs = [];
+    for (var i = 0; i < tr.n; i++) {
+      var im = new Image();
+      im.decoding = 'async';
+      im.onload = function () { if (--left === 0) tr.ready = true; };
+      im.onerror = function () { if (--left === 0) tr.ready = true; };
+      im.src = 'frames/' + tr.id + '/' + pre + pad2(i) + '.webp';
+      tr.imgs.push(im);
+    }
+  }
+
+  function drawFrame(tr, i) {
+    var im = tr.imgs[i];
+    if (!im || !im.complete || !im.naturalWidth) return false;
+    var cw = scrub.width, ch = scrub.height;
+    var k = Math.max(cw / im.naturalWidth, ch / im.naturalHeight);
+    var dw = im.naturalWidth * k, dh = im.naturalHeight * k;
+    sctx.drawImage(im, (cw - dw) / 2, (ch - dh) / 2, dw, dh);
+    return true;
+  }
+
+  if (!reduced && window.fetch) {
+    fetch('frames/manifest.json').then(function (r) {
+      return r.ok ? r.json() : null;
+    }).then(function (man) {
+      if (!man) return;
+      for (var i = 0; i < sections.length - 1; i++) {
+        var a = sections[i].getAttribute('data-bg');
+        var b = sections[i + 1].getAttribute('data-bg');
+        for (var id in man) {
+          if (man[id].from === a && man[id].to === b) {
+            trans[i] = { id: id, n: man[id].frames, imgs: [],
+                         primed: false, ready: false, at: -1 };
+          }
+        }
+      }
+      sizeScrub();
+      /* boot already painted once, before this landed. Repaint so a visitor
+         who has not scrolled yet still gets the sequence primed in time. */
+      onScroll();
+    })['catch'](function () { /* the crossfade is already the fallback */ });
+  }
+
+  /* ------------------------------------------------------------
      1b. JOURNEY RAIL
      ------------------------------------------------------------ */
   var rail = document.getElementById('rail');
@@ -119,8 +195,24 @@
     /* Clear everything that will not be written to below. Testing only against
        bFrame was the bug: a frame queued as "next" but not actually shown this
        pass was skipped by the clear AND never re-tracked, so it stayed lit. */
-    var keepA = aFrame;
-    var keepB = (showB > 0) ? bFrame : -1;
+    /* A rendered transition owns this handover: the canvas shows the camera
+       move and both still layers go dark beneath it. */
+    var tr = trans[active], useScrub = false, tf = 0;
+    if (tr) {
+      tf = (prog - (1 - TRANS_FADE)) / TRANS_FADE;
+      /* sized here rather than at setup: the stage can still be measuring
+         itself when the manifest lands, and the guard makes this ~free */
+      if (tf > -0.35) { sizeScrub(); prime(tr); }   // decode before it is needed
+      if (tf > 0 && tr.ready) {
+        var tc = tf > 1 ? 1 : tf;
+        var idx = Math.round(tc * (tr.n - 1));
+        if (idx !== tr.at && drawFrame(tr, idx)) tr.at = idx;
+        useScrub = tr.at >= 0;
+      }
+    }
+
+    var keepA = useScrub ? -1 : aFrame;
+    var keepB = (!useScrub && showB > 0) ? bFrame : -1;
     for (var n = 0; n < live.length; n++) {
       var idx = live[n];
       if (idx !== keepA && idx !== keepB) {
@@ -143,6 +235,22 @@
       }
     }
 
+    if (useScrub !== scrubOn) { scrub.style.opacity = useScrub ? 1 : 0; scrubOn = useScrub; }
+    if (useScrub) {
+      /* Pick the zoom up exactly where layer A left it and hand it to layer B
+         exactly where B expects it, so neither seam pops. */
+      if (kenBurns) {
+        var kb = kbRange();
+        var z0 = 1 + kb - (1 - TRANS_FADE) * kb;
+        var z1 = 1 + kb * 1.4 - kb * 0.5;
+        var tz = tf > 1 ? 1 : tf;
+        scrub.style.transform = 'scale(' + (z0 + (z1 - z0) * tz).toFixed(4) + ')';
+      }
+      if (active !== current) current = active;
+      paintChrome(vh, mid);
+      return;
+    }
+
     var fa = frames[aFrame];
     if (fa) {
       fa.el.style.opacity = showA;
@@ -161,8 +269,11 @@
     }
 
     if (active !== current) current = active;
+    paintChrome(vh, mid);
+  }
 
-    // journey rail — only while the journey panels are on screen
+  /* rail + header + floating whatsapp — runs whichever way the stage painted */
+  function paintChrome(vh, mid) {
     if (stops.length) {
       var first = stops[0].el.offsetTop - vh * 0.5;
       var last = stops[stops.length - 1].el.offsetTop + stops[stops.length - 1].el.offsetHeight;
@@ -197,7 +308,12 @@
         if (f.loaded) f.img.src = srcFor(f.key);
         f.el.style.transform = '';
       });
+      /* the sequences are cut per device class, so they are fetched again */
+      trans.forEach(function (t) {
+        if (t) { t.primed = false; t.ready = false; t.imgs = []; t.at = -1; }
+      });
     }
+    sizeScrub();
     onScroll();
   });
 
