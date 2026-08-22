@@ -1,0 +1,128 @@
+{
+ "S01-boudhanath-dawn": {
+  "focus": 0.5,
+  "w": 204,
+  "m": 92,
+  "mob_px": "1100x2384"
+ },
+ "S02-thamel-night": {
+  "focus": 0.5,
+  "w": 318,
+  "m": 194,
+  "mob_px": "1100x2384"
+ },
+ "S03-kopan-v2": {
+  "focus": 0.55,
+  "w": 283,
+  "m": 213,
+  "mob_px": "1100x2384"
+ },
+ "S04-monks-procession": {
+  "focus": 0.55,
+  "w": 86,
+  "m": 53,
+  "mob_px": "1100x2384"
+ },
+ "S05-timi-potter": {
+  "focus": 0.5,
+  "w": 131,
+  "m": 100,
+  "mob_px": "1100x2384"
+ },
+ "S06-patan-bowl-hands": {
+  "focus": 0.55,
+  "w": 212,
+  "m": 162,
+  "mob_px": "1100x2384"
+ },
+ "S07-patan-durbar-v2": {
+  "focus": 0.42,
+  "w": 244,
+  "m": 145,
+  "mob_px": "1100x2384"
+ },
+ "S08-namobuddha-puja": {
+  "focus": 0.5,
+  "w": 180,
+  "m": 103,
+  "mob_px": "1100x2384"
+ },
+ "S08b-namobuddha-monastery": {
+  "focus": 0.55,
+  "w": 210,
+  "m": 116,
+  "mob_px": "1100x2384"
+ },
+ "S09-namobuddha-ridge": {
+  "focus": 0.55,
+  "w": 196,
+  "m": 140,
+  "mob_px": "1100x2384"
+ },
+ "S10-tamang-terraces": {
+  "focus": 0.45,
+  "w": 216,
+  "m": 128,
+  "mob_px": "1100x2384"
+ },
+ "S11-elder-portrait": {
+  "focus": 0.5,
+  "w": 197,
+  "m": 201,
+  "mob_px": "1100x2384"
+ },
+ "S12-momo-hands-v2": {
+  "focus": 0.72,
+  "w": 245,
+  "m": 226,
+  "mob_px": "1100x2384"
+ },
+ "S13-trisuli-rafting": {
+  "focus": 0.6,
+  "w": 385,
+  "m": 266,
+  "mob_px": "1100x2384"
+ },
+ "S14-bandipur-bluehour": {
+  "focus": 0.6,
+  "w": 300,
+  "m": 226,
+  "mob_px": "1100x2384"
+ },
+ "S15-phewa-dawn": {
+  "focus": 0.5,
+  "w": 117,
+  "m": 88,
+  "mob_px": "1100x2384"
+ },
+ "S16-sarangi-playing": {
+  "focus": 0.55,
+  "w": 172,
+  "m": 129,
+  "mob_px": "1100x2384"
+ },
+ "S16b-sarangi-bow-macro": {
+  "focus": 0.5,
+  "w": 91,
+  "m": 62,
+  "mob_px": "1100x2384"
+ },
+ "S17-peace-pagoda": {
+  "focus": 0.32,
+  "w": 171,
+  "m": 110,
+  "mob_px": "1100x2384"
+ },
+ "S18-astam-marigold": {
+  "focus": 0.55,
+  "w": 398,
+  "m": 228,
+  "mob_px": "1100x2384"
+ },
+ "S19-annapurna-sunrise": {
+  "focus": 0.5,
+  "w": 149,
+  "m": 103,
+  "mob_px": "1100x2384"
+ }
+}
