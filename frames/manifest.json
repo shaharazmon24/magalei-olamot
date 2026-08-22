@@ -8,5 +8,15 @@
   "mobileKB": 950,
   "desktopW": 1280,
   "mobileW": 720
+ },
+ "T02": {
+  "frames": 24,
+  "from": "S25-lodge-window",
+  "to": "S19-annapurna-sunrise",
+  "kind": "life",
+  "desktopKB": 1674,
+  "mobileKB": 1222,
+  "desktopW": 1280,
+  "mobileW": 720
  }
 }
