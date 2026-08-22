@@ -83,7 +83,7 @@
   scrub.setAttribute('aria-hidden', 'true');
   stage.appendChild(scrub);
   var sctx = scrub.getContext('2d', { alpha: false });
-  var scrubOn = false;
+  var scrubOp = 0;
 
   function sizeScrub() {
     var dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -133,6 +133,7 @@
         for (var id in man) {
           if (man[id].from === a && man[id].to === b) {
             trans[i] = { id: id, n: man[id].frames, imgs: [],
+                         kind: man[id].kind || 'transition',
                          primed: false, ready: false, at: -1 };
           }
         }
@@ -171,11 +172,11 @@
     var vh = window.innerHeight;
     var mid = window.scrollY + vh * 0.5;
 
-    var active = 0, prog = 0;
+    var active = 0, prog = 0, aTop = 0, aH = 1;
     for (var i = 0; i < sections.length; i++) {
       var s = sections[i], top = s.offsetTop, h = s.offsetHeight;
-      if (mid >= top && mid < top + h) { active = i; prog = (mid - top) / h; break; }
-      if (mid >= top + h) { active = i; prog = 1; }
+      if (mid >= top && mid < top + h) { active = i; prog = (mid - top) / h; aTop = top; aH = h; break; }
+      if (mid >= top + h) { active = i; prog = 1; aTop = top; aH = h; }
     }
 
     // preload the next two frames before they are needed
@@ -197,9 +198,23 @@
        pass was skipped by the clear AND never re-tracked, so it stayed lit. */
     /* A rendered transition owns this handover: the canvas shows the camera
        move and both still layers go dark beneath it. */
-    var tr = trans[active], useScrub = false, tf = 0;
+    var tr = trans[active], useScrub = false, life = false, tf = 0;
     if (tr) {
-      tf = (prog - (1 - TRANS_FADE)) / TRANS_FADE;
+      /* 'life' spends the whole panel on the footage and simply crossfades out
+         at the end, so the same seconds of camera travel are spread over the
+         entire scroll instead of being crammed into the handover. */
+      life = (tr.kind === 'life');
+      if (life) {
+        /* progress is measured at the viewport centre, so the first panel can
+           never report less than half and the last never more — without this
+           remap a whole half of the sequence is simply unreachable. */
+        var docH = document.documentElement.scrollHeight;
+        var r0 = Math.max(0, (vh * 0.5 - aTop) / aH);
+        var r1 = Math.min(1, (docH - vh * 0.5 - aTop) / aH);
+        tf = (prog - r0) / Math.max(0.15, r1 - r0);
+      } else {
+        tf = (prog - (1 - TRANS_FADE)) / TRANS_FADE;
+      }
       /* sized here rather than at setup: the stage can still be measuring
          itself when the manifest lands, and the guard makes this ~free */
       if (tf > -0.35) { sizeScrub(); prime(tr); }   // decode before it is needed
@@ -210,9 +225,14 @@
         useScrub = tr.at >= 0;
       }
     }
+    /* a sequence one panel ahead needs its head start too */
+    var nx = trans[active + 1];
+    if (nx && prog > 0.4) { sizeScrub(); prime(nx); }
 
+    /* in life mode the canvas simply IS layer A, so layer B still fades in
+       over it exactly as it always did */
     var keepA = useScrub ? -1 : aFrame;
-    var keepB = (!useScrub && showB > 0) ? bFrame : -1;
+    var keepB = ((life || !useScrub) && showB > 0) ? bFrame : -1;
     for (var n = 0; n < live.length; n++) {
       var idx = live[n];
       if (idx !== keepA && idx !== keepB) {
@@ -235,23 +255,31 @@
       }
     }
 
-    if (useScrub !== scrubOn) { scrub.style.opacity = useScrub ? 1 : 0; scrubOn = useScrub; }
-    if (useScrub) {
+    var wantOp = useScrub ? (life ? showA : 1) : 0;
+    if (useScrub && life && tf > 1) wantOp = showA;   // stay put past the end
+    if (wantOp !== scrubOp) { scrub.style.opacity = wantOp; scrubOp = wantOp; }
+
+    if (useScrub && life) {
+      /* the footage already carries the move; adding a zoom on top of it is
+         exactly the doubling-up that made the first cut feel coarse */
+      scrub.style.transform = '';
+    } else if (useScrub && kenBurns) {
       /* Pick the zoom up exactly where layer A left it and hand it to layer B
          exactly where B expects it, so neither seam pops. */
-      if (kenBurns) {
-        var kb = kbRange();
-        var z0 = 1 + kb - (1 - TRANS_FADE) * kb;
-        var z1 = 1 + kb * 1.4 - kb * 0.5;
-        var tz = tf > 1 ? 1 : tf;
-        scrub.style.transform = 'scale(' + (z0 + (z1 - z0) * tz).toFixed(4) + ')';
-      }
+      var kb = kbRange();
+      var z0 = 1 + kb - (1 - TRANS_FADE) * kb;
+      var z1 = 1 + kb * 1.4 - kb * 0.5;
+      var tz = tf > 1 ? 1 : tf;
+      scrub.style.transform = 'scale(' + (z0 + (z1 - z0) * tz).toFixed(4) + ')';
+    }
+
+    if (useScrub && !life) {          // the canvas owns the whole handover
       if (active !== current) current = active;
       paintChrome(vh, mid);
       return;
     }
 
-    var fa = frames[aFrame];
+    var fa = useScrub ? null : frames[aFrame];
     if (fa) {
       fa.el.style.opacity = showA;
       fa.el.style.willChange = 'opacity, transform';
