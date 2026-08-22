@@ -111,12 +111,18 @@
 
   function pad2(n) { return (n < 10 ? '0' : '') + n; }
 
-  function prime(tr) {
+  /* Frame 0 is, by construction, the same picture as the panel's own still -
+     the extractor builds them from one source and refuses to ship them if
+     they differ. So it is never downloaded: the canvas draws the still's own
+     <img>, which is already in memory. That saves ~200KB a panel and makes
+     the handover exact rather than merely verified. */
+  function prime(tr, still) {
+    tr.head = still;
     if (tr.primed) return;
     tr.primed = true;
-    var pre = isMobile() ? 'm' : 'd', left = tr.n;
-    tr.imgs = [];
-    for (var i = 0; i < tr.n; i++) {
+    var pre = isMobile() ? 'm' : 'd', left = tr.n - 1;
+    tr.imgs = [null];
+    for (var i = 1; i < tr.n; i++) {
       var im = new Image();
       im.decoding = 'async';
       /* the last frame to arrive has to ask for a repaint: a visitor sitting
@@ -130,7 +136,7 @@
   }
 
   function drawFrame(tr, i) {
-    var im = tr.imgs[i];
+    var im = (i === 0) ? tr.head : tr.imgs[i];
     if (!im || !im.complete || !im.naturalWidth) return false;
     var cw = scrub.width, ch = scrub.height;
     var k = Math.max(cw / im.naturalWidth, ch / im.naturalHeight);
@@ -235,7 +241,7 @@
       }
       /* sized here rather than at setup: the stage can still be measuring
          itself when the manifest lands, and the guard makes this ~free */
-      if (tf > -0.35) { sizeScrub(); prime(tr); }   // decode before it is needed
+      if (tf > -0.35) { sizeScrub(); prime(tr, frames[aFrame].img); }
       if (tf >= 0 && tr.ready) {
         var tc = tf > 1 ? 1 : tf;
         var idx = Math.round(tc * (tr.n - 1));
@@ -244,8 +250,13 @@
       }
     }
     /* a sequence one panel ahead needs its head start too */
+    /* Lead time for the next panel, but not so early that a visitor who
+       lands and never scrolls pays for it: at rest on the hero prog is 0.5. */
     var nx = trans[active + 1];
-    if (nx && prog > 0.4) { sizeScrub(); prime(nx); }
+    if (nx && prog > 0.58 && frames[order[active + 1]]) {
+      sizeScrub();
+      prime(nx, frames[order[active + 1]].img);
+    }
 
     /* in life mode the canvas simply IS layer A, so layer B still fades in
        over it exactly as it always did */
