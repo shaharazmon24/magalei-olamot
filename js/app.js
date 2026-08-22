@@ -137,6 +137,7 @@
           if (man[id].from === a && man[id].to === b) {
             trans[i] = { id: id, n: man[id].frames, imgs: [],
                          kind: man[id].kind || 'transition',
+                         camera: man[id].camera || 'locked',
                          primed: false, ready: false, at: -1 };
           }
         }
@@ -268,7 +269,9 @@
          1.027 made the picture jump the instant the canvas took over. The
          footage is locked off, so this gentle zoom is the only camera move in
          the panel — the same one every other panel has. */
-      if (kenBurns) {
+      /* footage that already dollies carries its own move - stacking the
+         page's zoom on top of it is the doubling-up that read as coarse */
+      if (kenBurns && tr.camera !== 'dolly') {
         scrub.style.transform =
           'scale(' + (1 + kbRange() - prog * kbRange()).toFixed(4) + ')';
       } else {
@@ -294,7 +297,9 @@
     if (fa) {
       fa.el.style.opacity = showA;
       fa.el.style.willChange = 'opacity, transform';
-      if (!kenBurns) { fa.el.style.transform = ''; }
+      /* the still must sit at whatever scale the canvas will take over at,
+         or the picture jumps the instant the visitor scrolls */
+      if (!kenBurns || (tr && tr.camera === 'dolly')) { fa.el.style.transform = ''; }
       else { fa.el.style.transform = 'scale(' + (1 + kbRange() - prog * kbRange()).toFixed(4) + ')'; }
       live.push(aFrame);
     }

@@ -4,19 +4,20 @@
   "from": "S01-boudhanath-dawn",
   "to": "S25-lodge-window",
   "kind": "life",
-  "desktopKB": 1222,
-  "mobileKB": 950,
-  "desktopW": 1280,
-  "mobileW": 720
+  "desktopKB": 1473,
+  "mobileKB": 1067,
+  "desktopW": 2400,
+  "mobileW": 1100
  },
  "T02": {
   "frames": 24,
   "from": "S25-lodge-window",
   "to": "S19-annapurna-sunrise",
   "kind": "life",
-  "desktopKB": 1674,
-  "mobileKB": 1222,
-  "desktopW": 1280,
-  "mobileW": 720
+  "camera": "dolly",
+  "desktopKB": 1861,
+  "mobileKB": 1328,
+  "desktopW": 2400,
+  "mobileW": 1100
  }
 }
