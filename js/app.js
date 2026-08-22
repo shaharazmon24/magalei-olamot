@@ -105,8 +105,11 @@
     for (var i = 0; i < tr.n; i++) {
       var im = new Image();
       im.decoding = 'async';
-      im.onload = function () { if (--left === 0) tr.ready = true; };
-      im.onerror = function () { if (--left === 0) tr.ready = true; };
+      /* the last frame to arrive has to ask for a repaint: a visitor sitting
+         still at the top of the page gets no scroll event to trigger one */
+      var done = function () { if (--left === 0) { tr.ready = true; onScroll(); } };
+      im.onload = done;
+      im.onerror = done;
       im.src = 'frames/' + tr.id + '/' + pre + pad2(i) + '.webp';
       tr.imgs.push(im);
     }
@@ -218,7 +221,7 @@
       /* sized here rather than at setup: the stage can still be measuring
          itself when the manifest lands, and the guard makes this ~free */
       if (tf > -0.35) { sizeScrub(); prime(tr); }   // decode before it is needed
-      if (tf > 0 && tr.ready) {
+      if (tf >= 0 && tr.ready) {
         var tc = tf > 1 ? 1 : tf;
         var idx = Math.round(tc * (tr.n - 1));
         if (idx !== tr.at && drawFrame(tr, idx)) tr.at = idx;
@@ -260,9 +263,17 @@
     if (wantOp !== scrubOp) { scrub.style.opacity = wantOp; scrubOp = wantOp; }
 
     if (useScrub && life) {
-      /* the footage already carries the move; adding a zoom on top of it is
-         exactly the doubling-up that made the first cut feel coarse */
-      scrub.style.transform = '';
+      /* The canvas has to carry EXACTLY the zoom the still layer would have at
+         this scroll position. Leaving it at scale 1 while the still sat at
+         1.027 made the picture jump the instant the canvas took over. The
+         footage is locked off, so this gentle zoom is the only camera move in
+         the panel — the same one every other panel has. */
+      if (kenBurns) {
+        scrub.style.transform =
+          'scale(' + (1 + kbRange() - prog * kbRange()).toFixed(4) + ')';
+      } else {
+        scrub.style.transform = '';
+      }
     } else if (useScrub && kenBurns) {
       /* Pick the zoom up exactly where layer A left it and hand it to layer B
          exactly where B expects it, so neither seam pops. */
