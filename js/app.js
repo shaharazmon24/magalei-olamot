@@ -98,6 +98,11 @@
   stage.appendChild(scrub);
   var sctx = scrub.getContext('2d', { alpha: false });
   var scrubOp = 0;
+  /* There is ONE canvas, so there is one record of what is currently drawn on
+     it. Keeping this per-transition was a real bug: crossing into a panel
+     whose own 'last drawn' index happened to match skipped the redraw, and the
+     canvas went on showing the PREVIOUS panel's frame. */
+  var painted = { id: null, idx: -1 };
 
   function sizeScrub() {
     var dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -105,7 +110,7 @@
     var h = Math.round(stage.clientHeight * dpr);
     if (scrub.width !== w || scrub.height !== h) {
       scrub.width = w; scrub.height = h;
-      for (var i = 0; i < trans.length; i++) if (trans[i]) trans[i].at = -1;
+      painted.id = null; painted.idx = -1;   // resizing a canvas wipes it
     }
   }
 
@@ -168,7 +173,7 @@
             trans[i] = { id: id, n: man[id].frames, imgs: [],
                          kind: man[id].kind || 'transition',
                          camera: man[id].camera || 'locked',
-                         primed: false, ready: false, at: -1 };
+                         primed: false, ready: false };
           }
         }
       }
@@ -254,9 +259,12 @@
       if (tf > -0.35) { sizeScrub(); prime(tr, frames[aFrame].img); }
       if (tf >= 0 && tr.ready) {
         var tc = tf > 1 ? 1 : tf;
-        var idx = Math.round(tc * (tr.n - 1));
-        if (idx !== tr.at && drawFrame(tr, idx)) tr.at = idx;
-        useScrub = tr.at >= 0;
+        var want = Math.round(tc * (tr.n - 1));
+        if ((painted.id !== tr.id || painted.idx !== want) && drawFrame(tr, want)) {
+          painted.id = tr.id; painted.idx = want;
+        }
+        /* only trust the canvas while it actually holds THIS panel's frame */
+        useScrub = (painted.id === tr.id);
       }
     }
     /* a sequence one panel ahead needs its head start too */
@@ -273,9 +281,9 @@
     var keepA = useScrub ? -1 : aFrame;
     var keepB = ((life || !useScrub) && showB > 0) ? bFrame : -1;
     for (var n = 0; n < live.length; n++) {
-      var idx = live[n];
-      if (idx !== keepA && idx !== keepB) {
-        var f0 = frames[idx];
+      var liveIdx = live[n];
+      if (liveIdx !== keepA && liveIdx !== keepB) {
+        var f0 = frames[liveIdx];
         f0.el.style.opacity = 0;
         f0.el.style.willChange = 'auto';
       }
@@ -285,11 +293,11 @@
     /* Cheap safety net: on a section change, reconcile every frame once. A fast
        flick can outrun the tracker, and this costs nothing between changes. */
     if (active !== current) {
-      for (var s = 0; s < frames.length; s++) {
-        if (s !== keepA && s !== keepB && frames[s].el.style.opacity !== '0'
-            && frames[s].el.style.opacity !== '') {
-          frames[s].el.style.opacity = 0;
-          frames[s].el.style.willChange = 'auto';
+      for (var q = 0; q < frames.length; q++) {
+        if (q !== keepA && q !== keepB && frames[q].el.style.opacity !== '0'
+            && frames[q].el.style.opacity !== '') {
+          frames[q].el.style.opacity = 0;
+          frames[q].el.style.willChange = 'auto';
         }
       }
     }
@@ -399,8 +407,9 @@
       });
       /* the sequences are cut per device class, so they are fetched again */
       trans.forEach(function (t) {
-        if (t) { t.primed = false; t.ready = false; t.imgs = []; t.at = -1; }
+        if (t) { t.primed = false; t.ready = false; t.imgs = []; }
       });
+      painted.id = null; painted.idx = -1;
     }
     sizeScrub();
     onScroll();
