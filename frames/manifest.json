@@ -64,5 +64,16 @@
   "mobileKB": 2397,
   "desktopW": 2400,
   "mobileW": 1000
+ },
+ "T07": {
+  "frames": 24,
+  "from": "S05-timi-potter",
+  "to": "S07-patan-durbar-v2",
+  "kind": "life",
+  "camera": "locked",
+  "desktopKB": 1278,
+  "mobileKB": 1212,
+  "desktopW": 2400,
+  "mobileW": 1000
  }
 }
