@@ -108,5 +108,16 @@
   "mobileKB": 1472,
   "desktopW": 2400,
   "mobileW": 1000
+ },
+ "T11": {
+  "frames": 24,
+  "from": "S10-tamang-terraces",
+  "to": "S13-trisuli-rafting",
+  "kind": "life",
+  "camera": "locked",
+  "desktopKB": 1940,
+  "mobileKB": 1539,
+  "desktopW": 2400,
+  "mobileW": 1000
  }
 }
