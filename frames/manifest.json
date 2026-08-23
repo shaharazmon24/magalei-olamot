@@ -20,5 +20,16 @@
   "mobileKB": 1429,
   "desktopW": 2400,
   "mobileW": 1000
+ },
+ "T03": {
+  "frames": 24,
+  "from": "S19-annapurna-sunrise",
+  "to": "S26-pass-trail",
+  "kind": "life",
+  "camera": "locked",
+  "desktopKB": 1637,
+  "mobileKB": 1268,
+  "desktopW": 2400,
+  "mobileW": 1000
  }
 }
