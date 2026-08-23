@@ -31,5 +31,16 @@
   "mobileKB": 1268,
   "desktopW": 2400,
   "mobileW": 1000
+ },
+ "T04": {
+  "frames": 24,
+  "from": "S26-pass-trail",
+  "to": "S22-kathmandu-morning",
+  "kind": "life",
+  "camera": "locked",
+  "desktopKB": 3690,
+  "mobileKB": 2605,
+  "desktopW": 2400,
+  "mobileW": 1000
  }
 }
