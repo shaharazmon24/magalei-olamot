@@ -53,5 +53,16 @@
   "mobileKB": 2597,
   "desktopW": 2400,
   "mobileW": 1000
+ },
+ "T06": {
+  "frames": 24,
+  "from": "S03-kopan-v2",
+  "to": "S05-timi-potter",
+  "kind": "life",
+  "camera": "locked",
+  "desktopKB": 2714,
+  "mobileKB": 2397,
+  "desktopW": 2400,
+  "mobileW": 1000
  }
 }
