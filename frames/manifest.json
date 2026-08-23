@@ -42,5 +42,16 @@
   "mobileKB": 2402,
   "desktopW": 2400,
   "mobileW": 1000
+ },
+ "T05": {
+  "frames": 32,
+  "from": "S22-kathmandu-morning",
+  "to": "S03-kopan-v2",
+  "kind": "life",
+  "camera": "locked",
+  "desktopKB": 4328,
+  "mobileKB": 2597,
+  "desktopW": 2400,
+  "mobileW": 1000
  }
 }
