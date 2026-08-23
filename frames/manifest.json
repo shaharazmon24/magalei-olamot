@@ -97,5 +97,16 @@
   "mobileKB": 1659,
   "desktopW": 2400,
   "mobileW": 1000
+ },
+ "T10": {
+  "frames": 24,
+  "from": "S08-namobuddha-puja",
+  "to": "S10-tamang-terraces",
+  "kind": "life",
+  "camera": "locked",
+  "desktopKB": 1988,
+  "mobileKB": 1472,
+  "desktopW": 2400,
+  "mobileW": 1000
  }
 }
