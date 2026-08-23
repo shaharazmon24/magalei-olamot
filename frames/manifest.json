@@ -86,5 +86,16 @@
   "mobileKB": 1577,
   "desktopW": 2400,
   "mobileW": 1000
+ },
+ "T09": {
+  "frames": 24,
+  "from": "S08b-namobuddha-monastery",
+  "to": "S08-namobuddha-puja",
+  "kind": "life",
+  "camera": "locked",
+  "desktopKB": 1929,
+  "mobileKB": 1659,
+  "desktopW": 2400,
+  "mobileW": 1000
  }
 }
