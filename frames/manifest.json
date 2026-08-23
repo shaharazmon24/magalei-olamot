@@ -75,5 +75,16 @@
   "mobileKB": 1212,
   "desktopW": 2400,
   "mobileW": 1000
+ },
+ "T08": {
+  "frames": 24,
+  "from": "S07-patan-durbar-v2",
+  "to": "S08b-namobuddha-monastery",
+  "kind": "life",
+  "camera": "locked",
+  "desktopKB": 2138,
+  "mobileKB": 1577,
+  "desktopW": 2400,
+  "mobileW": 1000
  }
 }
