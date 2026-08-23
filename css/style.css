@@ -131,7 +131,13 @@ section{position:relative}
   position:absolute;inset:0;opacity:0;
   transform:translateZ(0);            /* own layer, so a fade never repaints the page */
   backface-visibility:hidden;
-  transition:opacity .12s linear;      /* smooths the step between scroll samples */
+  /* NO opacity transition. It existed to smooth the step between scroll
+     samples, from before the canvas. Now it actively breaks things: paint
+     writes the still and the canvas in the same frame, but CSS stretches only
+     the still over 120ms. Crossing a panel edge upward, the canvas switches to
+     the new panel instantly while the outgoing still is still fading in - so
+     for a tenth of a second you see the wrong panel, or black. paint() already
+     runs every animation frame and interpolates opacity itself. */
 }
 .stage__layer img{width:100%;height:100%;object-fit:cover;object-position:center}
 /* the scrubbed transition. Sits above the still layers, below the vignette.
