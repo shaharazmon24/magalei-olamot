@@ -196,5 +196,16 @@
   "mobileKB": 4233,
   "desktopW": 2400,
   "mobileW": 1000
+ },
+ "T19": {
+  "frames": 24,
+  "from": "S02-thamel-night",
+  "to": "S04-monks-procession",
+  "kind": "life",
+  "camera": "locked",
+  "desktopKB": 7843,
+  "mobileKB": 3843,
+  "desktopW": 2400,
+  "mobileW": 1000
  }
 }
