@@ -207,5 +207,16 @@
   "mobileKB": 3843,
   "desktopW": 2400,
   "mobileW": 1000
+ },
+ "T20": {
+  "frames": 32,
+  "from": "S04-monks-procession",
+  "to": "S12-momo-hands-v2",
+  "kind": "life",
+  "camera": "locked",
+  "desktopKB": 3203,
+  "mobileKB": 1960,
+  "desktopW": 2400,
+  "mobileW": 1000
  }
 }
