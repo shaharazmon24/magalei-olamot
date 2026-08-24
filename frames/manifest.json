@@ -130,5 +130,16 @@
   "mobileKB": 4280,
   "desktopW": 2400,
   "mobileW": 1000
+ },
+ "T13": {
+  "frames": 24,
+  "from": "S14-bandipur-bluehour",
+  "to": "S15-phewa-dawn",
+  "kind": "life",
+  "camera": "locked",
+  "desktopKB": 7202,
+  "mobileKB": 2967,
+  "desktopW": 2400,
+  "mobileW": 1000
  }
 }
