@@ -163,5 +163,16 @@
   "mobileKB": 2043,
   "desktopW": 2400,
   "mobileW": 1000
+ },
+ "T16": {
+  "frames": 32,
+  "from": "S16-sarangi-playing",
+  "to": "S18-astam-marigold",
+  "kind": "life",
+  "camera": "locked",
+  "desktopKB": 6219,
+  "mobileKB": 3311,
+  "desktopW": 2400,
+  "mobileW": 1000
  }
 }
