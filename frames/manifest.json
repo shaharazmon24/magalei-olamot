@@ -119,5 +119,16 @@
   "mobileKB": 2738,
   "desktopW": 2400,
   "mobileW": 1000
+ },
+ "T12": {
+  "frames": 40,
+  "from": "S13-trisuli-rafting",
+  "to": "S14-bandipur-bluehour",
+  "kind": "life",
+  "camera": "dolly",
+  "desktopKB": 9195,
+  "mobileKB": 4280,
+  "desktopW": 2400,
+  "mobileW": 1000
  }
 }
