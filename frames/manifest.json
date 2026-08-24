@@ -141,5 +141,16 @@
   "mobileKB": 2967,
   "desktopW": 2400,
   "mobileW": 1000
+ },
+ "T14": {
+  "frames": 24,
+  "from": "S15-phewa-dawn",
+  "to": "S17-peace-pagoda",
+  "kind": "life",
+  "camera": "locked",
+  "desktopKB": 2794,
+  "mobileKB": 1703,
+  "desktopW": 2400,
+  "mobileW": 1000
  }
 }
