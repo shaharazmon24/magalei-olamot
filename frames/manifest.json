@@ -174,5 +174,16 @@
   "mobileKB": 3482,
   "desktopW": 2400,
   "mobileW": 1000
+ },
+ "T17": {
+  "frames": 24,
+  "from": "S18-astam-marigold",
+  "to": "S20-kathmandu-market",
+  "kind": "life",
+  "camera": "locked",
+  "desktopKB": 9235,
+  "mobileKB": 4783,
+  "desktopW": 2400,
+  "mobileW": 1000
  }
 }
