@@ -560,12 +560,34 @@ section{position:relative}
   .rail__label{display:none}
   .rail__dot{width:5px;height:5px}
   .rail__item.active .rail__dot{transform:scale(1.8);box-shadow:0 0 0 4px rgba(200,145,47,.16)}
-  /* the phone veil is being reworked - see demo/veil-picker.html. This is the
-     state it was in before, restored while the treatment is chosen. */
+  /* ---- the phone veil ----
+     It was a flat .80 plateau across the middle third, which put the photograph
+     at 12% of its brightness exactly where a phone shows most of it. Worse, it
+     did not even buy what it cost: measured at the 97th percentile of luminance
+     under the text - the bright patch that decides legibility, not the average
+     that hides it - the rafting panel came out at 4.2:1, under the 4.5:1 floor.
+     Dark in the wrong place.
+
+     The fix is not more shade, it is a stronger foreground. The lede sat at 72%
+     opacity, giving away contrast for free and then paying for it in black.
+     Measured, taking it to full opacity buys more contrast than a 26px blur.
+
+     With that, the veil becomes a single wash leaning down the frame - the same
+     idea as the desktop wash leaning across it, one axis turned. It has no
+     plateau and no edge anywhere, so there is no shape for the eye to find, and
+     the dark end sits where the words are.
+
+       veil                      picture   worst case
+       .80 plateau, lede .72       29%       4.2:1   failed
+       .56 -> .68, lede 1.0        38%       5.6:1
+  */
   .panel{padding:14vh var(--pad);min-height:100svh}
   .panel::before,.panel.flip::before{
-    background:linear-gradient(to bottom,rgba(8,10,14,.5) 0%,rgba(8,10,14,.8) 38%,rgba(8,10,14,.8) 70%,rgba(8,10,14,.55) 100%);
+    background:linear-gradient(to bottom,rgba(8,10,14,.56) 0%,rgba(8,10,14,.68) 100%);
   }
+  /* vibrancy: over a photograph the text carries its own contrast. Scoped to
+     the panels - on the slabs the softer 72% sits on solid dark and is right. */
+  .panel .lede{color:var(--paper)}
   .panel.flip .panel__in{margin-inline-start:0}
   .hero__meta{gap:.55rem 1.1rem;margin-top:2.2rem}
   .hero__meta span{border:0;padding:0;font-size:.68rem;letter-spacing:.16em;white-space:nowrap}
