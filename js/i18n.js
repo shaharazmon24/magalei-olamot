@@ -13,7 +13,7 @@ const I18N = {
     /* hero */
     "hero.h1a":"מסע רחוק", "hero.h1b":"למקום קרוב",
     "hero.sub":"טיולי בוטיק לנפאל",
-    "hero.m1":"14 ימים", "hero.m2":"10–11 מטיילים", "hero.m3":"4–17 באוקטובר 2026",
+    "hero.m1":"14 ימים", "hero.m2":"10–12 מטיילים", "hero.m3":"4–17 באוקטובר 2026",
     "hero.cta1":"לשריין מקום", "hero.cta2":"לראות את המסלול",
     "hero.cue":"גללו והמסע מתחיל",
 
@@ -33,7 +33,7 @@ const I18N = {
     "a11y.skip":"דלג לתוכן הראשי",
     "dates.kicker":"הטיולים הבאים", "dates.h":"הטיולים של 2026",
     "dates.d1":"16–29 בספטמבר 2026", "dates.d2":"4–17 באוקטובר 2026",
-    "dates.meta":"14 ימים · קבוצה של 10–11 מטיילים",
+    "dates.meta":"14 ימים · קבוצה של 10–12 מטיילים",
     "dates.full":"מלא", "dates.open":"ההרשמה בעיצומה",
     "dates.note":"הטיסה לקטמנדו ב-4 באוקטובר. נחיתה בנמל התעופה הבינלאומי טריבהוואן, קטמנדו.",
     "dates.cta":"לבדוק זמינות",
@@ -103,7 +103,7 @@ const I18N = {
 
     "hero.h1a":"A Far Journey", "hero.h1b":"to a Close Place",
     "hero.sub":"Boutique Journeys to Nepal",
-    "hero.m1":"14 days", "hero.m2":"10–11 travellers", "hero.m3":"4–17 October 2026",
+    "hero.m1":"14 days", "hero.m2":"10–12 travellers", "hero.m3":"4–17 October 2026",
     "hero.cta1":"Reserve a Place", "hero.cta2":"See the Route",
     "hero.cue":"Scroll, and the journey begins",
 
@@ -121,7 +121,7 @@ const I18N = {
     "a11y.skip":"Skip to main content",
     "dates.kicker":"Upcoming Journeys", "dates.h":"2026 Departures",
     "dates.d1":"16–29 September 2026", "dates.d2":"4–17 October 2026",
-    "dates.meta":"14 days · a group of 10–11 travellers",
+    "dates.meta":"14 days · a group of 10–12 travellers",
     "dates.full":"Full", "dates.open":"Now Booking",
     "dates.note":"Flight to Kathmandu on 4 October. Arrival at Tribhuvan International Airport, Kathmandu.",
     "dates.cta":"Check Availability",

@@ -96,7 +96,7 @@
     "st6":"אנחנו מזמינים אתכם למסע משותף — ליצור ביחד מרחב מאפשר, מקבל ותומך. מהניסיון שלנו בהנחיית קבוצות וקורסים, מרחב משותף כזה מאפשר גילוי והעצמה אישית.",
 
     /* ---- loose ---- */
-    "dates.meta":"14 ימים · קבוצה של 10–11 מטיילים",
+    "dates.meta":"14 ימים · קבוצה של 10–12 מטיילים",
     "dates.note":"הטיסה לקטמנדו ב-4 באוקטובר. נחיתה בנמל התעופה הבינלאומי טריבהוואן, קטמנדו.",
     "itin.note":"בכל בוקר, לפני ארוחת הבוקר, מוזמנים להתחיל את היום עם צ'י קונג ומדיטציה עם עדי.",
     "price.allin":"כשאנחנו אומרים מחיר כולל הכל — הכוונה להכל.",
@@ -195,7 +195,7 @@
     "st5":"This time we want to take you into that experience in Nepal. To introduce you to the places we loved most, to a remarkable culture, to remarkable people, to colour at its best, to flavours and scents, cities, mountains and villages.",
     "st6":"We invite you to travel with us — to create together a space that allows, accepts and supports. From our experience leading groups and courses, a shared space like that makes room for discovery and for personal growth.",
 
-    "dates.meta":"14 days · a group of 10–11 travellers",
+    "dates.meta":"14 days · a group of 10–12 travellers",
     "dates.note":"Flight to Kathmandu on 4 October. Arrival at Tribhuvan International Airport, Kathmandu.",
     "itin.note":"Every morning, before breakfast, you're welcome to begin the day with Qi Gong and meditation with Adi.",
     "price.allin":"When we say all-inclusive — we mean all of it.",
