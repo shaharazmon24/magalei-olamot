@@ -5,6 +5,12 @@
   'use strict';
 
   var WA_NUMBER = '972544772010';           // רועי
+
+  /* Web3Forms. This key is MEANT to be public - Web3Forms is a client-side
+     service and the key identifies the form, it is not a password. It is
+     visible to anyone who views source, by design. */
+  var W3F_KEY = 'c931d947-8031-41be-a8ef-7d0ebafbad81';
+
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var isMobile = function () { return window.matchMedia('(max-width: 768px)').matches; };
 
@@ -600,6 +606,41 @@
       if (v('msg').trim()) { lines.push('', v('msg').trim()); }
 
       note.textContent = t('form.sending');
+
+      /* The e-mail is a SILENT RECORD, not the visitor's channel. WhatsApp is
+         what they see. This matters because until now a lead existed only for
+         as long as wa.me managed to open: if the visitor had no WhatsApp, or a
+         popup blocker stopped the tab, the enquiry vanished and nobody knew it
+         had ever been made.
+
+         Deliberately NOT awaited. window.open has to run in the same tick as
+         the submit event or the browser treats it as an unrequested popup and
+         blocks it - awaiting the POST first would break the visible channel to
+         protect the invisible one. Any failure here is swallowed: the visitor
+         has already been handed WhatsApp and must never see an error about a
+         backup they were never told about. */
+      if (W3F_KEY) {
+        try {
+          fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify({
+              access_key: W3F_KEY,
+              subject: 'פנייה חדשה מהאתר — ' + v('fn') + ' ' + v('ln'),
+              from_name: 'מגלי עולמות · האתר',
+              'שם': v('fn') + ' ' + v('ln'),
+              email: v('em'),
+              'טלפון': v('ph'),
+              'יציאה': v('dep'),
+              'מספר מטיילים': v('ppl'),
+              'סוג חדר': v('room'),
+              'הודעה': v('msg').trim() || '—',
+              'שפת הגלישה': current_lang === 'en' ? 'English' : 'עברית'
+            })
+          })['catch'](function () { /* silent by design */ });
+        } catch (err) { /* silent by design */ }
+      }
+
       window.open('https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(lines.join('\n')), '_blank', 'noopener');
     });
   }
