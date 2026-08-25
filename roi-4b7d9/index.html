@@ -1,0 +1,579 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#faf8f4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141310" media="(prefers-color-scheme: dark)">
+<title>מגלי עולמות — משימות פתוחות</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700&family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --paper:#faf8f4; --paper-2:#f2eee6; --card:#ffffff;
+  --ink:#1d1b18; --ink-2:#4a453e; --ink-3:#7d766c;
+  --rule:#e0d9cc; --field:#ffffff; --field-line:#cfc6b6;
+  --brass:#a8761f; --brass-soft:#f5ead6;
+  --urgent:#9a5245; --ok:#4f6b45; --ok-soft:#e9f0e5;
+  --wa:#1f8f5f;
+  --display:"Frank Ruhl Libre",Georgia,serif;
+  --body:"Assistant","Helvetica Neue",Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#141310; --paper-2:#1c1a16; --card:#1a1814;
+    --ink:#f2ece1; --ink-2:#c4bcae; --ink-3:#8d857a;
+    --rule:#332f28; --field:#232019; --field-line:#4a4438;
+    --brass:#d9a44e; --brass-soft:#2a2118;
+    --urgent:#d1897a; --ok:#9dbd8e; --ok-soft:#1e2619;
+    --wa:#25a56d;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#141310; --paper-2:#1c1a16; --card:#1a1814;
+  --ink:#f2ece1; --ink-2:#c4bcae; --ink-3:#8d857a;
+  --rule:#332f28; --field:#232019; --field-line:#4a4438;
+  --brass:#d9a44e; --brass-soft:#2a2118;
+  --urgent:#d1897a; --ok:#9dbd8e; --ok-soft:#1e2619;
+  --wa:#25a56d;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--paper); color:var(--ink);
+  font-family:var(--body); font-weight:300; line-height:1.75;
+  direction:rtl;
+  padding:clamp(1.5rem,5vw,4rem) clamp(1rem,5vw,2rem) 9rem;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:44rem;margin:0 auto}
+
+/* ---------- masthead ---------- */
+.top{text-align:center;padding-bottom:2.5rem;border-bottom:1px solid var(--rule);margin-bottom:2.5rem}
+.top__eyebrow{font-size:.7rem;font-weight:600;letter-spacing:.32em;color:var(--brass);margin-bottom:1.2rem}
+.top h1{font-family:var(--display);font-weight:400;font-size:clamp(2rem,6.5vw,3rem);line-height:1.1;text-wrap:balance}
+.top__sub{margin-top:1rem;color:var(--ink-2);font-size:1.02rem;max-width:34rem;margin-inline:auto}
+.top__date{margin-top:1.6rem;font-size:.76rem;letter-spacing:.14em;color:var(--ink-3)}
+
+.intro{background:var(--paper-2);border-radius:4px;padding:1.8rem;margin-bottom:1.5rem}
+.intro p{color:var(--ink-2);font-size:1rem}
+.intro p + p{margin-top:.9rem}
+.intro strong{color:var(--ink);font-weight:600}
+
+.howto{
+  border:1px dashed var(--brass);border-radius:4px;padding:1.1rem 1.4rem;
+  background:var(--brass-soft);font-size:.95rem;color:var(--ink-2);margin-bottom:2rem;
+}
+.howto b{color:var(--ink);font-weight:600}
+
+/* ---------- groups ---------- */
+.group{margin:3rem 0 1.5rem;display:flex;align-items:baseline;gap:.8rem}
+.group h2{font-family:var(--display);font-weight:500;font-size:1.35rem;white-space:nowrap}
+.group span{font-size:.78rem;color:var(--ink-3)}
+.group::after{content:"";flex:1;height:1px;background:var(--rule)}
+
+/* ---------- items ---------- */
+.item{
+  border:1px solid var(--rule);border-radius:4px;
+  padding:1.5rem 1.6rem;margin-bottom:1rem;background:var(--card);
+  transition:border-color .3s;
+}
+.item--urgent{border-inline-start:3px solid var(--urgent)}
+.item--nice{border-inline-start:3px solid var(--brass)}
+.item.done{border-color:var(--ok)}
+.item__n{
+  display:flex;align-items:center;gap:.6rem;
+  font-size:.68rem;font-weight:700;letter-spacing:.14em;color:var(--brass);margin-bottom:.6rem;
+}
+.item__tick{opacity:0;color:var(--ok);font-size:.9rem;transition:opacity .3s}
+.item.done .item__tick{opacity:1}
+.item h3{font-family:var(--display);font-weight:500;font-size:1.18rem;line-height:1.35;margin-bottom:.7rem}
+.item p{color:var(--ink-2);font-size:.97rem}
+.item p + p{margin-top:.7rem}
+.item strong{color:var(--ink);font-weight:600}
+.item em{color:var(--ink);font-style:italic}
+
+.quote{
+  background:var(--paper-2);border-radius:3px;padding:.9rem 1.1rem;margin:.9rem 0;
+  font-family:var(--display);font-size:1.02rem;color:var(--ink);line-height:1.6;
+}
+.quote small{display:block;font-family:var(--body);font-size:.78rem;color:var(--ink-3);margin-top:.4rem}
+
+/* ---------- the answer controls ---------- */
+.ask{
+  margin-top:1.2rem;padding-top:1.1rem;border-top:1px dashed var(--rule);
+}
+.ask__label{font-size:.74rem;font-weight:600;letter-spacing:.12em;color:var(--ink-3);margin-bottom:.7rem}
+.opts{display:flex;flex-wrap:wrap;gap:.55rem}
+.opt{
+  display:inline-flex;align-items:center;gap:.5rem;cursor:pointer;
+  border:1px solid var(--field-line);border-radius:100px;
+  padding:.5rem 1rem .5rem .8rem;font-size:.93rem;color:var(--ink-2);
+  transition:all .25s;user-select:none;background:var(--field);
+}
+.opt:hover{border-color:var(--brass)}
+.opt input{position:absolute;opacity:0;width:0;height:0}
+.opt__dot{
+  width:16px;height:16px;border-radius:50%;flex:none;
+  border:1.5px solid var(--field-line);transition:all .25s;position:relative;
+}
+.opt input:checked + .opt__dot{border-color:var(--ok);background:var(--ok)}
+.opt input:checked + .opt__dot::after{
+  content:"";position:absolute;inset:0;margin:auto;
+  width:5px;height:8px;border:solid var(--card);border-width:0 2px 2px 0;
+  transform:rotate(45deg) translate(-1px,-1px);
+}
+.opt:has(input:checked){border-color:var(--ok);color:var(--ink);font-weight:400}
+.opt input:focus-visible + .opt__dot{outline:2px solid var(--brass);outline-offset:2px}
+
+.write{margin-top:.8rem}
+.write label{display:block;font-size:.84rem;color:var(--ink-3);margin-bottom:.35rem}
+.write input, .write textarea{
+  width:100%;background:var(--field);color:var(--ink);
+  border:1px solid var(--field-line);border-radius:3px;
+  font-family:var(--body);font-size:1rem;font-weight:300;
+  padding:.7rem .85rem;transition:border-color .25s;
+}
+.write textarea{min-height:76px;resize:vertical;line-height:1.6}
+.write input:focus, .write textarea:focus{outline:none;border-color:var(--brass)}
+.write input::placeholder, .write textarea::placeholder{color:var(--ink-3);opacity:.7}
+
+table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.93rem}
+th{text-align:start;font-weight:600;color:var(--ink-3);font-size:.74rem;letter-spacing:.1em;padding-bottom:.5rem;border-bottom:1px solid var(--rule)}
+td{padding:.62rem 0;border-bottom:1px solid var(--rule);color:var(--ink-2);vertical-align:top}
+td:last-child{text-align:end;white-space:nowrap;padding-inline-start:1rem}
+tr:last-child td{border-bottom:0}
+.was{color:var(--urgent)}
+.now{color:var(--ok);font-weight:600}
+
+.steps{list-style:none;counter-reset:s;margin-top:.9rem}
+.steps li{counter-increment:s;position:relative;padding-inline-start:2rem;margin-bottom:.6rem;color:var(--ink-2);font-size:.95rem}
+.steps li::before{
+  content:counter(s);position:absolute;inset-inline-start:0;top:.15rem;
+  width:1.35rem;height:1.35rem;border-radius:50%;background:var(--brass-soft);color:var(--brass);
+  font-size:.72rem;font-weight:700;display:grid;place-items:center;
+}
+.steps a{color:var(--brass);font-weight:600}
+
+.fixed{background:var(--ok-soft);border-radius:4px;padding:1.6rem 1.8rem;margin-top:1rem}
+.fixed h3{font-family:var(--display);font-weight:500;font-size:1.1rem;margin-bottom:.9rem;color:var(--ink)}
+.fixed ul{list-style:none}
+.fixed li{padding-inline-start:1.6rem;position:relative;margin-bottom:.55rem;color:var(--ink-2);font-size:.95rem}
+.fixed li::before{content:"✓";position:absolute;inset-inline-start:0;color:var(--ok);font-weight:700}
+
+/* ---------- send bar ---------- */
+.bar{
+  position:fixed;inset-inline:0;bottom:0;z-index:20;
+  background:var(--card);border-top:1px solid var(--rule);
+  padding:.9rem clamp(1rem,5vw,2rem);
+  box-shadow:0 -6px 24px rgba(0,0,0,.09);
+}
+.bar__in{max-width:44rem;margin:0 auto;display:flex;align-items:center;gap:.7rem;flex-wrap:wrap}
+.bar__count{flex:1;min-width:8rem;font-size:.88rem;color:var(--ink-3)}
+.bar__count b{color:var(--ink);font-weight:600}
+.btn{
+  display:inline-flex;align-items:center;gap:.5rem;cursor:pointer;
+  border:0;border-radius:100px;padding:.75rem 1.4rem;
+  font-family:var(--body);font-size:.92rem;font-weight:600;
+  transition:filter .25s,transform .15s;white-space:nowrap;
+}
+.btn:active{transform:translateY(1px)}
+.btn:hover{filter:brightness(1.07)}
+.btn--wa{background:var(--wa);color:#fff}
+.btn--ghost{background:transparent;color:var(--ink-2);border:1px solid var(--field-line)}
+.btn svg{width:17px;height:17px}
+.bar__note{width:100%;font-size:.79rem;color:var(--ink-3);margin-top:.15rem}
+
+.close{margin-top:3.5rem;padding-top:2rem;border-top:1px solid var(--rule);text-align:center}
+.close p{color:var(--ink-3);font-size:.9rem}
+.close .sig{font-family:var(--display);font-size:1.15rem;color:var(--ink);margin-top:.8rem}
+
+/* the send bar grows taller when it wraps on a phone - keep it off the signature */
+@media (max-width:560px){body{padding-bottom:12.5rem}}
+
+@media print{
+  body{background:#fff;color:#000;padding:1cm}
+  .bar,.howto{display:none}
+  .item,.intro,.fixed{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="top">
+    <p class="top__eyebrow">מגלי עולמות · האתר החדש · סבב שני</p>
+    <h1>מה נשאר<br>כדי לסגור</h1>
+    <p class="top__sub">ענית על כל עשר השאלות מהסבב הראשון, והכל כבר מיושם באתר. נשארו שנים־עשר דברים, וכל אחד מהם תקוע רק עליך.</p>
+    <p class="top__date">25 באוגוסט 2026</p>
+  </header>
+
+  <div class="intro">
+    <p>רועי היקר,</p>
+    <p>מאז הפעם הקודמת האתר התקדם הרבה. <strong>הוא באוויר ועובד</strong>, הטופס שולח פניות למייל שלך, וכל התיקונים שאישרת נכנסו.</p>
+    <p>הרשימה הזו היא מה שנשאר. לכל פריט כתבתי <strong>בדיוק מה חסר לי כדי לסיים אותו</strong> — לא "תשלח חומרים", אלא מה בדיוק, ולמה בלעדיו אני תקוע.</p>
+  </div>
+
+  <div class="howto">
+    <b>אפשר למלא כאן, ישירות בדף.</b> סמן תשובות וכתוב מה שצריך — הכל נשמר אוטומטית, גם אם תסגור ותחזור מחר. בסיום, לחץ על הכפתור הירוק למטה ותקבל את כל התשובות מוכנות לשליחה אליי בוואטסאפ.
+  </div>
+
+  <!-- ============ HOSTS ============ -->
+  <div class="group"><h2>המארחים</h2><span>6 פריטים · חוסם את הסקשן</span></div>
+
+  <div class="item item--urgent" data-q="1">
+    <p class="item__n">01 <span class="item__tick">✓ נענה</span></p>
+    <h3>איך כותבים כל שם באנגלית?</h3>
+    <p>שמות הקבצים שהגיעו הם <strong>KAMAL · SUDIP · BINUD · TSULTRIM · DIPAK · ANITA · KRISHNA · RAM</strong>. באתר יש גרסה אנגלית מלאה, וכל שם צריך להופיע בה.</p>
+    <p><strong>למה אני תקוע:</strong> שם הקובץ הוא לא בהכרח האיות הנכון. "BINUD" למשל נכתב כמעט תמיד Binod, ואני לא ממציא איות לאדם אמיתי.</p>
+    <div class="ask">
+      <p class="ask__label">כתוב את כל השמות באנגלית, אחד בשורה</p>
+      <div class="write"><label for="q1t">השמות באנגלית</label><textarea id="q1t" name="q1t" dir="ltr" placeholder="Kamal&#10;Sudip&#10;Binod&#10;..."></textarea></div>
+    </div>
+  </div>
+
+  <div class="item item--urgent" data-q="2">
+    <p class="item__n">02 <span class="item__tick">✓ נענה</span></p>
+    <h3>האם TSULTRIM הוא "הנזיר לופסאן"?</h3>
+    <p>באתר כתוב <strong>"הנזיר לופסאן — מנזר קופאן, יום 3"</strong>. הקובץ שהגיע נקרא <strong>TSULTRIM</strong>. אלה שני שמות שונים.</p>
+    <p><strong>למה אני תקוע:</strong> אם אלה שני אנשים, אני שם פנים של אדם אחד מתחת לשם של אדם אחר. זה לא משהו שאני מוכן לנחש.</p>
+    <div class="ask">
+      <p class="ask__label">מה נכון?</p>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="q2" value="אותו אדם — צולטרים הוא לופסאן"><span class="opt__dot"></span>אותו אדם</label>
+        <label class="opt"><input type="radio" name="q2" value="נזיר אחר — לתקן את השם באתר"><span class="opt__dot"></span>נזיר אחר, לתקן באתר</label>
+        <label class="opt"><input type="radio" name="q2" value="נזיר אחר — הוא נוסף ולופסאן נשאר"><span class="opt__dot"></span>נזיר אחר, נוסף על לופסאן</label>
+      </div>
+      <div class="write"><label for="q2t">אם צריך לתקן — מה השם המדויק, ואיך כותבים אותו באנגלית?</label><input id="q2t" name="q2t" type="text" placeholder="למשל: הנזיר צולטרים · Tsultrim"></div>
+    </div>
+  </div>
+
+  <div class="item item--urgent" data-q="3">
+    <p class="item__n">03 <span class="item__tick">✓ נענה</span></p>
+    <h3>מי שני האנשים בקבצים בלי שם?</h3>
+    <p>שני קבצים הגיעו עם שם אוטומטי של ג׳מיני, בלי שם אדם:</p>
+    <div class="quote">האחד — <strong>גבר מבוגר בטופי ובחליפה כהה, עם סיכת דגל נפאל על הדש.</strong><br>השני — <strong>אישה בסארי כתום־זהוב.</strong><small>שני הקבצים נשמרו אצלי, רק בלי שם</small></div>
+    <p><strong>למה אני תקוע:</strong> בלי שם, תפקיד ויום — אין לי מה לכתוב מתחת לתמונה, והכרטיס לא יכול להיבנות.</p>
+    <div class="ask">
+      <p class="ask__label">מי הם?</p>
+      <div class="write"><label for="q3t">שם · מקום ותפקיד · באיזה יום פוגשים אותם</label><textarea id="q3t" name="q3t" placeholder="למשל: פראקש · פוקרה, מדריך · יום 9"></textarea></div>
+    </div>
+  </div>
+
+  <div class="item item--urgent" data-q="4">
+    <p class="item__n">04 <span class="item__tick">✓ נענה</span></p>
+    <h3>חסרה תמונה של סאמאר</h3>
+    <p>סאמאר מופיע באתר — <strong>נגן הסרנגי מפוקרה, יום 10</strong> — והוא <strong>היחיד מבין ששת המארחים שאין לו תמונה</strong>. דיפק הגיע, אז נשאר רק הוא.</p>
+    <p><strong>למה אני תקוע:</strong> חמישה כרטיסים עם פנים ואחד בלי זה בדיוק מה שנראה חסר. עדיף שישה עם, או להוריד אותו.</p>
+    <p style="margin-top:.9rem;font-size:.9rem;color:var(--ink-3)">תמונה רגילה מהטלפון מספיקה לי לגמרי. אני מייצר ממנה את הדיוקן, בדיוק כמו שעשית עם השאר.</p>
+    <div class="ask">
+      <p class="ask__label">מה קורה עם סאמאר?</p>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="q4" value="אשלח תמונה שלו"><span class="opt__dot"></span>אשלח תמונה</label>
+        <label class="opt"><input type="radio" name="q4" value="אין לי — להשאיר אותו בלי תמונה"><span class="opt__dot"></span>אין לי, להשאיר בלי</label>
+        <label class="opt"><input type="radio" name="q4" value="אין לי — להוריד אותו מהאתר"><span class="opt__dot"></span>אין לי, להוריד מהאתר</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="item item--urgent" data-q="5">
+    <p class="item__n">05 <span class="item__tick">✓ נענה</span></p>
+    <h3>טקסט לחברים החדשים</h3>
+    <p><strong>אניטה, קרישנה, ראם ושני חסרי השם — אף אחד מהם לא מופיע היום באתר</strong>, ואין לי עליהם מילה אחת.</p>
+    <p>לכל מארח קיים באתר יש בדיוק ארבעה דברים: <strong>שם · מקום ותפקיד · משפט אחד · באיזה יום</strong>. כך זה נראה היום אצל סודיפ:</p>
+    <div class="quote">סודיפ · פאטן, דור רביעי של רוקעי קערות · "סדנת קערות טיבטיות בבית המלאכה המשפחתי, אצל מי שהמקצוע עובר אצלו מאב לבן ארבעה דורות" · יום 4<small>זה הפורמט. בדיוק ארבעת החלקים האלה</small></div>
+    <p><strong>למה אני תקוע:</strong> את המשפט הזה רק אתה יכול לכתוב — הוא מבוסס על היכרות אישית, ואני לא ממציא סיפור על אדם אמיתי.</p>
+    <div class="ask">
+      <p class="ask__label">שורה כזו לכל אחד מהחדשים</p>
+      <div class="write"><label for="q5t">שם · מקום ותפקיד · משפט · יום</label><textarea id="q5t" name="q5t" placeholder="אפשר גם להקליט הודעה קולית בוואטסאפ ואני אכתוב מזה"></textarea></div>
+    </div>
+  </div>
+
+  <div class="item item--nice" data-q="6">
+    <p class="item__n">06 <span class="item__tick">✓ נענה</span></p>
+    <h3>כמה מארחים בסך הכל?</h3>
+    <p>הכרטיסים מסודרים <strong>שלושה בשורה</strong>. שישה יוצאים שתי שורות מלאות, תשעה יוצאים שלוש שורות מלאות — שניהם נראים נקי.</p>
+    <p><strong>שבעה או שמונה משאירים כרטיס בודד ויתום בשורה האחרונה</strong>, וזה נראה כמו טעות.</p>
+    <p style="margin-top:.9rem;font-size:.9rem;color:var(--ink-3)">היום יש שישה באתר. אם נכניס את כל החדשים נגיע לאחד־עשר.</p>
+    <div class="ask">
+      <p class="ask__label">לכמה מארחים אתה מכוון?</p>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="q6" value="שישה — כמו היום"><span class="opt__dot"></span>שישה, כמו היום</label>
+        <label class="opt"><input type="radio" name="q6" value="תשעה"><span class="opt__dot"></span>תשעה</label>
+        <label class="opt"><input type="radio" name="q6" value="את כולם, תסתדר"><span class="opt__dot"></span>את כולם, תסתדר</label>
+        <label class="opt"><input type="radio" name="q6" value="לא בטוח — תחליט אתה"><span class="opt__dot"></span>תחליט אתה</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ ACCESSIBILITY ============ -->
+  <div class="group"><h2>נגישות</h2><span>4 פריטים · חובה חוקית</span></div>
+
+  <div class="item">
+    <h3 style="font-family:var(--display);font-weight:500;font-size:1.18rem;margin-bottom:.7rem">רגע לפני השאלות — למה זה בכלל כאן</h3>
+    <p>בישראל יש חוק שמחייב אתרים עסקיים להיות נגישים, לפי תקן שנקרא <strong>ת"י 5568</strong>. עברתי על מה שהחוק דורש, <strong>וכבר תיקנתי באתר את החלק הטכני</strong> — ניגודיות צבעים, ניווט מלא במקלדת, תמיכה בקורא מסך, קישור דילוג לתוכן.</p>
+    <p>מה שנשאר הוא <strong>"הצהרת נגישות"</strong> — עמוד קצר שמפרט מי בעל העסק, מה נעשה באתר, ולמי פונים אם משהו לא נגיש. <strong>זו דרישה נפרדת בפני עצמה</strong>, ובלעדיה אנחנו חשופים גם אם כל השאר תקין.</p>
+    <p>האתר חדש ועולה ב-2026, ולכן <strong>הקלות שניתנו לאתרים ותיקים לא רלוונטיות לנו</strong>.</p>
+    <p style="margin-top:.9rem;font-size:.9rem;color:var(--ink-3)">הידיעה הטובה: לפי התיקון לחוק מ-2024, מי שרוצה לתבוע חייב קודם לפנות אליך בכתב ולתת לך זמן לתקן. אנחנו לא במצב של סכנה מיידית — אבל אין סיבה להשאיר את זה פתוח.</p>
+    <p style="margin-top:.9rem;font-size:.9rem;color:var(--ink-3)">אני לא עורך דין. את הפרטים שתמלא כאן אני מכניס להצהרה, וכדאי שתעיף עליה מבט לפני שהיא עולה.</p>
+  </div>
+
+  <div class="item item--urgent" data-q="7">
+    <p class="item__n">07 <span class="item__tick">✓ נענה</span></p>
+    <h3>השם המשפטי של העסק</h3>
+    <p>ההצהרה חייבת לשאת את <strong>שם העוסק כפי שהוא רשום ברשויות</strong>, לא את שם המותג. "מגלי עולמות" זה השם שהלקוחות מכירים — אני צריך את השם שרשום.</p>
+    <p><strong>למה אני תקוע:</strong> הצהרה על שם הישות הלא נכונה לא שווה כלום.</p>
+    <div class="ask">
+      <div class="write"><label for="q7t">שם מלא + ח.פ / מספר עוסק</label><input id="q7t" name="q7t" type="text" placeholder="למשל: רועי אסף, עוסק מורשה 000000000"></div>
+    </div>
+  </div>
+
+  <div class="item item--urgent" data-q="8">
+    <p class="item__n">08 <span class="item__tick">✓ נענה</span></p>
+    <h3>לאן פונים בנושא נגישות</h3>
+    <p>בהצהרה חייבות להופיע דרכי התקשרות לפניות בנושא נגישות — <strong>מייל וטלפון</strong>.</p>
+    <p style="margin-top:.9rem;font-size:.9rem;color:var(--ink-3)">אתם פחות מ-25 עובדים, ולכן <strong>לא חייבים למנות רכז נגישות</strong>. רק כתובת לפנייה.</p>
+    <div class="ask">
+      <p class="ask__label">אפשר בהחלט את אותם פרטים שכבר מופיעים באתר</p>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="q8" value="אותם פרטים שבאתר"><span class="opt__dot"></span>אותם פרטים שבאתר</label>
+        <label class="opt"><input type="radio" name="q8" value="פרטים אחרים"><span class="opt__dot"></span>פרטים אחרים</label>
+      </div>
+      <div class="write"><label for="q8t">אם אחרים — מייל וטלפון</label><input id="q8t" name="q8t" type="text" placeholder="מייל וטלפון לפניות נגישות"></div>
+    </div>
+  </div>
+
+  <div class="item item--urgent" data-q="9">
+    <p class="item__n">09 <span class="item__tick">✓ נענה</span></p>
+    <h3>יש מקום פיזי שמקבל בו קהל?</h3>
+    <p>ההצהרה צריכה להתייחס גם ל<strong>נגישות במקום מתן השירות</strong> — אם יש כזה. משרד, בית שמגיעים אליו לפגישות, מפגש הכנה לפני טיול.</p>
+    <p><strong>למה אני שואל:</strong> אם אין מקום קבוע, ההצהרה פשוט אומרת שהשירות ניתן מרחוק — וזה מוריד ממנו חצי סעיף. אם יש, צריך לתאר אותו.</p>
+    <div class="ask">
+      <p class="ask__label">איך זה עובד אצלכם?</p>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="q9" value="אין מקום קבוע — הכל בטלפון, בזום ובטיול"><span class="opt__dot"></span>אין מקום קבוע</label>
+        <label class="opt"><input type="radio" name="q9" value="יש מקום שמקבלים בו אנשים"><span class="opt__dot"></span>יש מקום כזה</label>
+      </div>
+      <div class="write"><label for="q9t">אם יש — כתובת, ויש גישה לכיסא גלגלים?</label><input id="q9t" name="q9t" type="text" placeholder="כתובת + האם יש מעלית / רמפה / חניית נכים"></div>
+    </div>
+  </div>
+
+  <div class="item item--urgent" data-q="10">
+    <p class="item__n">10 <span class="item__tick">✓ נענה</span></p>
+    <h3>מדרגת המחזור</h3>
+    <p>היקף המחזור השנתי קובע <strong>עד כמה העסק בכלל מחויב בהתאמות נגישות</strong>. עסקים קטנים מאוד מקבלים פטור או הקלה משמעותית.</p>
+    <p><strong>למה אני שואל:</strong> זה משנה את הנוסח של ההצהרה עצמה. אני לא צריך מספרים — רק את המדרגה.</p>
+    <p style="margin-top:.9rem;font-size:.9rem;color:var(--ink-3)">שום מספר לא נכנס לאתר ולא נשמר בשום מקום. זה נשאר בדפדפן שלך.</p>
+    <div class="ask">
+      <p class="ask__label">באיזו מדרגה אתם?</p>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="q10" value="עוסק פטור או מחזור נמוך מאוד"><span class="opt__dot"></span>עוסק פטור / מחזור נמוך</label>
+        <label class="opt"><input type="radio" name="q10" value="עסק קטן"><span class="opt__dot"></span>עסק קטן</label>
+        <label class="opt"><input type="radio" name="q10" value="מעל מיליון ₪"><span class="opt__dot"></span>מעל מיליון ₪</label>
+        <label class="opt"><input type="radio" name="q10" value="אבדוק עם רואה החשבון"><span class="opt__dot"></span>אבדוק עם רואה החשבון</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ STILL OPEN ============ -->
+  <div class="group"><h2>נשאר פתוח מהסבב הקודם</h2><span>2 פריטים</span></div>
+
+  <div class="item item--nice" data-q="11">
+    <p class="item__n">11 <span class="item__tick">✓ נענה</span></p>
+    <h3>תמונה אמיתית שלך ושל עדי 📸</h3>
+    <p>ביקשתי בסבב הקודם, ועדיין אין. <strong>בסקשן "מי אנחנו" יש היום רק שמות וטלפונים.</strong></p>
+    <p>זה הסקשן היחיד באתר שבו הפנים שלכם אמורות להופיע, ובהמלצות שלכם כתוב <em>פעמיים</em>, משתי מטיילות שונות, "כמו לטייל עם אבא ואמא". אנשים רוצים לראות את הפרצופים שמאחורי המשפט הזה.</p>
+    <p style="margin-top:.9rem;font-size:.9rem;color:var(--ink-3)">לא צריך צלם ולא צריך תמונה מקצועית. תמונה טובה מהטלפון, רצוי מנפאל, ברזולוציה הכי גבוהה שיש לך.</p>
+    <div class="ask">
+      <p class="ask__label">מה קורה עם זה?</p>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="q11" value="אשלח תמונה בוואטסאפ"><span class="opt__dot"></span>אשלח בוואטסאפ</label>
+        <label class="opt"><input type="radio" name="q11" value="אצטרך לחפש — תזכיר לי"><span class="opt__dot"></span>אצטרך לחפש, תזכיר לי</label>
+        <label class="opt"><input type="radio" name="q11" value="נמשיך בלי תמונה"><span class="opt__dot"></span>נמשיך בלי</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="item item--nice" data-q="12">
+    <p class="item__n">12 <span class="item__tick">✓ נענה</span></p>
+    <h3>הכתובת של האתר</h3>
+    <p>דיברנו על זה בסבב הקודם ולא סגרנו. האתר יושב היום על כתובת טכנית שאני מארח, <strong>והיא עובדת מצוין וללא עלות</strong> — אבל היא לא נראית טוב על כרטיס ביקור או בפרסום.</p>
+    <p><strong>למה אני תקוע:</strong> אם נשארים על <strong>boutiquetournepal.com</strong>, אני צריך גישה לחשבון שבו הדומיין רשום (Wix או רשם אחר) כדי להפנות אותו לאתר החדש. בלי הגישה הזו אני לא יכול לחבר כלום.</p>
+    <p style="margin-top:.9rem;font-size:.9rem;color:var(--ink-3)">דומיין חדש עולה בערך 40–60 ₪ לשנה. את החיבור אני עושה — אתה רק רוכש.</p>
+    <div class="ask">
+      <p class="ask__label">מה עושים?</p>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="q12" value="נשארים על boutiquetournepal.com — אתן גישה"><span class="opt__dot"></span>נשארים על הקיימת</label>
+        <label class="opt"><input type="radio" name="q12" value="קונים כתובת חדשה"><span class="opt__dot"></span>קונים חדשה</label>
+        <label class="opt"><input type="radio" name="q12" value="נשאיר ככה בינתיים"><span class="opt__dot"></span>נשאיר ככה בינתיים</label>
+      </div>
+      <div class="write"><label for="q12t">אם חדשה — איזו כתובת?</label><input id="q12t" name="q12t" type="text" dir="ltr" placeholder="magaleyolamot.co.il"></div>
+    </div>
+  </div>
+
+  <div class="group"><h2>עוד משהו?</h2><span>לא חובה</span></div>
+  <div class="item">
+    <div class="write" style="margin-top:0">
+      <label for="extra">כל דבר שחשוב לך שיהיה באתר, או משהו שהפריע לך</label>
+      <textarea id="extra" name="extra" placeholder="כתוב כאן חופשי"></textarea>
+    </div>
+  </div>
+
+  <!-- ============ DONE SINCE ============ -->
+  <div class="group"><h2>מה נעשה מאז הסבב הקודם</h2><span>לידיעתך בלבד</span></div>
+
+  <div class="fixed">
+    <h3>הכל כבר באוויר ועובד</h3>
+    <ul>
+      <li><strong>כל עשר התשובות שלך מהסבב הקודם נכנסו לאתר</strong> — התאריכים, הניסוחים, שגיאות הכתיב וההמלצות.</li>
+      <li><strong>הטופס מחובר ושולח.</strong> כל פנייה מגיעה למייל שלך וגם נפתחת אצלך בוואטסאפ — שני עותקים, כדי ששום פנייה לא תלך לאיבוד.</li>
+      <li><strong>עשרים מתוך עשרים ושלושה המסכים באתר חיים.</strong> הרקעים זזים בזמן שגוללים — עיר מתעוררת, נהר, שדות, מנזר.</li>
+      <li><strong>התיקונים הטכניים של הנגישות בוצעו</strong> — ניגודיות, מקלדת, קורא מסך, דילוג לתוכן. נשארה רק ההצהרה.</li>
+      <li><strong>הנייד תוקן.</strong> הרקעים היפים היו מוסתרים מאחורי שכבה כהה מדי, וזה סודר בלי לפגוע בקריאוּת.</li>
+      <li><strong>הכרטיסים של החברים הנפאלים מוכנים ומחכים.</strong> מרחפים מעל כרטיס — הטקסט נסוג והפנים עולות. חסר רק המידע שבשאלות 1–6.</li>
+    </ul>
+  </div>
+
+  <footer class="close">
+    <p><strong>שאלות 1–10 הן מה שחוסם</strong> — הראשונות שש חוסמות את סקשן המארחים, וארבע שאחריהן את ההצהרה. שתיים האחרונות יכולות לחכות.</p>
+    <p>אין צורך לענות על הכל בבת אחת. מה שתמלא נשמר, גם אם תסגור ותחזור מחר.</p>
+    <p class="sig">שחר</p>
+  </footer>
+
+</div>
+<div class="bar">
+  <div class="bar__in">
+    <div class="bar__count" id="count">טרם נענו שאלות</div>
+    <button class="btn btn--ghost" id="copy" type="button">העתקה</button>
+    <button class="btn btn--wa" id="send" type="button">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96s-.47-.15-.67.15-.77.96-.94 1.16-.35.22-.64.07a8.2 8.2 0 0 1-2.4-1.48 9 9 0 0 1-1.66-2.07c-.17-.3 0-.46.13-.6s.3-.35.44-.52a2 2 0 0 0 .3-.5.55.55 0 0 0 0-.52c-.08-.15-.67-1.6-.91-2.2s-.49-.5-.67-.51h-.57a1.1 1.1 0 0 0-.79.37 3.32 3.32 0 0 0-1.04 2.47 5.76 5.76 0 0 0 1.21 3.06 13.2 13.2 0 0 0 5.05 4.46c.7.3 1.26.49 1.69.63a4.07 4.07 0 0 0 1.86.12 3.05 3.05 0 0 0 2-1.41 2.47 2.47 0 0 0 .17-1.41c-.07-.13-.27-.2-.56-.35M12.05 21.8h-.02a9.8 9.8 0 0 1-4.99-1.37l-.36-.21-3.71.97 1-3.62-.24-.37a9.78 9.78 0 0 1 15.2-12.1 9.72 9.72 0 0 1 2.87 6.92 9.8 9.8 0 0 1-9.75 9.78M20.52 3.45A11.7 11.7 0 0 0 12.05 0 11.82 11.82 0 0 0 1.79 17.72L.1 24l6.43-1.69a11.8 11.8 0 0 0 5.65 1.44h.01A11.82 11.82 0 0 0 20.52 3.45"/></svg>
+      שליחה לשחר
+    </button>
+    <p class="bar__note" id="note">התשובות נשמרות אוטומטית בדפדפן שלך.</p>
+  </div>
+</div>
+
+<script>
+(function(){
+  var KEY='magalei_roi_answers_v2';
+  var fields=[].slice.call(document.querySelectorAll('input, textarea'));
+
+  var LABELS={
+    q1t:'1. איות השמות באנגלית',
+    q2:'2. TSULTRIM / לופסאן', q2t:'   השם המדויק',
+    q3t:'3. שני חסרי השם',
+    q4:'4. תמונה של סאמאר',
+    q5t:'5. טקסט לחברים החדשים',
+    q6:'6. כמה מארחים בסך הכל',
+    q7t:'7. השם המשפטי + ח.פ',
+    q8:'8. פניות נגישות', q8t:'   הפרטים',
+    q9:'9. מקום פיזי', q9t:'   כתובת ונגישות',
+    q10:'10. מדרגת מחזור',
+    q11:'11. תמונה של רועי ועדי',
+    q12:'12. כתובת האתר', q12t:'   הכתובת החדשה',
+    extra:'הערות נוספות'
+  };
+  var ORDER=['q1t','q2','q2t','q3t','q4','q5t','q6','q7t','q8','q8t','q9','q9t','q10','q11','q12','q12t','extra'];
+
+  function save(){
+    var d={};
+    fields.forEach(function(f){
+      if(f.type==='radio'){ if(f.checked) d[f.name]=f.value; }
+      else if(f.value.trim()) d[f.id||f.name]=f.value.trim();
+    });
+    try{ localStorage.setItem(KEY, JSON.stringify(d)); }catch(e){}
+    return d;
+  }
+
+  function restore(){
+    var d={};
+    try{ d=JSON.parse(localStorage.getItem(KEY)||'{}'); }catch(e){}
+    fields.forEach(function(f){
+      var k=f.type==='radio'? f.name : (f.id||f.name);
+      if(!(k in d)) return;
+      if(f.type==='radio'){ f.checked = (f.value===d[k]); }
+      else f.value=d[k];
+    });
+  }
+
+  function refresh(){
+    var d=save();
+    // an item counts as answered once anything inside it is filled
+    var done=0, total=0;
+    document.querySelectorAll('.item[data-q]').forEach(function(it){
+      total++;
+      var any=[].slice.call(it.querySelectorAll('input, textarea')).some(function(f){
+        return f.type==='radio' ? f.checked : f.value.trim()!=='';
+      });
+      it.classList.toggle('done', any);
+      if(any) done++;
+    });
+    var c=document.getElementById('count');
+    c.innerHTML = done===0 ? 'טרם נענו שאלות'
+      : (done===total ? '<b>ענית על הכל</b> — אפשר לשלוח'
+        : 'נענו <b>'+done+'</b> מתוך '+total);
+  }
+
+  function summary(){
+    var d=save();
+    var lines=['מגלי עולמות — סבב שני, התשובות של רועי',''];
+    ORDER.forEach(function(k){
+      if(d[k]) lines.push((LABELS[k]||k)+': '+d[k]);
+    });
+    if(lines.length===2) lines.push('(עדיין לא מולאו תשובות)');
+    return lines.join('\n');
+  }
+
+  fields.forEach(function(f){
+    f.addEventListener('input', refresh);
+    f.addEventListener('change', refresh);
+  });
+
+  /* one copier, used by both buttons */
+  function copyText(txt, onOk, onFail){
+    function fallback(){
+      var ta=document.createElement('textarea');
+      ta.value=txt; ta.style.position='fixed'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.select();
+      var done=false;
+      try{ done=document.execCommand('copy'); }catch(e){}
+      document.body.removeChild(ta);
+      done ? onOk() : onFail();
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(onOk, fallback);
+    } else fallback();
+  }
+
+  var note=document.getElementById('note');
+  var NOTE_IDLE='התשובות נשמרות אוטומטית בדפדפן שלך.';
+  function say(msg){ note.textContent=msg;
+    setTimeout(function(){ note.textContent=NOTE_IDLE; }, 5000); }
+
+  document.getElementById('send').addEventListener('click', function(){
+    var txt=summary();
+    /* Long answers can get clipped on their way into WhatsApp, and a clipped
+       message looks complete. Copying first makes that recoverable: whatever
+       arrives, the full text is already on the clipboard, one paste away. */
+    copyText(txt, function(){ say('נפתח וואטסאפ. גם העתקתי את התשובות — אם משהו נראה חסר, פשוט הדבק.'); }, function(){});
+    // no number: WhatsApp opens its own contact picker
+    window.open('https://wa.me/?text='+encodeURIComponent(txt), '_blank', 'noopener');
+  });
+
+  document.getElementById('copy').addEventListener('click', function(){
+    copyText(summary(),
+      function(){ say('הועתק. אפשר להדביק בוואטסאפ, במייל או בכל מקום.'); },
+      function(){ say('לא הצלחתי להעתיק — אפשר לשלוח בוואטסאפ במקום.'); });
+  });
+
+  restore();
+  refresh();
+})();
+</script>
+
+</body>
+</html>
