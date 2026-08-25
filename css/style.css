@@ -560,41 +560,11 @@ section{position:relative}
   .rail__label{display:none}
   .rail__dot{width:5px;height:5px}
   .rail__item.active .rail__dot{transform:scale(1.8);box-shadow:0 0 0 4px rgba(200,145,47,.16)}
-  /* ---- the phone veil ----
-     It used to be a flat .80 plateau across the middle 32% of the screen,
-     which left the photograph at 12% of its brightness. On a phone that is
-     most of what you see, so most of what you saw was black.
-
-     A lighter flat veil is not the answer: measured across every mobile still
-     at the 97th percentile of luminance under the text - the bright patch that
-     actually decides readability, not the average - dropping the plateau to
-     .62 puts the worst panel at 3.7:1 against a 4.5:1 floor.
-
-     Nor is a bottom-anchored ramp, which is the obvious fix and also fails:
-     the text block runs from 21% of the screen (S05) to 62% (S18), so on the
-     long panels the words begin where a viewport-anchored ramp is still
-     transparent. S08b measured 1.6:1, S18 2.2:1.
-
-     So the darkness follows THE TEXT instead of the viewport. Sized to the
-     block that needs it, every panel clears the floor - worst 6.0:1 against
-     6.2:1 before - and the picture above the words goes from 28% visible
-     to 65%. */
-  .panel{padding:14vh var(--pad);min-height:100svh;align-items:flex-end}
+  /* the phone veil is being reworked - see demo/veil-picker.html. This is the
+     state it was in before, restored while the treatment is chosen. */
+  .panel{padding:14vh var(--pad);min-height:100svh}
   .panel::before,.panel.flip::before{
-    background:linear-gradient(to bottom,rgba(8,10,14,.12) 0%,rgba(8,10,14,.10) 46%,rgba(8,10,14,.16) 100%);
-  }
-  .panel__in::before{
-    content:"";position:absolute;z-index:-1;pointer-events:none;
-    /* full bleed: the panel's own side padding is cancelled so this reads as a
-       gradient across the screen and not as a box behind the paragraph */
-    inset-block:-13vh -26vh;
-    inset-inline:calc((var(--pad) + 3vw) * -1);
-    background:linear-gradient(to bottom,
-      rgba(8,10,14,0)    0,
-      rgba(8,10,14,.34)  6vh,
-      rgba(8,10,14,.70)  10vh,
-      rgba(8,10,14,.84)  13vh,
-      rgba(8,10,14,.84)  100%);
+    background:linear-gradient(to bottom,rgba(8,10,14,.5) 0%,rgba(8,10,14,.8) 38%,rgba(8,10,14,.8) 70%,rgba(8,10,14,.55) 100%);
   }
   .panel.flip .panel__in{margin-inline-start:0}
   .hero__meta{gap:.55rem 1.1rem;margin-top:2.2rem}
