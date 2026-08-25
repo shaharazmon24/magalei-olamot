@@ -85,9 +85,5 @@ const VOICES_EN = [
 
   { n:"Anat Argov Urbach", m:"Nepal", q:"I recommend them too. I took part in the trip to Nepal and it was a very special experience — interesting and thoroughly enjoyable." },
 
-  { n:"Anat", m:"Nepal", q:"Warmly recommended. An unforgettable experience." },
-
-  { n:"Orly", m:"Sinai", q:"An enchanting trip! I was lucky enough to be on the very first one. The calm of Sinai, the landscapes, the water, the force of the desert, and the finest pair of \"Bedouins\" there are — Roy and Adi. In short, pure pleasure." },
-
-  { n:"Osnat Levita", m:"Sinai", q:"There is nothing better than travelling with Adi and Roy, and certainly not for rediscovering the magic of Sinai. I recommend it very, very warmly. An experience for life." }
+  { n:"Anat", m:"Nepal", q:"Warmly recommended. An unforgettable experience." }
 ];
