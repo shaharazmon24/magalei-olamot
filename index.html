@@ -24,7 +24,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700&family=Assistant:wght@200;300;400;600;700&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="img/S01-boudhanath-dawn-w.webp" media="(min-width:769px)">
 <link rel="preload" as="image" href="img/S01-boudhanath-dawn-m.webp" media="(max-width:768px)">
-<link rel="stylesheet" href="css/style.css?v=49">
+<link rel="stylesheet" href="css/style.css?v=50">
 
 <script type="application/ld+json">
 {
@@ -79,6 +79,8 @@
 </script>
 </head>
 <body>
+<!-- WCAG 2.4.1 Bypass Blocks. Hidden until a keyboard user focuses it. -->
+<a class="skip" href="#top" data-i18n="a11y.skip">דלג לתוכן הראשי</a>
 
 <!-- ============ CINEMATIC STAGE ============ -->
 <div class="stage" id="stage" aria-hidden="true"></div>
@@ -115,13 +117,16 @@
       </a>
     </div>
     <button class="langbtn" id="lang" type="button" aria-label="Switch to English">EN</button>
-    <button class="burger" id="burger" type="button" aria-label="תפריט" aria-expanded="false">
+    <button class="burger" id="burger" type="button" aria-label="תפריט" aria-expanded="false" aria-controls="nav">
       <span></span><span></span><span></span>
     </button>
   </div>
 </header>
 
-<main class="content" id="top">
+<!-- tabindex="-1" is what makes the skip link real. Without it the browser
+     scrolls to <main> but leaves focus in the header, so a keyboard user
+     carries on tabbing from where they were and the link does nothing. -->
+<main class="content" id="top" tabindex="-1">
 
 <!-- ============ HERO ============ -->
 <section class="hero" data-bg="S01-boudhanath-dawn">
@@ -654,10 +659,10 @@
   <span data-i18n="wa.float">דברו איתנו</span>
 </a>
 
-<script src="js/i18n.js?v=49"></script>
-<script src="js/i18n-content.js?v=49"></script>
-<script src="js/data.js?v=49"></script>
-<script src="js/data-en.js?v=49"></script>
-<script src="js/app.js?v=49"></script>
+<script src="js/i18n.js?v=50"></script>
+<script src="js/i18n-content.js?v=50"></script>
+<script src="js/data.js?v=50"></script>
+<script src="js/data-en.js?v=50"></script>
+<script src="js/app.js?v=50"></script>
 </body>
 </html>

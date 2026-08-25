@@ -30,6 +30,7 @@ const I18N = {
     "man3.p2":"הטיול איתנו הוא חוויה צבעונית של טעמים, של טבע עוצמתי ושל מפגשים עם אנשים מיוחדים. הרבה רגעים קסומים שילכו אתכם הלאה בחיים.",
 
     /* dates */
+    "a11y.skip":"דלג לתוכן הראשי",
     "dates.kicker":"הטיולים הבאים", "dates.h":"הטיולים של 2026",
     "dates.d1":"16–29 בספטמבר 2026", "dates.d2":"4–17 באוקטובר 2026",
     "dates.meta":"14 ימים · קבוצה של 10–11 מטיילים",
@@ -117,6 +118,7 @@ const I18N = {
     "man3.p1":"This is an invitation to travel with us in a small, intimate group — a journey that feels like travelling with friends. We know how to create a space of healing and of listening, where each person can find their own centre and quiet.",
     "man3.p2":"Travelling with us is a vivid experience of flavours, of powerful nature, and of meeting remarkable people. A great many small, magical moments that stay with you long afterwards.",
 
+    "a11y.skip":"Skip to main content",
     "dates.kicker":"Upcoming Journeys", "dates.h":"2026 Departures",
     "dates.d1":"16–29 September 2026", "dates.d2":"4–17 October 2026",
     "dates.meta":"14 days · a group of 10–11 travellers",

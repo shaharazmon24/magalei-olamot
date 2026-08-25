@@ -430,12 +430,39 @@
 
   var hdrSocial = document.querySelector('.hdr__social');
 
+  /* On a phone the closed menu is only opacity:0 and pointer-events:none.
+     Both of those are invisible to a screen reader, which happily reads out a
+     full navigation that is not on the screen - and tab still lands in it. So
+     the closed menu is made `inert`, which removes it from the accessibility
+     tree AND from the tab order, and that is undone at desktop width where the
+     same element is the real, permanently visible nav. */
+  /* Do NOT re-declare the breakpoint here. A copy of `max-width:768px` in JS
+     is a second source of truth that silently drifts from the CSS, and relying
+     on the matchMedia `change` event alone failed outright in testing: the nav
+     stayed inert at 1440px, which would have made the site's main navigation
+     unreachable by keyboard - an accessibility fix that breaks accessibility.
+     The burger's own computed display IS the answer to "is this a toggle menu
+     right now", it comes from the same CSS, and it cannot drift. */
+  function menuIsToggle() {
+    return getComputedStyle(burger).display !== 'none';
+  }
+
+  function syncNavHidden() {
+    var hide = menuIsToggle() && !nav.classList.contains('on');
+    if (hide) { nav.setAttribute('inert', ''); nav.setAttribute('aria-hidden', 'true'); }
+    else      { nav.removeAttribute('inert'); nav.removeAttribute('aria-hidden'); }
+  }
+
   function closeMenu() {
     nav.classList.remove('on');
     burger.classList.remove('on');
     if (hdrSocial) hdrSocial.classList.remove('on');
     burger.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
+    syncNavHidden();
+    /* send focus back where it came from, or it is left on a node that has
+       just been made inert and the user is stranded at the top of the page */
+    try { burger.focus({ preventScroll: true }); } catch (err) { burger.focus(); }
   }
 
   burger.addEventListener('click', function () {
@@ -444,6 +471,18 @@
     if (hdrSocial) hdrSocial.classList.toggle('on', open);
     burger.setAttribute('aria-expanded', open ? 'true' : 'false');
     document.body.style.overflow = open ? 'hidden' : '';
+    syncNavHidden();
+    if (open) {
+      var first = nav.querySelector('a[href]');
+      if (first) { try { first.focus({ preventScroll: true }); } catch (err) { first.focus(); } }
+    }
+  });
+
+  syncNavHidden();
+  var navSyncTimer;
+  window.addEventListener('resize', function () {
+    clearTimeout(navSyncTimer);
+    navSyncTimer = setTimeout(syncNavHidden, 120);
   });
   nav.addEventListener('click', function (e) {
     if (e.target.tagName === 'A' && nav.classList.contains('on')) closeMenu();
