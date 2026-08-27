@@ -1,0 +1,614 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#faf8f4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141310" media="(prefers-color-scheme: dark)">
+<title>מגלי עולמות — הכתובת של האתר</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700&family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --paper:#faf8f4; --paper-2:#f2eee6; --card:#ffffff;
+  --ink:#1d1b18; --ink-2:#4a453e; --ink-3:#7d766c;
+  --rule:#e0d9cc; --field:#ffffff; --field-line:#cfc6b6;
+  --brass:#a8761f; --brass-soft:#f5ead6;
+  --urgent:#9a5245; --ok:#4f6b45; --ok-soft:#e9f0e5;
+  --wa:#1f8f5f;
+  --display:"Frank Ruhl Libre",Georgia,serif;
+  --body:"Assistant","Helvetica Neue",Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#141310; --paper-2:#1c1a16; --card:#1a1814;
+    --ink:#f2ece1; --ink-2:#c4bcae; --ink-3:#8d857a;
+    --rule:#332f28; --field:#232019; --field-line:#4a4438;
+    --brass:#d9a44e; --brass-soft:#2a2118;
+    --urgent:#d1897a; --ok:#9dbd8e; --ok-soft:#1e2619;
+    --wa:#25a56d;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#141310; --paper-2:#1c1a16; --card:#1a1814;
+  --ink:#f2ece1; --ink-2:#c4bcae; --ink-3:#8d857a;
+  --rule:#332f28; --field:#232019; --field-line:#4a4438;
+  --brass:#d9a44e; --brass-soft:#2a2118;
+  --urgent:#d1897a; --ok:#9dbd8e; --ok-soft:#1e2619;
+  --wa:#25a56d;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--paper); color:var(--ink);
+  font-family:var(--body); font-weight:300; line-height:1.75;
+  direction:rtl;
+  padding:clamp(1.5rem,5vw,4rem) clamp(1rem,5vw,2rem) 9rem;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:44rem;margin:0 auto}
+
+/* ---------- masthead ---------- */
+.top{text-align:center;padding-bottom:2.5rem;border-bottom:1px solid var(--rule);margin-bottom:2.5rem}
+.top__eyebrow{font-size:.7rem;font-weight:600;letter-spacing:.32em;color:var(--brass);margin-bottom:1.2rem}
+.top h1{font-family:var(--display);font-weight:400;font-size:clamp(2rem,6.5vw,3rem);line-height:1.1;text-wrap:balance}
+.top__sub{margin-top:1rem;color:var(--ink-2);font-size:1.02rem;max-width:34rem;margin-inline:auto}
+.top__date{margin-top:1.6rem;font-size:.76rem;letter-spacing:.14em;color:var(--ink-3)}
+
+.intro{background:var(--paper-2);border-radius:4px;padding:1.8rem;margin-bottom:1.5rem}
+.intro p{color:var(--ink-2);font-size:1rem}
+.intro p + p{margin-top:.9rem}
+.intro strong{color:var(--ink);font-weight:600}
+
+.howto{
+  border:1px dashed var(--brass);border-radius:4px;padding:1.1rem 1.4rem;
+  background:var(--brass-soft);font-size:.95rem;color:var(--ink-2);margin-bottom:2rem;
+}
+.howto b{color:var(--ink);font-weight:600}
+
+/* ---------- groups ---------- */
+.group{margin:3rem 0 1.5rem;display:flex;align-items:baseline;gap:.8rem}
+.group h2{font-family:var(--display);font-weight:500;font-size:1.35rem;white-space:nowrap}
+.group span{font-size:.78rem;color:var(--ink-3)}
+.group::after{content:"";flex:1;height:1px;background:var(--rule)}
+
+/* ---------- items ---------- */
+.item{
+  border:1px solid var(--rule);border-radius:4px;
+  padding:1.5rem 1.6rem;margin-bottom:1rem;background:var(--card);
+  transition:border-color .3s;
+}
+.item--urgent{border-inline-start:3px solid var(--urgent)}
+.item--nice{border-inline-start:3px solid var(--brass)}
+.item.done{border-color:var(--ok)}
+.item__n{
+  display:flex;align-items:center;gap:.6rem;
+  font-size:.68rem;font-weight:700;letter-spacing:.14em;color:var(--brass);margin-bottom:.6rem;
+}
+.item__tick{opacity:0;color:var(--ok);font-size:.9rem;transition:opacity .3s}
+.item.done .item__tick{opacity:1}
+.item h3{font-family:var(--display);font-weight:500;font-size:1.18rem;line-height:1.35;margin-bottom:.7rem}
+.item p{color:var(--ink-2);font-size:.97rem}
+.item p + p{margin-top:.7rem}
+.item strong{color:var(--ink);font-weight:600}
+.item em{color:var(--ink);font-style:italic}
+
+.quote{
+  background:var(--paper-2);border-radius:3px;padding:.9rem 1.1rem;margin:.9rem 0;
+  font-family:var(--display);font-size:1.02rem;color:var(--ink);line-height:1.6;
+}
+.quote small{display:block;font-family:var(--body);font-size:.78rem;color:var(--ink-3);margin-top:.4rem}
+
+/* ---------- the answer controls ---------- */
+.ask{
+  margin-top:1.2rem;padding-top:1.1rem;border-top:1px dashed var(--rule);
+}
+.ask__label{font-size:.74rem;font-weight:600;letter-spacing:.12em;color:var(--ink-3);margin-bottom:.7rem}
+.opts{display:flex;flex-wrap:wrap;gap:.55rem}
+.opt{
+  display:inline-flex;align-items:center;gap:.5rem;cursor:pointer;
+  border:1px solid var(--field-line);border-radius:100px;
+  padding:.5rem 1rem .5rem .8rem;font-size:.93rem;color:var(--ink-2);
+  transition:all .25s;user-select:none;background:var(--field);
+}
+.opt:hover{border-color:var(--brass)}
+.opt input{position:absolute;opacity:0;width:0;height:0}
+.opt__dot{
+  width:16px;height:16px;border-radius:50%;flex:none;
+  border:1.5px solid var(--field-line);transition:all .25s;position:relative;
+}
+.opt input:checked + .opt__dot{border-color:var(--ok);background:var(--ok)}
+.opt input:checked + .opt__dot::after{
+  content:"";position:absolute;inset:0;margin:auto;
+  width:5px;height:8px;border:solid var(--card);border-width:0 2px 2px 0;
+  transform:rotate(45deg) translate(-1px,-1px);
+}
+.opt:has(input:checked){border-color:var(--ok);color:var(--ink);font-weight:400}
+.opt input:focus-visible + .opt__dot{outline:2px solid var(--brass);outline-offset:2px}
+
+.write{margin-top:.8rem}
+.write label{display:block;font-size:.84rem;color:var(--ink-3);margin-bottom:.35rem}
+.write input, .write textarea{
+  width:100%;background:var(--field);color:var(--ink);
+  border:1px solid var(--field-line);border-radius:3px;
+  font-family:var(--body);font-size:1rem;font-weight:300;
+  padding:.7rem .85rem;transition:border-color .25s;
+}
+.write textarea{min-height:76px;resize:vertical;line-height:1.6}
+.write input:focus, .write textarea:focus{outline:none;border-color:var(--brass)}
+.write input::placeholder, .write textarea::placeholder{color:var(--ink-3);opacity:.7}
+
+table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.93rem}
+th{text-align:start;font-weight:600;color:var(--ink-3);font-size:.74rem;letter-spacing:.1em;padding-bottom:.5rem;border-bottom:1px solid var(--rule)}
+td{padding:.62rem 0;border-bottom:1px solid var(--rule);color:var(--ink-2);vertical-align:top}
+td:last-child{text-align:end;white-space:nowrap;padding-inline-start:1rem}
+tr:last-child td{border-bottom:0}
+.was{color:var(--urgent)}
+.now{color:var(--ok);font-weight:600}
+
+.steps{list-style:none;counter-reset:s;margin-top:.9rem}
+.steps li{counter-increment:s;position:relative;padding-inline-start:2rem;margin-bottom:.6rem;color:var(--ink-2);font-size:.95rem}
+.steps li::before{
+  content:counter(s);position:absolute;inset-inline-start:0;top:.15rem;
+  width:1.35rem;height:1.35rem;border-radius:50%;background:var(--brass-soft);color:var(--brass);
+  font-size:.72rem;font-weight:700;display:grid;place-items:center;
+}
+.steps a{color:var(--brass);font-weight:600}
+
+.fixed{background:var(--ok-soft);border-radius:4px;padding:1.6rem 1.8rem;margin-top:1rem}
+.fixed h3{font-family:var(--display);font-weight:500;font-size:1.1rem;margin-bottom:.9rem;color:var(--ink)}
+.fixed ul{list-style:none}
+.fixed li{padding-inline-start:1.6rem;position:relative;margin-bottom:.55rem;color:var(--ink-2);font-size:.95rem}
+.fixed li::before{content:"✓";position:absolute;inset-inline-start:0;color:var(--ok);font-weight:700}
+
+/* ---------- send bar ---------- */
+.bar{
+  position:fixed;inset-inline:0;bottom:0;z-index:20;
+  background:var(--card);border-top:1px solid var(--rule);
+  padding:.9rem clamp(1rem,5vw,2rem);
+  box-shadow:0 -6px 24px rgba(0,0,0,.09);
+}
+.bar__in{max-width:44rem;margin:0 auto;display:flex;align-items:center;gap:.7rem;flex-wrap:wrap}
+.bar__count{flex:1;min-width:8rem;font-size:.88rem;color:var(--ink-3)}
+.bar__count b{color:var(--ink);font-weight:600}
+.btn{
+  display:inline-flex;align-items:center;gap:.5rem;cursor:pointer;
+  border:0;border-radius:100px;padding:.75rem 1.4rem;
+  font-family:var(--body);font-size:.92rem;font-weight:600;
+  transition:filter .25s,transform .15s;white-space:nowrap;
+}
+.btn:active{transform:translateY(1px)}
+.btn:hover{filter:brightness(1.07)}
+.btn--wa{background:var(--wa);color:#fff}
+.btn--ghost{background:transparent;color:var(--ink-2);border:1px solid var(--field-line)}
+.btn svg{width:17px;height:17px}
+.bar__note{width:100%;font-size:.79rem;color:var(--ink-3);margin-top:.15rem}
+
+.close{margin-top:3.5rem;padding-top:2rem;border-top:1px solid var(--rule);text-align:center}
+.close p{color:var(--ink-3);font-size:.9rem}
+.close .sig{font-family:var(--display);font-size:1.15rem;color:var(--ink);margin-top:.8rem}
+
+/* the send bar grows taller when it wraps on a phone - keep it off the signature */
+@media (max-width:560px){body{padding-bottom:12.5rem}}
+
+@media print{
+  body{background:#fff;color:#000;padding:1cm}
+  .bar,.howto{display:none}
+  .item,.intro,.fixed{break-inside:avoid}
+}
+
+/* ---------- domain guide: values you copy, steps you tick ---------- */
+.big{background:var(--ok-soft);border-radius:4px;padding:1.6rem 1.8rem;margin-bottom:1.5rem}
+.big h3{font-family:var(--display);font-weight:500;font-size:1.25rem;margin-bottom:.8rem;color:var(--ink)}
+.big p{color:var(--ink-2);font-size:1rem}
+.big p+p{margin-top:.8rem}
+.big strong{color:var(--ink);font-weight:600}
+
+.facts{display:grid;gap:.55rem;margin-top:1.1rem}
+.fact{display:flex;gap:.7rem;align-items:baseline;font-size:.94rem;color:var(--ink-2)}
+.fact b{flex:0 0 8.5rem;color:var(--ink-3);font-weight:600;font-size:.8rem;letter-spacing:.06em}
+
+.dns{width:100%;border-collapse:collapse;margin:1.1rem 0;font-size:.92rem}
+.dns th{text-align:start;font-weight:600;color:var(--ink-3);font-size:.72rem;letter-spacing:.1em;
+  padding:0 .5rem .5rem 0;border-bottom:1px solid var(--rule);white-space:nowrap}
+.dns td{padding:.6rem .5rem .6rem 0;border-bottom:1px solid var(--rule);color:var(--ink-2);vertical-align:top}
+.dns tr:last-child td{border-bottom:0}
+.dns code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  direction:ltr;unicode-bidi:embed;display:inline-block;color:var(--ink);font-size:.9rem}
+.cp{border:1px solid var(--field-line);background:var(--field);border-radius:100px;
+  font-family:var(--body);font-size:.7rem;font-weight:600;padding:.22rem .6rem;cursor:pointer;
+  color:var(--ink-3);margin-inline-start:.5rem;transition:all .2s;white-space:nowrap}
+.cp:hover{border-color:var(--brass);color:var(--brass)}
+.cp.done{background:var(--ok);border-color:var(--ok);color:var(--card)}
+.cpall{margin-top:.4rem}
+
+.chk{display:grid;gap:.5rem;margin-top:.4rem}
+.crow{display:flex;align-items:flex-start;gap:.8rem;cursor:pointer;user-select:none;
+  border:1px solid var(--rule);border-radius:4px;padding:.85rem .95rem;
+  background:var(--field);transition:border-color .2s,background .2s}
+.crow:hover{border-color:var(--brass)}
+.crow:has(input:checked){border-color:var(--ok);background:var(--ok-soft)}
+.crow input{position:absolute;opacity:0;width:0;height:0}
+.cbox{width:19px;height:19px;border-radius:4px;flex:none;margin-top:.15rem;
+  border:1.5px solid var(--field-line);position:relative;transition:all .2s;background:var(--card)}
+.crow input:checked + .cbox{background:var(--ok);border-color:var(--ok)}
+.crow input:checked + .cbox::after{content:"";position:absolute;inset:0;margin:auto;
+  width:5px;height:9px;border:solid var(--card);border-width:0 2px 2px 0;
+  transform:rotate(45deg) translate(-1px,-1px)}
+.crow input:focus-visible + .cbox{outline:2px solid var(--brass);outline-offset:2px}
+.crow__t{flex:1;line-height:1.6;font-size:.97rem;color:var(--ink)}
+.crow__t small{display:block;font-size:.85rem;color:var(--ink-3);margin-top:.2rem}
+.crow:has(input:checked) .crow__t{text-decoration:line-through;text-decoration-color:var(--ink-3);opacity:.75}
+
+.warn{border:1px dashed var(--urgent);border-radius:4px;padding:1.1rem 1.3rem;
+  margin:1.2rem 0;font-size:.95rem;color:var(--ink-2);line-height:1.8}
+.warn b{color:var(--urgent);font-weight:700}
+
+.opt2{display:grid;gap:1rem;margin-top:1.2rem}
+.card2{border:1px solid var(--rule);border-radius:4px;padding:1.3rem 1.5rem;background:var(--card)}
+.card2 h4{font-family:var(--display);font-weight:500;font-size:1.1rem;margin-bottom:.5rem;color:var(--ink)}
+.card2 .tagr{display:inline-block;font-size:.66rem;font-weight:700;letter-spacing:.1em;
+  color:var(--ok);border:1px solid var(--ok);border-radius:2px;padding:.1rem .45rem;margin-inline-start:.5rem}
+.card2 p{font-size:.93rem;color:var(--ink-2)}
+.card2 ul{list-style:none;margin-top:.7rem}
+.card2 li{padding-inline-start:1.2rem;position:relative;margin-bottom:.4rem;font-size:.92rem;color:var(--ink-2)}
+.card2 li::before{content:"·";position:absolute;inset-inline-start:.3rem;color:var(--brass);font-weight:700}
+.card2 a{color:var(--brass);font-weight:600}
+
+.pricetbl td:last-child{text-align:end;white-space:nowrap;color:var(--ink);font-weight:600}
+
+/* ---------- the phone ----------
+   The DNS tables cannot shrink below their content, so on a narrow screen they
+   pushed the whole page sideways. Each row becomes a block instead: type and
+   name on one line, the value and its copy button underneath.
+   And the copy button is the entire point of this document, so it gets a
+   finger-sized target rather than a mouse-sized one. */
+@media (max-width:560px){
+  .dns tr{display:block;border-bottom:1px solid var(--rule);padding:.65rem 0}
+  .dns tr:first-child{display:none}
+  .dns tr:last-child{border-bottom:0}
+  .dns td{display:inline-block;border:0;padding:.1rem .4rem .1rem 0}
+  .dns td:last-child{display:block;padding-top:.45rem}
+  .dns code{white-space:nowrap}
+  .cp{display:inline-block;margin:.5rem .5rem 0 0;padding:.7rem 1.2rem;font-size:.82rem}
+  .pricetbl td:last-child{text-align:start}
+  .fact{display:block}
+  .fact b{display:block;margin-bottom:.1rem}
+  /* the shared sheet keeps section headings on one line; a long one would
+     otherwise widen the whole page and, in RTL, shove every section sideways */
+  .group{flex-wrap:wrap}
+  .group h2{white-space:normal}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="top">
+    <p class="top__eyebrow">מגלי עולמות · האתר החדש</p>
+    <h1>הכתובת<br>של האתר</h1>
+    <p class="top__sub">בדקתי לפני שכתבתי, והתשובה מפתיעה לטובה: אתה כבר מחזיק כתובת טובה, משולמת. אין מה לקנות.</p>
+    <p class="top__date">27 באוגוסט 2026</p>
+  </header>
+
+  <div class="big">
+    <h3>מה שמצאתי</h3>
+    <p>בדקתי במרשם העולמי של הדומיינים. <strong>הדומיין boutiquetournepal.com רשום עליכם, פעיל, ומשולם עד יוני 2027.</strong></p>
+    <div class="facts">
+      <div class="fact"><b>הכתובת</b><span dir="ltr">boutiquetournepal.com</span></div>
+      <div class="fact"><b>נרשם</b><span>7 ביוני 2023</span></div>
+      <div class="fact"><b>בתוקף עד</b><span>7 ביוני 2027 — עוד כעשרה חודשים</span></div>
+      <div class="fact"><b>דרך מי</b><span>Wix — שם נרשם ושם משלמים עליו</span></div>
+      <div class="fact"><b>מצביע כרגע אל</b><span>האתר הישן ב-Wix</span></div>
+    </div>
+    <p style="margin-top:1.1rem"><strong>כלומר: הכתובת שלך, אתה כבר משלם עליה, וצריך רק להפנות אותה לאתר החדש.</strong> זה לוקח בערך עשר דקות ולא עולה שקל.</p>
+  </div>
+
+  <div class="intro">
+    <p>רועי,</p>
+    <p>בטופס הקודם ענית "נשאיר ככה בינתיים", וזו הייתה תשובה הגיונית כשחשבנו שצריך לקנות משהו. <strong>עכשיו שברור שלא צריך, זה נהיה משתלם.</strong></p>
+    <p>הכתובת הנוכחית של האתר החדש היא כתובת טכנית ארוכה שאי אפשר להגיד בטלפון. <strong>boutiquetournepal.com אפשר.</strong></p>
+  </div>
+
+  <div class="howto">
+    <b>המסמך הזה עוקב אחריך.</b> סמן כל שלב שסיימת — זה נשמר, גם אם תסגור ותחזור מחר. לכל ערך שצריך להעתיק יש כפתור העתקה, כדי שלא תצטרך להקליד מספרים.
+  </div>
+
+  <div class="group"><h2>לפני שמתחילים</h2><span>חשוב</span></div>
+
+  <div class="warn">
+    <b>אל תתחיל לבד — תודיע לי קודם.</b><br>
+    יש כאן שני צדדים: צד שלי בשרת, וצד שלך ב-Wix. <strong>הם צריכים לקרות בסמיכות.</strong>
+    אם אני אעשה את שלי יומיים לפניך, הקישורים הקיימים — כולל הטופס שמילאת — יפסיקו
+    לעבוד עד שתסיים. לכן: <strong>תשלח לי הודעה כשאתה יושב מול המסך של Wix</strong>, אני
+    מבצע את שלי תוך דקה, ואז אתה ממשיך.
+  </div>
+
+  <div class="group"><h2>שני מסלולים</h2><span>בחר אחד</span></div>
+
+  <div class="opt2">
+    <div class="card2">
+      <h4>א׳ · להשתמש במה שכבר יש<span class="tagr">מומלץ</span></h4>
+      <p>מפנים את <span dir="ltr">boutiquetournepal.com</span> לאתר החדש. שינוי של שתי שורות בחשבון ה-Wix שלך.</p>
+      <ul>
+        <li><strong>עלות: אפס.</strong> אתה כבר משלם על הדומיין הזה</li>
+        <li>עשר דקות עבודה, ועד 48 שעות עד שזה תופס ברשת</li>
+        <li>הכתובת מוכרת, ומי שכבר מכיר אתכם מגיע לאתר החדש</li>
+        <li>הכל הפיך — אם משהו לא מסתדר, מחזירים את השורות למה שהיו</li>
+      </ul>
+    </div>
+
+    <div class="card2">
+      <h4>ב׳ · לקנות כתובת חדשה בעברית</h4>
+      <p>אם חשוב לך שהכתובת תגיד <strong>מגלי עולמות</strong> ולא boutique tour nepal. זו החלטת מיתוג, לא צורך טכני.</p>
+      <ul>
+        <li>עלות: <strong>כ-60–90 ₪ לשנה</strong> לסיומת <span dir="ltr">.co.il</span>, או כ-10 דולר לשנה לסיומת <span dir="ltr">.com</span></li>
+        <li>אפשר גם וגם — לקנות חדשה ולהשאיר את הישנה מפנה אליה</li>
+        <li>הפרטים בהמשך המסמך, בסעיף האחרון</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="group"><h2>מסלול א׳ — צעד אחר צעד</h2><span>10 דקות</span></div>
+
+  <div class="item item--urgent">
+    <p class="item__n">01</p>
+    <h3>תיכנס לניהול הדומיין ב-Wix</h3>
+    <ol class="steps">
+      <li>היכנס לחשבון שלך ב-<a href="https://www.wix.com/my-account/sites" target="_blank" rel="noopener noreferrer">wix.com</a></li>
+      <li>בתפריט העליון לחץ על <strong>Domains</strong> (דומיינים)</li>
+      <li>ליד <span dir="ltr">boutiquetournepal.com</span> לחץ על <strong>שלוש הנקודות</strong> — התפריט של הדומיין</li>
+      <li>בחר <strong>Manage DNS Records</strong> (ניהול רשומות DNS)</li>
+    </ol>
+    <p style="margin-top:.9rem;font-size:.9rem;color:var(--ink-3)">אם Wix שואל אותך "לנתק את הדומיין מהאתר?" — <strong>כן</strong>. זה בדיוק מה שאנחנו רוצים: הכתובת עוזבת את האתר הישן ועוברת לחדש.</p>
+    <div class="ask">
+      <div class="chk">
+        <label class="crow"><input type="checkbox" name="s1"><span class="cbox"></span><span class="crow__t">הגעתי למסך של רשומות ה-DNS</span></label>
+      </div>
+    </div>
+  </div>
+
+  <div class="item item--urgent">
+    <p class="item__n">02</p>
+    <h3>החלף את רשומות ה-A</h3>
+    <p>במסך תראה שורה מסוג <strong>A</strong> עם השם <code>@</code>, שמצביעה כרגע על כתובת של Wix. <strong>צריך להחליף אותה בארבע הכתובות האלה.</strong></p>
+    <table class="dns">
+      <tr><th>סוג</th><th>שם</th><th>ערך</th></tr>
+      <tr><td>A</td><td><code>@</code></td><td><code>185.199.108.153</code><button class="cp" data-cp="185.199.108.153">העתק</button></td></tr>
+      <tr><td>A</td><td><code>@</code></td><td><code>185.199.109.153</code><button class="cp" data-cp="185.199.109.153">העתק</button></td></tr>
+      <tr><td>A</td><td><code>@</code></td><td><code>185.199.110.153</code><button class="cp" data-cp="185.199.110.153">העתק</button></td></tr>
+      <tr><td>A</td><td><code>@</code></td><td><code>185.199.111.153</code><button class="cp" data-cp="185.199.111.153">העתק</button></td></tr>
+    </table>
+    <div class="cpall"><button class="cp" data-cp="185.199.108.153&#10;185.199.109.153&#10;185.199.110.153&#10;185.199.111.153">העתק את כל הארבע יחד</button></div>
+    <p style="margin-top:1rem">ב-Wix אפשר להוסיף כמה ערכים לאותה שורת A. <strong>הכתובת הישנה של Wix צריכה לרדת</strong> — אם היא נשארת, חצי מהגולשים יגיעו לאתר הישן וחצי לחדש.</p>
+    <div class="ask">
+      <div class="chk">
+        <label class="crow"><input type="checkbox" name="s2a"><span class="cbox"></span><span class="crow__t">הוספתי את ארבע הכתובות<small>185.199.108.153 · 109 · 110 · 111</small></span></label>
+        <label class="crow"><input type="checkbox" name="s2b"><span class="cbox"></span><span class="crow__t">מחקתי את הכתובת הישנה של Wix<small>היא מתחילה ב-185.230.63</small></span></label>
+      </div>
+    </div>
+  </div>
+
+  <div class="item item--urgent">
+    <p class="item__n">03</p>
+    <h3>שנה את רשומת ה-CNAME של www</h3>
+    <p>באותו מסך יש שורה מסוג <strong>CNAME</strong> עם השם <code>www</code>. היא מצביעה כרגע על Wix.</p>
+    <table class="dns">
+      <tr><th>סוג</th><th>שם</th><th>ערך חדש</th></tr>
+      <tr><td>CNAME</td><td><code>www</code></td><td><code>shaharazmon24.github.io</code><button class="cp" data-cp="shaharazmon24.github.io">העתק</button></td></tr>
+    </table>
+    <p style="margin-top:.8rem;font-size:.9rem;color:var(--ink-3)">שים לב שאין נקודה בסוף ואין <span dir="ltr">https://</span> בהתחלה — רק הטקסט כמו שהוא.</p>
+    <div class="ask">
+      <div class="chk">
+        <label class="crow"><input type="checkbox" name="s3"><span class="cbox"></span><span class="crow__t">שיניתי את שורת ה-www</span></label>
+      </div>
+    </div>
+  </div>
+
+  <div class="item item--urgent">
+    <p class="item__n">04</p>
+    <h3>שמור, ותודיע לי</h3>
+    <p>לחץ <strong>Save</strong> ותצלם לי מסך של הרשומות אחרי השמירה. <strong>מכאן זה עליי.</strong></p>
+    <p style="margin-top:.8rem">השינוי מתפשט ברשת <strong>תוך כמה דקות עד 48 שעות</strong>. בזמן הזה ייתכן שהכתובת תוביל פעם לאתר הישן ופעם לחדש — זה נורמלי וזה נגמר לבד.</p>
+    <div class="ask">
+      <div class="chk">
+        <label class="crow"><input type="checkbox" name="s4"><span class="cbox"></span><span class="crow__t">שמרתי ושלחתי צילום מסך</span></label>
+      </div>
+    </div>
+  </div>
+
+  <div class="fixed">
+    <h3>מה אני עושה בצד שלי</h3>
+    <ul>
+      <li>מגדיר את הכתובת בשרת של האתר, בדיוק כשאתה מול המסך</li>
+      <li>מוודא שהרשומות נקלטו נכון</li>
+      <li>מפעיל תעודת אבטחה — <strong>המנעול הירוק ליד הכתובת</strong>. חינם, ומתחדש לבד</li>
+      <li>מוודא שגם עם www וגם בלי www מגיעים לאותו מקום</li>
+    </ul>
+  </div>
+
+  <div class="group"><h2>מסלול ב׳ — כתובת בעברית</h2><span>לא חובה</span></div>
+
+  <div class="item">
+    <h3>קודם בודקים אם השם פנוי</h3>
+    <p>אלה השמות שהייתי בודק. לחיצה על כל אחד פותחת בדיקת זמינות:</p>
+    <ol class="steps">
+      <li><a href="https://box.co.il/domains/" target="_blank" rel="noopener noreferrer">בדיקת זמינות ב-Box</a> — מהזולים בישראל</li>
+      <li><a href="https://mynames.co.il/" target="_blank" rel="noopener noreferrer">בדיקת זמינות ב-MyNames</a> — להשוואת מחיר</li>
+    </ol>
+    <p style="margin-top:.9rem">שמות שכדאי לנסות: <code dir="ltr">magaleyolamot.co.il</code> · <code dir="ltr">magalei-olamot.co.il</code> · <code dir="ltr">magaleyolamot.com</code></p>
+
+    <h3 style="margin-top:1.6rem">מה זה עולה באמת</h3>
+    <table class="dns pricetbl">
+      <tr><th>סיומת</th><th>לשנה</th></tr>
+      <tr><td><span dir="ltr">.co.il</span> — הסיומת הישראלית</td><td>כ-60–90 ₪</td></tr>
+      <tr><td><span dir="ltr">.com</span> — הבינלאומית</td><td>כ-10 דולר</td></tr>
+    </table>
+    <p style="font-size:.86rem;color:var(--ink-3)">המחירים נבדקו היום אצל כמה רשמים ישראליים. הם משתנים מדי פעם, אז מה שרשום באתר שלהם גובר על מה שכתוב כאן.</p>
+
+    <div class="warn" style="margin-top:1.4rem">
+      <b>מה לא לקנות.</b> בעמוד התשלום ינסו למכור לך <strong>אחסון אתרים, חבילת מייל, תעודת אבטחה SSL ובניית אתר</strong>. אתה לא צריך אף אחד מהם — האתר כבר מאוחסן, והאבטחה כלולה בחינם. <strong>קנה את הדומיין בלבד.</strong><br><br>
+      הדבר היחיד ששווה לסמן הוא <strong>חידוש אוטומטי</strong>. דומיין שפג תוקפו נעלם מהרשת, ואפשר לאבד אותו לגמרי.
+    </div>
+  </div>
+
+  <div class="group"><h2>ואם החלטת</h2><span>ספר לי</span></div>
+
+  <div class="item" data-q="pick">
+    <div class="ask" style="border-top:0;padding-top:0;margin-top:0">
+      <p class="ask__label">במה בחרת?</p>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="path" value="מסלול א׳ — מפנים את boutiquetournepal.com"><span class="opt__dot"></span>מפנים את הקיים</label>
+        <label class="opt"><input type="radio" name="path" value="מסלול ב׳ — קונים כתובת חדשה"><span class="opt__dot"></span>קונים חדשה</label>
+        <label class="opt"><input type="radio" name="path" value="גם וגם — קונים חדשה והישנה תפנה אליה"><span class="opt__dot"></span>גם וגם</label>
+        <label class="opt"><input type="radio" name="path" value="עדיין חושב"><span class="opt__dot"></span>עדיין חושב</label>
+      </div>
+      <div class="write"><label for="bought">אם קנית כתובת חדשה — מה הכתובת ואיפה קנית?</label><input id="bought" name="bought" type="text" placeholder="למשל: magaleyolamot.co.il ב-Box"></div>
+      <div class="write"><label for="note2">משהו שנתקעת בו</label><textarea id="note2" name="note2" placeholder="אם משהו במסך של Wix לא נראה כמו שכתבתי כאן — תכתוב לי מה כן רואים"></textarea></div>
+    </div>
+  </div>
+
+  <footer class="close">
+    <p><strong>אל תעשה שום דבר לפני שתודיע לי.</strong> שני הצדדים צריכים לקרות אחד ליד השני, אחרת הקישורים הקיימים נופלים לכמה ימים.</p>
+    <p class="sig">שחר</p>
+  </footer>
+
+</div>
+
+<div class="bar">
+  <div class="bar__in">
+    <div class="bar__count" id="count">טרם התחלת</div>
+    <button class="btn btn--ghost" id="copy" type="button">העתקה</button>
+    <button class="btn btn--wa" id="send" type="button">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96s-.47-.15-.67.15-.77.96-.94 1.16-.35.22-.64.07a8.2 8.2 0 0 1-2.4-1.48 9 9 0 0 1-1.66-2.07c-.17-.3 0-.46.13-.6s.3-.35.44-.52a2 2 0 0 0 .3-.5.55.55 0 0 0 0-.52c-.08-.15-.67-1.6-.91-2.2s-.49-.5-.67-.51h-.57a1.1 1.1 0 0 0-.79.37 3.32 3.32 0 0 0-1.04 2.47 5.76 5.76 0 0 0 1.21 3.06 13.2 13.2 0 0 0 5.05 4.46c.7.3 1.26.49 1.69.63a4.07 4.07 0 0 0 1.86.12 3.05 3.05 0 0 0 2-1.41 2.47 2.47 0 0 0 .17-1.41c-.07-.13-.27-.2-.56-.35M12.05 21.8h-.02a9.8 9.8 0 0 1-4.99-1.37l-.36-.21-3.71.97 1-3.62-.24-.37a9.78 9.78 0 0 1 15.2-12.1 9.72 9.72 0 0 1 2.87 6.92 9.8 9.8 0 0 1-9.75 9.78M20.52 3.45A11.7 11.7 0 0 0 12.05 0 11.82 11.82 0 0 0 1.79 17.72L.1 24l6.43-1.69a11.8 11.8 0 0 0 5.65 1.44h.01A11.82 11.82 0 0 0 20.52 3.45"/></svg>
+      עדכון לשחר
+    </button>
+    <p class="bar__note" id="note">מה שתסמן נשמר אוטומטית בדפדפן שלך.</p>
+  </div>
+</div>
+
+<script>
+(function(){
+  var KEY='magalei_roi_domain_v1';
+  var fields=[].slice.call(document.querySelectorAll('input, textarea'));
+
+  var STEPS={
+    s1:'נכנס למסך רשומות ה-DNS',
+    s2a:'הוסיף את ארבע כתובות ה-A',
+    s2b:'מחק את הכתובת הישנה של Wix',
+    s3:'שינה את שורת ה-www',
+    s4:'שמר ושלח צילום מסך'
+  };
+
+  /* ---------- copy buttons: the whole point is that nobody types an IP ---------- */
+  function copyText(txt,onOk,onFail){
+    function fallback(){
+      var ta=document.createElement('textarea');
+      ta.value=txt; ta.style.position='fixed'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.select();
+      var ok=false;
+      try{ ok=document.execCommand('copy'); }catch(e){}
+      document.body.removeChild(ta);
+      ok?onOk():onFail();
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(onOk, fallback);
+    } else fallback();
+  }
+  [].slice.call(document.querySelectorAll('.cp')).forEach(function(b){
+    b.addEventListener('click', function(){
+      copyText(b.getAttribute('data-cp'), function(){
+        var was=b.textContent;
+        b.textContent='הועתק ✓'; b.classList.add('done');
+        setTimeout(function(){ b.textContent=was; b.classList.remove('done'); }, 1800);
+      }, function(){ b.textContent='לא הצליח'; });
+    });
+  });
+
+  /* ---------- persistence ---------- */
+  function keyOf(f){ return f.type==='radio' ? f.name : (f.id||f.name); }
+  function save(){
+    var d={};
+    fields.forEach(function(f){
+      if(f.type==='radio'){ if(f.checked) d[f.name]=f.value; }
+      else if(f.type==='checkbox'){ d[f.name]=f.checked?'1':'0'; }
+      else if(f.value.trim()) d[keyOf(f)]=f.value.trim();
+    });
+    try{ localStorage.setItem(KEY, JSON.stringify(d)); }catch(e){}
+    return d;
+  }
+  function restore(){
+    var d={};
+    try{ d=JSON.parse(localStorage.getItem(KEY)||'{}'); }catch(e){}
+    fields.forEach(function(f){
+      var k=keyOf(f);
+      if(!(k in d)) return;
+      if(f.type==='radio') f.checked=(f.value===d[k]);
+      else if(f.type==='checkbox') f.checked=(d[k]==='1');
+      else f.value=d[k];
+    });
+  }
+
+  function refresh(){
+    save();
+    var keys=Object.keys(STEPS);
+    var done=keys.filter(function(k){
+      var e=document.querySelector('input[name="'+k+'"]'); return e && e.checked;
+    }).length;
+    var c=document.getElementById('count');
+    c.innerHTML = done===0 ? 'טרם התחלת'
+      : (done===keys.length ? '<b>סיימת את כל השלבים</b> — תעדכן אותי'
+                            : 'הושלמו <b>'+done+'</b> מתוך '+keys.length+' שלבים');
+  }
+
+  function summary(){
+    var L=['מגלי עולמות — הדומיין, עדכון מרועי',''];
+    function r(n){ var e=document.querySelector('input[name="'+n+'"]:checked'); return e?e.value:''; }
+    function v(id){ var e=document.getElementById(id); return e?e.value.trim():''; }
+    if(r('path')) L.push('בחרתי: '+r('path'),'');
+    var keys=Object.keys(STEPS);
+    var done=keys.filter(function(k){ return document.querySelector('input[name="'+k+'"]').checked; });
+    if(done.length){
+      L.push('מה שכבר עשיתי:');
+      done.forEach(function(k){ L.push('   ✓ '+STEPS[k]); });
+      var left=keys.filter(function(k){ return done.indexOf(k)<0; });
+      if(left.length){
+        L.push('','מה שנשאר:');
+        left.forEach(function(k){ L.push('   • '+STEPS[k]); });
+      }
+    }
+    if(v('bought')) L.push('', 'קניתי: '+v('bought'));
+    if(v('note2')) L.push('', 'נתקעתי ב: '+v('note2'));
+    if(L.length===2) L.push('(עדיין לא התחלתי — רק קראתי)');
+    return L.join('\n');
+  }
+
+  var note=document.getElementById('note');
+  var IDLE='מה שתסמן נשמר אוטומטית בדפדפן שלך.';
+  function say(m){ note.textContent=m; setTimeout(function(){ note.textContent=IDLE; },5000); }
+
+  document.getElementById('send').addEventListener('click', function(){
+    var txt=summary();
+    copyText(txt, function(){ say('נפתח וואטסאפ. גם העתקתי — אם משהו נראה חסר, פשוט הדבק.'); }, function(){});
+    window.open('https://wa.me/?text='+encodeURIComponent(txt), '_blank', 'noopener');
+  });
+  document.getElementById('copy').addEventListener('click', function(){
+    copyText(summary(), function(){ say('הועתק.'); }, function(){ say('לא הצלחתי להעתיק — אפשר לשלוח בוואטסאפ במקום.'); });
+  });
+
+  fields.forEach(function(f){
+    f.addEventListener('input', refresh);
+    f.addEventListener('change', refresh);
+  });
+
+  restore();
+  refresh();
+})();
+</script>
+
+</body>
+</html>
