@@ -47,6 +47,7 @@ const I18N = {
     /* hosts */
     "hosts.kicker":"האנשים שתפגשו",
     "hosts.h":"זה לא מסלול.<br>אלה חברים שלנו.",
+    "hosts.more":"ולצידם, לאורך המסע, מצטרפים אלינו עוד חברים. <strong>אניטה וקרישנה</strong>, מדריכים מקומיים שנולדו וגדלו באזור. <strong>ראם</strong>, שמייצר נייר לוקטה משיח הדפנה ההררי, ובביתו אולמות של פסלים וקורות עץ מגולפים — מעין מוזיאון פרטי. <strong>קרוויקה</strong>, אשת עסקים שמנהלת חברת הייטק בקטמנדו. <strong>וסהילנדרה</strong>, חבר קרוב, מפכ\"ל משטרת נפאל לשעבר שהיום מוביל מיזמים חברתיים בקהילה.",
     "hosts.lede":"בכל טיול אנחנו לוקחים אתכם אל אנשים שהכרנו לאורך השנים. הם לא מדריכים ששכרנו — הם פותחים לכם את הבית, את הסדנה ואת השולחן שלהם.",
 
     /* price */
@@ -134,6 +135,7 @@ const I18N = {
 
     "hosts.kicker":"The People You'll Meet",
     "hosts.h":"It isn't an itinerary.<br>They're our friends.",
+    "hosts.more":"And alongside them, throughout the journey, more friends join us. <strong>Anita and Krishna</strong>, local guides born and raised in the region. <strong>Ram</strong>, who makes lokta paper from the mountain daphne shrub, and whose home holds halls of sculptures and carved wooden beams — a private museum of sorts. <strong>Karvika</strong>, a businesswoman running a high-tech company in Kathmandu. And <strong>Shailendra</strong>, a close friend and former chief of the Nepal Police, who today leads social ventures in his community.",
     "hosts.lede":"On every journey we bring you to people we've come to know over the years. They aren't guides we hired — they open their home, their workshop and their table to you.",
 
     "price.kicker":"Pricing", "price.h":"What all this costs",
