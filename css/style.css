@@ -683,14 +683,33 @@ svg.jmap{display:block;width:100%;height:auto}
 .jread{margin-top:1.6rem;min-height:5rem;border-top:1px solid var(--line);padding-top:1.3rem}
 .jread__hint{font-size:.84rem;color:var(--paper-3);letter-spacing:.04em}
 .jread__h{font-family:var(--display);font-size:1.3rem;margin-bottom:.9rem}
-.jread__days{display:flex;flex-wrap:wrap;gap:.6rem}
-.jread__day{display:inline-flex;align-items:baseline;gap:.7rem;cursor:pointer;text-align:start;
-  background:rgba(244,241,234,.04);border:1px solid var(--line);border-radius:2px;
-  padding:.7rem 1rem;font-family:var(--body);color:var(--paper-2);font-size:.92rem;
-  transition:border-color .3s,background .3s,color .3s}
-.jread__day:hover{border-color:var(--brass);color:var(--paper);background:rgba(200,145,47,.08)}
-.jread__day b{font-weight:600;color:var(--brass);font-size:.7rem;letter-spacing:.14em;flex:none}
-.jread__back{margin-top:.9rem;font-size:.76rem;color:var(--paper-3)}
+/* the day arrives here; the reader never leaves the map */
+.jread__top{display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap;
+  padding-bottom:1rem;border-bottom:1px solid var(--line)}
+.jread__place{font-family:var(--display);font-size:1.35rem;color:var(--brass-lite)}
+.jread__tabs{display:flex;gap:.4rem;margin-inline-start:auto;flex-wrap:wrap}
+.jread__tab{min-width:2.3rem;padding:.42rem .6rem;cursor:pointer;
+  background:transparent;border:1px solid var(--line);border-radius:2px;
+  font-family:var(--body);font-size:.82rem;color:var(--paper-3);
+  transition:border-color .3s,color .3s,background .3s}
+.jread__tab:hover{border-color:var(--brass);color:var(--paper-2)}
+.jread__tab.on{background:var(--brass);border-color:var(--brass);color:var(--ink);font-weight:600}
+.jread__tab:focus-visible{outline:2px solid var(--brass-lite);outline-offset:2px}
+
+.jread__body{padding-top:1.2rem}
+.jread__body > *{opacity:0;animation:jrise .62s var(--ease-out) forwards}
+@keyframes jrise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.jread__d{font-size:.7rem;letter-spacing:.2em;color:var(--brass)}
+.jread__t{font-family:var(--display);font-weight:400;font-size:1.45rem;line-height:1.3;margin-top:.5rem}
+.jread__b{margin-top:.9rem;font-size:.97rem;line-height:1.95;color:var(--paper-2);max-width:68ch}
+.jread__stay{margin-top:1rem;font-size:.78rem;letter-spacing:.1em;color:var(--brass-lite)}
+.jread__stay::before{content:"D7";margin-inline-end:.5rem;font-size:.62rem;vertical-align:.12em}
+.jread__back{margin-top:1.4rem;font-size:.76rem;color:var(--paper-3)}
+
+/* the panel holds its height so choosing a stop does not shove the page */
+.jread{min-height:19rem}
+@media (max-width:600px){ .jread{min-height:24rem} }
+@media (prefers-reduced-motion:reduce){ .jread__body > *{opacity:1;animation:none} }
 
 .jswipe{display:none;margin-top:.7rem;font-size:.72rem;letter-spacing:.16em;color:var(--paper-3)}
 @media (max-width:860px){
@@ -707,3 +726,13 @@ svg.jmap{display:block;width:100%;height:auto}
 /* reduced motion removes the movement, not the information: the line still
    shows how far along a stop is, it just stops sliding there */
 @media (prefers-reduced-motion:reduce){ .jroute{transition:none !important} }
+
+/* the 2027 card. After 17 October the site has nothing bookable, and an empty
+   departures list turns a visitor away with no way to come back. This one is
+   deliberately quieter than the two real departures - it promises nothing but
+   a message. */
+.dep--soon{border-style:dashed;background:rgba(10,11,13,.30)}
+.dep--soon .dep__date{color:var(--paper-2)}
+.badge--soon{background:transparent;border:1px solid var(--brass);color:var(--brass-lite);
+  text-decoration:none;transition:background .3s,color .3s}
+.badge--soon:hover{background:var(--brass);color:var(--ink)}

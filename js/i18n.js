@@ -35,6 +35,9 @@ const I18N = {
     "dates.d1":"16–29 בספטמבר 2026", "dates.d2":"4–17 באוקטובר 2026",
     "dates.meta":"14 ימים · קבוצה של 10–12 מטיילים",
     "dates.full":"מלא", "dates.open":"ההרשמה בעיצומה",
+    "dates.d3":"היציאות של 2027",
+    "dates.soon":"התאריכים ייקבעו בקרוב",
+    "dates.notify":"רוצה לדעת ראשון",
     "dates.note":"הטיסה לקטמנדו ב-4 באוקטובר. נחיתה בנמל התעופה הבינלאומי טריבהוואן, קטמנדו.",
     "dates.cta":"לבדוק זמינות",
 
@@ -130,6 +133,9 @@ const I18N = {
     "dates.d1":"16–29 September 2026", "dates.d2":"4–17 October 2026",
     "dates.meta":"14 days · a group of 10–12 travellers",
     "dates.full":"Full", "dates.open":"Now Booking",
+    "dates.d3":"The 2027 departures",
+    "dates.soon":"Dates to be announced",
+    "dates.notify":"Tell me first",
     "dates.note":"Flight to Kathmandu on 4 October. Arrival at Tribhuvan International Airport, Kathmandu.",
     "dates.cta":"Check Availability",
 

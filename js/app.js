@@ -765,29 +765,54 @@
     });
     mapDrawTo(mapLens[i]);
 
+    /* The day's own words arrive here rather than sending the reader up the
+       page to the accordion and back down. It is still ITINERARY's text - the
+       single source is unchanged, only the place it is shown. */
     var s = MAP_STOPS[i];
-    var html = '<p class="jread__h">' + (he ? s.he : s.en) + '</p><div class="jread__days">';
-    s.days.forEach(function (k) {
-      html += '<button class="jread__day" type="button" data-day="' + k + '">' +
-              '<b>' + src[k].d + '</b><span>' + src[k].t + '</span></button>';
-    });
-    html += '</div><p class="jread__back">' +
-      (he ? 'לחצו על יום כדי לפתוח אותו במסלול. לחיצה נוספת על התחנה מחזירה את כל הקו.'
-          : 'Tap a day to open it in the itinerary. Tapping the stop again restores the whole line.') +
-      '</p>';
-    read.innerHTML = html;
+    mapShow(i, 0, src, he);
+  }
 
-    read.querySelectorAll('.jread__day').forEach(function (b) {
+  function mapShow(i, pick, src, he) {
+    var s = MAP_STOPS[i], read = document.getElementById('jread');
+    var day = src[s.days[pick]];
+    var tabs = '';
+    if (s.days.length > 1) {
+      /* Kathmandu covers six days. Six bodies at once would make the page jump
+         by a screenful; day tabs keep the panel a calm, fixed height. */
+      tabs = '<div class="jread__tabs" role="tablist">' + s.days.map(function (k, n) {
+        return '<button class="jread__tab' + (n === pick ? ' on' : '') + '" type="button" role="tab" ' +
+               'aria-selected="' + (n === pick) + '" data-pick="' + n + '">' +
+               src[k].d.replace(/[^0-9]/g, '') + '</button>';
+      }).join('') + '</div>';
+    }
+    read.innerHTML =
+      '<div class="jread__in">' +
+        '<div class="jread__top">' +
+          '<p class="jread__place">' + (he ? s.he : s.en) + '</p>' + tabs +
+        '</div>' +
+        '<div class="jread__body" id="jbody">' +
+          '<p class="jread__d">' + day.d + '</p>' +
+          '<h3 class="jread__t">' + day.t + '</h3>' +
+          '<p class="jread__b">' + day.b + '</p>' +
+          (day.stay ? '<p class="jread__stay">' + day.stay + '</p>' : '') +
+        '</div>' +
+        '<p class="jread__back">' + (he
+          ? 'לחיצה נוספת על התחנה מחזירה את כל המסלול.'
+          : 'Tapping the stop again restores the whole line.') + '</p>' +
+      '</div>';
+
+    /* stagger the lines in, so the text arrives instead of appearing */
+    var body = document.getElementById('jbody');
+    [].slice.call(body.children).forEach(function (el, n) {
+      el.style.animationDelay = (60 + n * 70) + 'ms';
+    });
+
+    read.querySelectorAll('.jread__tab').forEach(function (b) {
       b.addEventListener('click', function () {
-        var btn = document.getElementById('dayBtn' + b.getAttribute('data-day'));
-        if (!btn) return;
-        if (btn.getAttribute('aria-expanded') !== 'true') btn.click();
-        btn.scrollIntoView({behavior: prefersReducedMotion() ? 'auto' : 'smooth', block:'center'});
-        btn.focus({preventScroll:true});
+        mapShow(i, parseInt(b.getAttribute('data-pick'), 10), src, he);
       });
     });
   }
-
   function mapArm() {
     var svg = document.getElementById('jmap');
     if (!svg || !('IntersectionObserver' in window)) { mapDrawn = true; return; }
