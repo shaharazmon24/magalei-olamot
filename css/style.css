@@ -642,3 +642,68 @@ section{position:relative}
   .stage,.wa,.hdr,.scrollcue{display:none!important}
   body{background:#fff;color:#000}
 }
+
+/* ============================================================
+   THE ROUTE MAP
+   Geography, not decoration: longitudes are scaled by cos(lat)
+   so a degree east is not drawn as long as a degree north.
+   No prose of its own — every word comes from ITINERARY.
+   ============================================================ */
+.mapwrap{margin-top:clamp(2rem,5vh,3.5rem);position:relative}
+svg.jmap{display:block;width:100%;height:auto}
+
+.jridge{fill:none;stroke-linejoin:round}
+.jpeak{fill:var(--paper-3);font-size:11.5px;letter-spacing:.14em;font-family:var(--body)}
+.jpeakmark{fill:none;stroke:rgba(244,241,234,.34);stroke-width:1.2}
+.jriver{fill:none;stroke:rgba(120,160,190,.30);stroke-width:2.4;stroke-linecap:round}
+
+.jroute{fill:none;stroke:var(--brass);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;
+  filter:drop-shadow(0 0 6px rgba(200,145,47,.45))}
+.jroute--ghost{stroke:rgba(200,145,47,.16);filter:none}
+/* the flight home on day 12 - dashed, because it is not a road */
+.jflight{fill:none;stroke:rgba(232,196,119,.42);stroke-width:1.5;stroke-dasharray:7 7}
+.jflight__lbl{fill:var(--paper-3);font-size:10.5px;letter-spacing:.16em;font-family:var(--body)}
+
+.jstop{cursor:pointer}
+.jstop__halo{fill:rgba(200,145,47,.14);opacity:0;transition:opacity .45s var(--ease)}
+.jstop__dot{fill:var(--ink);stroke:var(--brass-lite);stroke-width:1.8;
+  transition:fill .35s var(--ease),stroke .35s var(--ease)}
+.jstop__lbl{fill:var(--paper-2);font-family:var(--body);font-size:14.5px;
+  transition:fill .3s var(--ease)}
+.jstop__day{fill:var(--brass);font-family:var(--body);font-size:11px;letter-spacing:.14em}
+.jleader{fill:none;stroke:rgba(244,241,234,.26);stroke-width:.9}
+.jstop.on .jstop__dot,.jstop.passed .jstop__dot{fill:var(--brass)}
+.jstop.on .jstop__halo,.jstop.sel .jstop__halo{opacity:1}
+.jstop.on .jstop__lbl{fill:var(--paper)}
+.jstop.sel .jstop__dot{fill:var(--brass-lite);stroke:var(--paper)}
+.jstop.sel .jstop__lbl{fill:var(--paper);font-weight:600}
+.jstop:focus{outline:none}
+.jstop:focus-visible .jstop__dot{stroke:var(--paper);stroke-width:2.8}
+
+.jread{margin-top:1.6rem;min-height:5rem;border-top:1px solid var(--line);padding-top:1.3rem}
+.jread__hint{font-size:.84rem;color:var(--paper-3);letter-spacing:.04em}
+.jread__h{font-family:var(--display);font-size:1.3rem;margin-bottom:.9rem}
+.jread__days{display:flex;flex-wrap:wrap;gap:.6rem}
+.jread__day{display:inline-flex;align-items:baseline;gap:.7rem;cursor:pointer;text-align:start;
+  background:rgba(244,241,234,.04);border:1px solid var(--line);border-radius:2px;
+  padding:.7rem 1rem;font-family:var(--body);color:var(--paper-2);font-size:.92rem;
+  transition:border-color .3s,background .3s,color .3s}
+.jread__day:hover{border-color:var(--brass);color:var(--paper);background:rgba(200,145,47,.08)}
+.jread__day b{font-weight:600;color:var(--brass);font-size:.7rem;letter-spacing:.14em;flex:none}
+.jread__back{margin-top:.9rem;font-size:.76rem;color:var(--paper-3)}
+
+.jswipe{display:none;margin-top:.7rem;font-size:.72rem;letter-spacing:.16em;color:var(--paper-3)}
+@media (max-width:860px){
+  /* squeezing 1200 units into a phone does not make a map mobile, it makes it
+     unreadable. It scrolls and keeps its geography. */
+  .mapscroll{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;
+    margin-inline:calc(var(--pad) * -1);padding-inline:var(--pad);scrollbar-width:none}
+  .mapscroll::-webkit-scrollbar{display:none}
+  svg.jmap{width:820px;max-width:none}
+  .jstop__lbl{font-size:17px}
+  .jstop__day{font-size:13px}
+  .jswipe{display:block}
+}
+/* reduced motion removes the movement, not the information: the line still
+   shows how far along a stop is, it just stops sliding there */
+@media (prefers-reduced-motion:reduce){ .jroute{transition:none !important} }

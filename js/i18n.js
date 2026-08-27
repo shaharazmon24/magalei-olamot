@@ -43,6 +43,10 @@ const I18N = {
     "itin.lede":"לחצו על כל יום כדי לפתוח את הפירוט המלא.",
     "itin.note":"בכל בוקר, לפני ארוחת הבוקר, מוזמנים להתחיל את היום עם צ'י קונג ומדיטציה עם עדי.",
     "itin.flex":"נפאל אינה שוויץ, וזה חלק מהיופי. מזג אוויר, דרכים ומזל עשויים לשנות סדר יום — המסלול גמיש, הכיוון לא.",
+    "map.kicker":"איפה זה בכלל",
+    "map.h":"המסלול,<br>על המפה",
+    "map.lede":"המסע מתחיל בעמק קטמנדו, נע מזרחה אל נמובודהה, וממשיך מערבה אל פוקרה ולמרגלות האנפורנה. לחצו על תחנה כדי לראות אילו ימים היא מכסה.",
+    "map.swipe":"← אפשר להחליק את המפה הצידה",
     "itin.pdf":"הורדת החוברת המלאה",
 
     /* hosts */
@@ -133,6 +137,10 @@ const I18N = {
     "itin.lede":"Tap any day to open the full detail.",
     "itin.note":"Every morning, before breakfast, you're welcome to begin the day with Qi Gong and meditation with Adi.",
     "itin.flex":"Nepal is not Switzerland, and that is part of the beauty. Weather, roads and luck may reorder a day — the route is flexible, the direction is not.",
+    "map.kicker":"Where this actually is",
+    "map.h":"The route,<br>on the map",
+    "map.lede":"The journey begins in the Kathmandu valley, moves east to Namobuddha, then west to Pokhara and the foot of the Annapurna. Tap a stop to see which days it covers.",
+    "map.swipe":"The map can be swiped sideways →",
     "itin.pdf":"Download the full brochure",
 
     "hosts.kicker":"The People You'll Meet",

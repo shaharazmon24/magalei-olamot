@@ -554,6 +554,267 @@
     });
   });
 
+
+  /* ------------------------------------------------------------
+     4b. THE ROUTE MAP
+     Every word on this map comes from ITINERARY. It holds place
+     names and coordinates and nothing else - the moment it carries
+     its own prose it starts drifting from what the itinerary says,
+     and a map that contradicts the itinerary is worse than none.
+     ------------------------------------------------------------ */
+  var MAP_STOPS = [
+    {he:'קטמנדו',    en:'Kathmandu',   lon:85.324, lat:27.717, days:[0,1,6,11,12,13], dx:-96, dy:-34},
+    {he:'מנזר קופאן', en:'Kopan',       lon:85.362, lat:27.744, days:[2],       dx: 82, dy:-70},
+    {he:'פאטן',      en:'Patan',       lon:85.324, lat:27.667, days:[3],       dx:-88, dy: 44},
+    {he:'נמובודהה',  en:'Namobuddha',  lon:85.584, lat:27.571, days:[4,5,6],   dx: 26, dy: 54},
+    {he:'הטריסולי',  en:'The Trisuli', lon:84.850, lat:27.850, days:[7],       dx:  0, dy: 46},
+    {he:'בנדיפור',   en:'Bandipur',    lon:84.417, lat:27.933, days:[7],       dx:  0, dy:-38},
+    {he:'פוקרה',     en:'Pokhara',     lon:83.986, lat:28.209, days:[8,9,11],  dx:  6, dy: 50},
+    {he:'דאמפוס',    en:'Dhampus',     lon:83.850, lat:28.310, days:[10],      dx: 88, dy:-28},
+    {he:'אסטם',      en:'Astam',       lon:83.870, lat:28.262, days:[10,11],   dx:-74, dy: 40}
+  ];
+  var MAP_PEAKS = [
+    {he:'אנפורנה', en:'Annapurna', lon:83.820, lat:28.596},
+    {he:'מאצ׳אפוצ׳רה', en:'Machhapuchhre', lon:83.949, lat:28.495},
+    {he:'לנגטנג', en:'Langtang', lon:85.517, lat:28.256}
+  ];
+
+  var MAPBOX = {w:1200, h:540, pad:{t:132, r:90, b:78, l:90}};
+  var MAP_LON = [83.72, 85.70], MAP_LAT = [27.50, 28.42];
+  var MAP_K = Math.cos(28 * Math.PI / 180);
+
+  function mapPt(lon, lat) {
+    var x0 = MAP_LON[0] * MAP_K, x1 = MAP_LON[1] * MAP_K, xv = lon * MAP_K;
+    var w = MAPBOX.w - MAPBOX.pad.l - MAPBOX.pad.r;
+    var h = MAPBOX.h - MAPBOX.pad.t - MAPBOX.pad.b;
+    return [ MAPBOX.pad.l + (xv - x0) / (x1 - x0) * w,
+             MAPBOX.pad.t + (MAP_LAT[1] - lat) / (MAP_LAT[1] - MAP_LAT[0]) * h ];
+  }
+
+  function dayRange(idx, src, he) {
+    var ns = idx.map(function (k) { return parseInt(src[k].d.replace(/[^0-9]/g, ''), 10); })
+                .sort(function (a, b) { return a - b; });
+    var runs = [], i = 0;
+    while (i < ns.length) {
+      var a = ns[i], b = a;
+      while (i + 1 < ns.length && ns[i+1] === b + 1) { b = ns[++i]; }
+      runs.push(a === b ? String(a) : a + '–' + b);
+      i++;
+    }
+    var txt = runs.join(', ');
+    if (ns.length === 1) return (he ? 'יום ' : 'Day ') + txt;
+    return (he ? 'ימים ' : 'Days ') + txt;
+  }
+
+  var mapDrawn = false, mapSel = -1, mapLens = null;
+
+  function buildMap() {
+    var svg = document.getElementById('jmap');
+    if (!svg) return;
+    var src = (current_lang === 'en' && typeof ITINERARY_EN !== 'undefined') ? ITINERARY_EN : ITINERARY;
+    if (typeof src === 'undefined') return;
+    var he = (current_lang !== 'en');
+    var NS = 'http://www.w3.org/2000/svg';
+    function E(t, a) { var e = document.createElementNS(NS, t); for (var k in a) e.setAttribute(k, a[k]); return e; }
+
+    /* ---- terrain: drawn once, it does not change with language ---- */
+    var terrain = document.getElementById('jterrain');
+    if (!terrain.childNodes.length) {
+      function ridge(seed, base, amp, fill, stroke) {
+        var pts = [], n = 64, x0 = -60, x1 = MAPBOX.w + 60;
+        for (var i = 0; i <= n; i++) {
+          var x = x0 + i * (x1 - x0) / n, t = i * 0.34 + seed;
+          var v = Math.sin(t) * 0.50 + Math.sin(t * 2.17 + seed) * 0.28 +
+                  Math.sin(t * 4.4 + seed * 1.9) * 0.14 + Math.sin(t * 8.3 + seed * 2.7) * 0.08;
+          pts.push([x, base - Math.abs(v) * amp]);
+        }
+        var line = pts.map(function (p) { return p[0].toFixed(1) + ',' + p[1].toFixed(1); }).join('L');
+        /* fill and outline as two paths: one closed path that is both filled
+           and stroked draws its own flat baseline, and that straight bright
+           line across the frame reads as the edge of a box, not a range */
+        terrain.appendChild(E('path', {d:'M' + x0 + ',' + base + 'L' + line + 'L' + x1 + ',' + base + 'Z',
+          fill:fill, stroke:'none'}));
+        terrain.appendChild(E('path', {d:'M' + line, fill:'none', stroke:stroke,
+          'stroke-width':1.1, 'class':'jridge'}));
+      }
+      ridge(1.0, 150, 76, 'url(#ridgefade)',  'rgba(244,241,234,.11)');
+      ridge(3.3, 161, 50, 'url(#ridgefade2)', 'rgba(244,241,234,.17)');
+      var r1 = mapPt(85.05, 27.92), r2 = mapPt(84.80, 27.83), r3 = mapPt(84.55, 27.86);
+      terrain.appendChild(E('path', {'class':'jriver',
+        d:'M' + r1[0] + ',' + r1[1] + 'Q' + r2[0] + ',' + (r2[1] + 16) + ' ' + r3[0] + ',' + r3[1]}));
+    }
+    /* peak names do change with language */
+    [].slice.call(terrain.querySelectorAll('.jpeak,.jpeakmark')).forEach(function (n) { n.remove(); });
+    MAP_PEAKS.forEach(function (p) {
+      var c = mapPt(p.lon, p.lat), x = c[0], y = Math.max(54, Math.min(c[1], 104));
+      terrain.appendChild(E('path', {'class':'jpeakmark',
+        d:'M' + (x - 9) + ',' + (y + 13) + 'L' + x + ',' + y + 'L' + (x + 9) + ',' + (y + 13)}));
+      var t = E('text', {x:x, y:y - 8, 'class':'jpeak', 'text-anchor':'middle'});
+      t.textContent = he ? p.he : p.en; terrain.appendChild(t);
+    });
+
+    /* ---- the route ---- */
+    var pts = MAP_STOPS.map(function (s) { return mapPt(s.lon, s.lat); });
+    var d = 'M' + pts[0][0].toFixed(1) + ',' + pts[0][1].toFixed(1);
+    for (var i = 0; i < pts.length - 1; i++) {
+      var p0 = pts[i-1] || pts[i], p1 = pts[i], p2 = pts[i+1], p3 = pts[i+2] || p2;
+      d += 'C' + (p1[0] + (p2[0]-p0[0])/6).toFixed(1) + ',' + (p1[1] + (p2[1]-p0[1])/6).toFixed(1) +
+           ' ' + (p2[0] - (p3[0]-p1[0])/6).toFixed(1) + ',' + (p2[1] - (p3[1]-p1[1])/6).toFixed(1) +
+           ' ' + p2[0].toFixed(1) + ',' + p2[1].toFixed(1);
+    }
+    var route = document.getElementById('jroute');
+    route.setAttribute('d', d);
+    document.getElementById('jghost').setAttribute('d', d);
+
+    /* the flight home. Day 12 ends in Kathmandu, not in the west - a one-way
+       line stopping at Astam would say the trip ends there, and it does not. */
+    var pk = mapPt(83.986, 28.209), kt = mapPt(85.324, 27.717);
+    var fl = document.getElementById('jflight');
+    fl.setAttribute('d', 'M' + pk[0] + ',' + (pk[1] - 12) + 'Q' + ((pk[0]+kt[0])/2) + ',' +
+      (Math.min(pk[1], kt[1]) - 118) + ' ' + kt[0] + ',' + (kt[1] - 12));
+    var flbl = document.getElementById('jflightlbl');
+    var day12 = src[11];
+    flbl.textContent = (he ? 'טיסה חזרה · ' : 'Flight back · ') + day12.d;
+    flbl.setAttribute('x', (pk[0] + kt[0]) / 2);
+    flbl.setAttribute('y', Math.min(pk[1], kt[1]) - 66);
+
+    /* ---- stops ---- */
+    var gs = document.getElementById('jstops');
+    gs.innerHTML = '';
+    var nodes = MAP_STOPS.map(function (s, i) {
+      var c = mapPt(s.lon, s.lat), lx = c[0] + s.dx, ly = c[1] + s.dy, up = s.dy < 0;
+      var g = E('g', {'class':'jstop', tabindex:'0', role:'button'});
+      g.setAttribute('aria-label', (he ? s.he : s.en));
+      if (Math.abs(s.dx) > 18 || Math.abs(s.dy) > 36) {
+        var ex = lx - Math.sign(s.dx) * Math.min(Math.abs(s.dx) * 0.42, 26);
+        g.appendChild(E('path', {'class':'jleader',
+          d:'M' + c[0].toFixed(1) + ',' + c[1].toFixed(1) + 'L' + ex.toFixed(1) + ',' + (ly + (up ? 7 : -15)).toFixed(1)}));
+      }
+      g.appendChild(E('circle', {cx:c[0], cy:c[1], r:15, 'class':'jstop__halo'}));
+      g.appendChild(E('circle', {cx:c[0], cy:c[1], r:5.2, 'class':'jstop__dot'}));
+      var lbl = E('text', {x:lx, y:ly, 'class':'jstop__lbl', 'text-anchor':'middle'});
+      lbl.textContent = he ? s.he : s.en; g.appendChild(lbl);
+      /* the day numbers are read off ITINERARY, never typed here.
+         Contiguous runs collapse; gaps do NOT. Kathmandu is days 1, 2, 7 and
+         12-14, and writing that as "1-14" would claim the whole trip happens
+         there. Pokhara has the same trap. */
+      var day = E('text', {x:lx, y:ly + (up ? -20 : 20), 'class':'jstop__day', 'text-anchor':'middle'});
+      day.textContent = dayRange(s.days, src, he);
+      g.appendChild(day);
+      gs.appendChild(g);
+      g.addEventListener('click', function () { mapSelect(i, src, he); });
+      g.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); mapSelect(i, src, he); }
+      });
+      g.addEventListener('pointerenter', function () { g.classList.add('on'); });
+      g.addEventListener('pointerleave', function () { g.classList.remove('on'); });
+      return g;
+    });
+    svg.__nodes = nodes;
+
+    /* distance of each stop along the path, measured once */
+    var len = route.getTotalLength();
+    mapLens = MAP_STOPS.map(function (s) {
+      var c = mapPt(s.lon, s.lat), best = 0, bd = 1e9;
+      for (var L = 0; L <= len; L += len / 400) {
+        var pt = route.getPointAtLength(L);
+        var dd = (pt.x - c[0]) * (pt.x - c[0]) + (pt.y - c[1]) * (pt.y - c[1]);
+        if (dd < bd) { bd = dd; best = L; }
+      }
+      return best;
+    });
+    svg.__len = len;
+
+    mapSel = -1;
+    mapHint(he);
+    if (mapDrawn) { mapDrawTo(len, 0); nodes.forEach(function (n) { n.classList.add('passed'); }); }
+  }
+
+  function mapHint(he) {
+    document.getElementById('jread').innerHTML = '<p class="jread__hint">' +
+      (he ? 'בחרו תחנה על המפה' : 'Choose a stop on the map') + '</p>';
+  }
+
+  function mapDrawTo(target, dur) {
+    var route = document.getElementById('jroute'), len = document.getElementById('jmap').__len;
+    var from = len - (parseFloat(route.style.strokeDashoffset) || 0);
+    route.style.strokeDasharray = len + ' ' + len;
+    if (dur === 0 || prefersReducedMotion()) { route.style.transition = 'none'; }
+    else {
+      if (dur === undefined) dur = 340 + Math.abs(target - from) / len * 1500;
+      route.style.transition = 'stroke-dashoffset ' + Math.round(dur) + 'ms cubic-bezier(.33,.02,.2,1)';
+    }
+    route.style.strokeDashoffset = (len - target);
+  }
+  function prefersReducedMotion() {
+    return window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }
+
+  function mapSelect(i, src, he) {
+    var svg = document.getElementById('jmap'), nodes = svg.__nodes, len = svg.__len;
+    var read = document.getElementById('jread');
+    if (i === mapSel) {                       /* a way back, or the map sticks on a fragment */
+      mapSel = -1;
+      nodes.forEach(function (n) { n.classList.remove('sel'); n.classList.add('passed'); });
+      mapDrawTo(len); mapHint(he); return;
+    }
+    mapSel = i;
+    nodes.forEach(function (n, j) {
+      n.classList.toggle('sel', j === i);
+      n.classList.toggle('passed', j <= i);
+    });
+    mapDrawTo(mapLens[i]);
+
+    var s = MAP_STOPS[i];
+    var html = '<p class="jread__h">' + (he ? s.he : s.en) + '</p><div class="jread__days">';
+    s.days.forEach(function (k) {
+      html += '<button class="jread__day" type="button" data-day="' + k + '">' +
+              '<b>' + src[k].d + '</b><span>' + src[k].t + '</span></button>';
+    });
+    html += '</div><p class="jread__back">' +
+      (he ? 'לחצו על יום כדי לפתוח אותו במסלול. לחיצה נוספת על התחנה מחזירה את כל הקו.'
+          : 'Tap a day to open it in the itinerary. Tapping the stop again restores the whole line.') +
+      '</p>';
+    read.innerHTML = html;
+
+    read.querySelectorAll('.jread__day').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var btn = document.getElementById('dayBtn' + b.getAttribute('data-day'));
+        if (!btn) return;
+        if (btn.getAttribute('aria-expanded') !== 'true') btn.click();
+        btn.scrollIntoView({behavior: prefersReducedMotion() ? 'auto' : 'smooth', block:'center'});
+        btn.focus({preventScroll:true});
+      });
+    });
+  }
+
+  function mapArm() {
+    var svg = document.getElementById('jmap');
+    if (!svg || !('IntersectionObserver' in window)) { mapDrawn = true; return; }
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting || mapDrawn) return;
+        mapDrawn = true; io.disconnect();
+        var nodes = svg.__nodes, len = svg.__len;
+        if (prefersReducedMotion()) {
+          mapDrawTo(len, 0); nodes.forEach(function (n) { n.classList.add('passed'); }); return;
+        }
+        var route = document.getElementById('jroute');
+        route.style.transition = 'none';
+        route.style.strokeDasharray = len + ' ' + len;
+        route.style.strokeDashoffset = len;
+        nodes.forEach(function (n) { n.classList.remove('passed'); });
+        route.getBoundingClientRect();
+        var DUR = 2600;
+        mapDrawTo(len, DUR);
+        MAP_STOPS.forEach(function (s, i) {
+          setTimeout(function () { nodes[i].classList.add('passed'); }, (mapLens[i] / len) * DUR + 120);
+        });
+      });
+    }, {threshold:.3});
+    io.observe(svg);
+  }
+
   /* ------------------------------------------------------------
      5. TESTIMONIALS
      ------------------------------------------------------------ */
@@ -727,6 +988,7 @@
     buildDays();
     buildVoices();
     buildRailLabels();
+    buildMap();
 
     if (lang) {
       lang.textContent = t('nav.langLabel') || (code === 'he' ? 'EN' : 'עב');
@@ -753,6 +1015,7 @@
   try { saved = localStorage.getItem('mo_lang'); } catch (e) {}
   applyLang(saved === 'en' ? 'en' : 'he');
 
+  mapArm();          /* the route draws itself the first time the map is scrolled into view */
   observeReveals();
   window.addEventListener('scroll', onScroll, { passive: true });
   paint();
