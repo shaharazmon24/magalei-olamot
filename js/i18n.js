@@ -43,6 +43,7 @@ const I18N = {
     "itin.lede":"לחצו על כל יום כדי לפתוח את הפירוט המלא.",
     "itin.note":"בכל בוקר, לפני ארוחת הבוקר, מוזמנים להתחיל את היום עם צ'י קונג ומדיטציה עם עדי.",
     "itin.flex":"נפאל אינה שוויץ, וזה חלק מהיופי. מזג אוויר, דרכים ומזל עשויים לשנות סדר יום — המסלול גמיש, הכיוון לא.",
+    "itin.pdf":"הורדת החוברת המלאה",
 
     /* hosts */
     "hosts.kicker":"האנשים שתפגשו",
@@ -132,6 +133,7 @@ const I18N = {
     "itin.lede":"Tap any day to open the full detail.",
     "itin.note":"Every morning, before breakfast, you're welcome to begin the day with Qi Gong and meditation with Adi.",
     "itin.flex":"Nepal is not Switzerland, and that is part of the beauty. Weather, roads and luck may reorder a day — the route is flexible, the direction is not.",
+    "itin.pdf":"Download the full brochure",
 
     "hosts.kicker":"The People You'll Meet",
     "hosts.h":"It isn't an itinerary.<br>They're our friends.",
