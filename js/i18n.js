@@ -42,6 +42,7 @@ const I18N = {
     "itin.kicker":"תוכנית הטיול", "itin.h":"14 הימים, יום אחר יום",
     "itin.lede":"לחצו על כל יום כדי לפתוח את הפירוט המלא.",
     "itin.note":"בכל בוקר, לפני ארוחת הבוקר, מוזמנים להתחיל את היום עם צ'י קונג ומדיטציה עם עדי.",
+    "itin.flex":"נפאל אינה שוויץ, וזה חלק מהיופי. מזג אוויר, דרכים ומזל עשויים לשנות סדר יום — המסלול גמיש, הכיוון לא.",
 
     /* hosts */
     "hosts.kicker":"האנשים שתפגשו",
@@ -129,6 +130,7 @@ const I18N = {
     "itin.kicker":"The Itinerary", "itin.h":"Fourteen days, one by one",
     "itin.lede":"Tap any day to open the full detail.",
     "itin.note":"Every morning, before breakfast, you're welcome to begin the day with Qi Gong and meditation with Adi.",
+    "itin.flex":"Nepal is not Switzerland, and that is part of the beauty. Weather, roads and luck may reorder a day — the route is flexible, the direction is not.",
 
     "hosts.kicker":"The People You'll Meet",
     "hosts.h":"It isn't an itinerary.<br>They're our friends.",

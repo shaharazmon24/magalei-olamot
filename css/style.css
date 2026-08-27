@@ -403,6 +403,9 @@ section{position:relative}
 .prow__r{font-family:var(--display);font-size:clamp(1.3rem,3vw,1.9rem);font-weight:400;color:var(--brass-lite);font-variant-numeric:tabular-nums}
 .prow--sm .prow__r{font-size:1.1rem}
 .pnote{margin-top:1.1rem;font-size:.82rem;color:var(--paper-3)}
+/* the flexibility note sits a step below the others: it is a caveat,
+   not an invitation, and it should read as one */
+.pnote--fine{margin-top:.7rem;font-size:.76rem;font-style:italic;border-top:1px solid var(--line);padding-top:.9rem;max-width:52ch}
 
 .incl{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:2.4rem;margin-top:3.2rem}
 .incl h3{margin-bottom:1.3rem}
