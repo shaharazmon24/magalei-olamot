@@ -703,7 +703,6 @@ svg.jmap{display:block;width:100%;height:auto}
 .jread__t{font-family:var(--display);font-weight:400;font-size:1.45rem;line-height:1.3;margin-top:.5rem}
 .jread__b{margin-top:.9rem;font-size:.97rem;line-height:1.95;color:var(--paper-2);max-width:68ch}
 .jread__stay{margin-top:1rem;font-size:.78rem;letter-spacing:.1em;color:var(--brass-lite)}
-.jread__stay::before{content:"D7";margin-inline-end:.5rem;font-size:.62rem;vertical-align:.12em}
 .jread__back{margin-top:1.4rem;font-size:.76rem;color:var(--paper-3)}
 
 /* the panel holds its height so choosing a stop does not shove the page */
