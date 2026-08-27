@@ -5,7 +5,7 @@
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#faf8f4" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#141310" media="(prefers-color-scheme: dark)">
-<title>מגלי עולמות — סבב שלישי</title>
+<title>מגלי עולמות — שאלות ותשובות</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -199,47 +199,18 @@ tr:last-child td{border-bottom:0}
   .bar,.howto{display:none}
   .item,.intro,.fixed{break-inside:avoid}
 }
-/* ---------- round three: tap, do not type ---------- */
-.pick{display:grid;gap:.5rem;margin-top:.3rem}
-.prow{display:flex;align-items:flex-start;gap:.8rem;cursor:pointer;user-select:none;
-  border:1px solid var(--rule);border-radius:4px;padding:.85rem .95rem;
-  background:var(--field);transition:border-color .2s,background .2s}
-.prow:hover{border-color:var(--brass)}
-.prow:has(input:checked){border-color:var(--ok);background:var(--ok-soft)}
-.prow input{position:absolute;opacity:0;width:0;height:0}
-.pbox{width:19px;height:19px;border-radius:4px;flex:none;margin-top:.15rem;
-  border:1.5px solid var(--field-line);position:relative;transition:all .2s;background:var(--card)}
-.prow input:checked + .pbox{background:var(--ok);border-color:var(--ok)}
-.prow input:checked + .pbox::after{content:"";position:absolute;inset:0;margin:auto;
-  width:5px;height:9px;border:solid var(--card);border-width:0 2px 2px 0;
-  transform:rotate(45deg) translate(-1px,-1px)}
-.prow input:focus-visible + .pbox{outline:2px solid var(--brass);outline-offset:2px}
-.prow__t{flex:1;line-height:1.5}
-.prow__t b{display:block;font-weight:600;color:var(--ink);font-size:1rem}
-.prow__t span{font-size:.85rem;color:var(--ink-3)}
-.prow--new .prow__t b::after{content:"חדש";font-size:.6rem;font-weight:700;letter-spacing:.1em;
-  color:var(--brass);border:1px solid var(--brass);border-radius:2px;padding:.05rem .3rem;
-  margin-inline-start:.5rem;vertical-align:.15em}
 
-.tally{margin-top:1rem;font-size:.92rem;color:var(--ink-2);
-  background:var(--paper-2);border-radius:4px;padding:.7rem .9rem}
-.tally b{color:var(--urgent);font-weight:700}
-.tally.ok{background:var(--ok-soft)}
-.tally.ok b{color:var(--ok)}
-
-.dayrow{display:flex;align-items:center;gap:.7rem;margin-bottom:.55rem;flex-wrap:wrap}
-.dayrow>span{flex:1 1 8rem;font-size:.97rem;color:var(--ink)}
-select.pill{flex:0 0 auto;min-width:15rem;max-width:100%;
-  background:var(--field);color:var(--ink);border:1px solid var(--field-line);
-  border-radius:3px;font-family:var(--body);font-size:.95rem;font-weight:300;
-  padding:.6rem .75rem;cursor:pointer;transition:border-color .25s}
-select.pill:focus{outline:none;border-color:var(--brass)}
-select.pill:invalid,select.pill[data-empty="1"]{color:var(--ink-3)}
-
-.gated{display:none}
-.gated.on{display:block}
-.hintbox{font-size:.86rem;color:var(--ink-3);background:var(--paper-2);
-  border-radius:4px;padding:.7rem .9rem;margin-top:.8rem;line-height:1.7}
+/* ---------- FAQ round: a draft to approve, not a blank page ---------- */
+.qtitle{font-family:var(--display);font-weight:500;font-size:1.18rem;line-height:1.35;margin-bottom:.5rem}
+.why{font-size:.88rem;color:var(--ink-3);line-height:1.7;margin-bottom:1rem}
+.draft{background:var(--paper-2);border-inline-start:3px solid var(--brass);
+  border-radius:0 4px 4px 0;padding:1.1rem 1.3rem;margin-bottom:1.1rem}
+.draft__lbl{font-size:.66rem;font-weight:700;letter-spacing:.18em;color:var(--brass);margin-bottom:.6rem}
+.draft p{color:var(--ink);font-size:.97rem;line-height:1.85}
+.draft p + p{margin-top:.6rem}
+.mine{background:var(--brass-soft);border:1px dashed var(--brass);border-radius:4px;
+  padding:.9rem 1.1rem;margin-bottom:1.1rem;font-size:.9rem;color:var(--ink-2);line-height:1.7}
+.mine b{color:var(--ink);font-weight:600}
 </style>
 </head>
 <body>
@@ -247,162 +218,46 @@ select.pill:invalid,select.pill[data-empty="1"]{color:var(--ink-3)}
 <div class="wrap">
 
   <header class="top">
-    <p class="top__eyebrow">מגלי עולמות · האתר החדש · סבב שלישי</p>
-    <h1>תשע שאלות,<br>רובן בלחיצה</h1>
-    <p class="top__sub">התשובות הקודמות שלך סגרו כמעט הכל. מה שנשאר בניתי כך שכמעט לא תצטרך להקליד — רוב השאלות הן סימון, ומה שכבר יודעים כתוב מראש.</p>
+    <p class="top__eyebrow">מגלי עולמות · האתר החדש · שאלות ותשובות</p>
+    <h1>מה שלקוחות<br>שואלים בטלפון</h1>
+    <p class="top__sub">אלה השאלות שאנשים שואלים לפני שהם מזמינים טיול. כל אחת מהן שנשארת בלי תשובה באתר היא סיבה שמישהו סוגר את הדף בלי להתקשר.</p>
     <p class="top__date">27 באוגוסט 2026</p>
   </header>
 
   <div class="intro">
     <p>רועי,</p>
-    <p>הכל התקדם. מה שנשאר הוא <strong>פרטים קטנים שבלעדיהם אני לא יכול לבנות</strong> — בעיקר ימים ושמות.</p>
-    <p>אם משהו לא רלוונטי, פשוט דלג עליו.</p>
+    <p><strong>ברוב השאלות כבר כתבתי טיוטת תשובה.</strong> אתה רק צריך לקרוא ולסמן "מדויק", או לתקן אותי במשפט.</p>
+    <p>איפה שאין לי טיוטה — זה מפני שאין לי דרך לדעת, ואני לא ממציא מידע על טיול אמיתי. שם אצטרך שתכתוב.</p>
   </div>
 
   <div class="howto">
-    <b>הכל נשמר תוך כדי.</b> אפשר לסגור ולחזור מחר, ומה שסימנת יישאר. בסיום — הכפתור הירוק למטה שולח לי הכל בוואטסאפ.
+    <b>הכל נשמר תוך כדי.</b> אפשר לסגור ולחזור מחר. בסיום — הכפתור הירוק למטה שולח לי הכל בוואטסאפ.
   </div>
 
-  <div class="group"><h2>המארחים</h2><span>5 פריטים</span></div>
+  <div class="group"><h2>הגוף</h2><span>4 שאלות</span></div>
+  <div id="g1"></div>
 
-  <div class="item item--urgent" data-q="1">
-    <p class="item__n">01 <span class="item__tick">✓ נענה</span></p>
-    <h3>מי מהם נשאר באתר?</h3>
-    <p>אמרת <strong>תשעה מארחים</strong>. כשאני סופר את מי שכבר באתר, את החמישה שהוספת ואת צולטרים — יוצאים <strong>שנים־עשר</strong>.</p>
-    <p><strong>סימנתי לך את כולם. תוריד את הסימון משלושה.</strong></p>
-    <div class="ask">
-      <div class="pick" id="roster"></div>
-      <div class="tally" id="tally"></div>
-    </div>
-  </div>
+  <div class="group"><h2>הכיס והלוגיסטיקה</h2><span>5 שאלות</span></div>
+  <div id="g2"></div>
 
-  <div class="item item--urgent" data-q="2">
-    <p class="item__n">02 <span class="item__tick">✓ נענה</span></p>
-    <h3>באיזה יום פוגשים כל אחד מהחדשים?</h3>
-    <p>זה הפרט היחיד שחסר לי על כל אחד מהם. בלעדיו אי אפשר לשבץ אותם במסלול.</p>
-    <p class="hint" style="font-size:.88rem;color:var(--ink-3);margin-top:.7rem">הרשימה למטה מתעדכנת לבד לפי מי שהשארת למעלה.</p>
-    <div class="ask">
-      <div id="days"></div>
-      <div class="hintbox" id="daysEmpty">אם תוריד למעלה את כל החדשים, כאן לא יופיע כלום.</div>
-    </div>
-  </div>
+  <div class="group"><h2>הראש</h2><span>3 שאלות</span></div>
+  <div id="g3"></div>
 
-  <div class="item item--urgent gated" data-q="3" id="tsultrimItem">
-    <p class="item__n">03 <span class="item__tick">✓ נענה</span></p>
-    <h3>מיהו צולטרים?</h3>
-    <p>על כל שאר החברים יש לי משפט. על צולטרים <strong>אין לי כלום</strong> — רק שהוא נזיר ושהוא נוסף ללופסאן.</p>
+  <div class="group"><h2>ומה שכחתי</h2><span>החשוב ביותר</span></div>
+  <div class="item" data-q="extra">
+    <p class="item__n">13 <span class="item__tick">✓ נענה</span></p>
+    <h3 class="qtitle">איזו שאלה אתה נשאל כל הזמן ואין אותה כאן?</h3>
+    <p class="why">אתה על הטלפון עם המתעניינים, לא אני. השאלה שחוזרת אצלך שוב ושוב היא כנראה החשובה ביותר ברשימה הזו — ואני לא יודע מהי.</p>
     <div class="ask">
-      <p class="ask__label">איפה פוגשים אותו?</p>
-      <div class="opts">
-        <label class="opt"><input type="radio" name="tsPlace" value="גם במנזר קופאן"><span class="opt__dot"></span>גם במנזר קופאן</label>
-        <label class="opt"><input type="radio" name="tsPlace" value="במקום אחר"><span class="opt__dot"></span>במקום אחר</label>
+      <div class="write" style="margin-top:0">
+        <label for="extra">השאלה, ואיך אתה עונה עליה</label>
+        <textarea id="extra" name="extra" placeholder="אפשר יותר מאחת"></textarea>
       </div>
-      <div class="write"><label for="tsWhere">אם במקום אחר — איפה, ומה התפקיד שלו</label><input id="tsWhere" name="tsWhere" type="text" placeholder="למשל: מנזר בבודהנאט, מורה למדיטציה"></div>
-      <div class="write"><label for="tsLine">משפט אחד עליו — מה קורה במפגש</label><textarea id="tsLine" name="tsLine" placeholder="כמו שכתבת על האחרים"></textarea></div>
-    </div>
-  </div>
-
-  <div class="item item--urgent gated" data-q="4" id="lopsangItem">
-    <p class="item__n">04 <span class="item__tick">✓ נענה</span></p>
-    <h3>תמונה של הנזיר לופסאן</h3>
-    <p>עד עכשיו חשבתי שיש לי תמונה שלו — אבל <strong>אחרי שאמרת שצולטרים הוא נזיר אחר, התברר שהתמונה ההיא היא של צולטרים</strong>. כלומר ללופסאן אין פנים באתר.</p>
-    <p class="hint" style="font-size:.88rem;color:var(--ink-3);margin-top:.7rem">תמונה רגילה מהטלפון מספיקה. אני מייצר ממנה את הדיוקן, כמו עם השאר.</p>
-    <div class="ask">
-      <p class="ask__label">מה עושים?</p>
-      <div class="opts">
-        <label class="opt"><input type="radio" name="lopsang" value="אשלח תמונה שלו"><span class="opt__dot"></span>אשלח תמונה</label>
-        <label class="opt"><input type="radio" name="lopsang" value="אין לי — שיישאר בלי פנים"><span class="opt__dot"></span>שיישאר בלי פנים</label>
-        <label class="opt"><input type="radio" name="lopsang" value="אין לי — להוריד אותו מהאתר"><span class="opt__dot"></span>להוריד אותו</label>
-      </div>
-    </div>
-  </div>
-
-  <div class="item item--urgent" data-q="5">
-    <p class="item__n">05 <span class="item__tick">✓ נענה</span></p>
-    <h3>שני איותים שחסרים לי</h3>
-    <p>ברשימת השמות באנגלית ששלחת <strong>ראם לא הופיע</strong>, ועל סאמאר כתבת <strong>Samar DAI</strong>.</p>
-    <div class="ask">
-      <div class="write"><label for="ramEn">איך כותבים את ראם באנגלית</label><input id="ramEn" name="ramEn" type="text" dir="ltr" placeholder="Ram"></div>
-      <p class="ask__label" style="margin-top:1.1rem">ומה להציג באתר על סאמאר?</p>
-      <div class="opts">
-        <label class="opt"><input type="radio" name="samarEn" value="Samar"><span class="opt__dot"></span><span dir="ltr">Samar</span></label>
-        <label class="opt"><input type="radio" name="samarEn" value="Samar Dai"><span class="opt__dot"></span><span dir="ltr">Samar Dai</span></label>
-      </div>
-    </div>
-  </div>
-
-  <div class="group"><h2>נגישות</h2><span>4 פריטים · חובה חוקית</span></div>
-
-  <div class="item item--urgent" data-q="6">
-    <p class="item__n">06 <span class="item__tick">✓ נענה</span></p>
-    <h3>מספר העוסק של עדי</h3>
-    <p>כתבת שהשם המשפטי הוא <strong>עדי אסף</strong>. ההצהרה צריכה לשאת גם את המספר.</p>
-    <div class="ask">
-      <div class="write"><label for="hp">ח.פ / מספר עוסק</label><input id="hp" name="hp" type="text" inputmode="numeric" dir="ltr" placeholder="000000000"></div>
-    </div>
-  </div>
-
-  <div class="item item--urgent" data-q="7">
-    <p class="item__n">07 <span class="item__tick">✓ נענה</span></p>
-    <h3>כתובת מייל לפניות נגישות</h3>
-    <p>ענית "אותם פרטים שבאתר" — אבל <strong>באתר מופיעים רק שני טלפונים, בלי מייל</strong>. ההצהרה חייבת ערוץ כתוב שאפשר לפנות אליו.</p>
-    <div class="ask">
-      <div class="write"><label for="mail">המייל</label><input id="mail" name="mail" type="email" inputmode="email" dir="ltr" placeholder="name@example.com"></div>
-      <p class="ask__label" style="margin-top:1rem">להציג אותו גם בעמוד "צרו קשר" באתר?</p>
-      <div class="opts">
-        <label class="opt"><input type="radio" name="mailShow" value="כן, להציג באתר"><span class="opt__dot"></span>כן</label>
-        <label class="opt"><input type="radio" name="mailShow" value="לא, רק בהצהרת הנגישות"><span class="opt__dot"></span>רק בהצהרה</label>
-      </div>
-    </div>
-  </div>
-
-  <div class="item item--urgent" data-q="8">
-    <p class="item__n">08 <span class="item__tick">✓ נענה</span></p>
-    <h3>המקום במושב</h3>
-    <p>אמרת שיש מקום שמקבלים בו אנשים. <strong>זה מרחיב את התמונה</strong> — למקום שמקבל קהל יש חובות נגישות משלו, מעבר לאתר, וההצהרה צריכה לתאר אותו.</p>
-    <p style="margin-top:.7rem">רשמתי את הכתובת כפי שהגיעה, אבל לא הצלחתי לפענח את שם הרחוב. <strong>תתקן אותי אם צריך.</strong></p>
-    <div class="ask">
-      <div class="write"><label for="addr">הכתובת המדויקת</label><input id="addr" name="addr" type="text" value="עולמי יעקב 47, מושב משמר השבעה"></div>
-      <p class="ask__label" style="margin-top:1.1rem">איך נכנסים למקום?</p>
-      <div class="opts">
-        <label class="opt"><input type="radio" name="access" value="כניסה מפולסת, אפשר להיכנס בכיסא גלגלים"><span class="opt__dot"></span>כניסה מפולסת</label>
-        <label class="opt"><input type="radio" name="access" value="יש מדרגות בכניסה"><span class="opt__dot"></span>יש מדרגות</label>
-        <label class="opt"><input type="radio" name="access" value="יש מדרגות, אבל יש גם מעקף נגיש"><span class="opt__dot"></span>מדרגות + מעקף נגיש</label>
-        <label class="opt"><input type="radio" name="access" value="צריך לבדוק"><span class="opt__dot"></span>צריך לבדוק</label>
-      </div>
-      <p class="ask__label" style="margin-top:1.1rem">מי מגיע לשם בפועל?</p>
-      <div class="opts">
-        <label class="opt"><input type="radio" name="who" value="מטיילים — מפגשי הכנה לפני טיול"><span class="opt__dot"></span>מטיילים, לפני טיול</label>
-        <label class="opt"><input type="radio" name="who" value="רק מכרים, לא לקוחות"><span class="opt__dot"></span>רק מכרים</label>
-      </div>
-    </div>
-  </div>
-
-  <div class="item item--urgent" data-q="9">
-    <p class="item__n">09 <span class="item__tick">✓ נענה</span></p>
-    <h3>המחזור — שאלה אחת, כן או לא</h3>
-    <p>בפעם הקודמת שאלתי "מדרגת מחזור" וזו הייתה שאלה מעורפלת מצדי. <strong>מה שקובע בחוק הוא סף אחד:</strong></p>
-    <div class="ask">
-      <p class="ask__label">המחזור השנתי של העסק — מעל או מתחת ל-100,000 ₪?</p>
-      <div class="opts">
-        <label class="opt"><input type="radio" name="rev" value="מתחת ל-100,000 ₪"><span class="opt__dot"></span>מתחת</label>
-        <label class="opt"><input type="radio" name="rev" value="מעל ל-100,000 ₪"><span class="opt__dot"></span>מעל</label>
-        <label class="opt"><input type="radio" name="rev" value="אבדוק עם רואה החשבון"><span class="opt__dot"></span>אבדוק עם רו״ח</label>
-      </div>
-      <p style="margin-top:.9rem;font-size:.88rem;color:var(--ink-3)">המספר עצמו לא מעניין אותי ולא נכנס לשום מקום — רק הצד של הסף.</p>
-    </div>
-  </div>
-
-  <div class="group"><h2>עוד משהו?</h2><span>לא חובה</span></div>
-  <div class="item">
-    <div class="write" style="margin-top:0">
-      <label for="extra">כל דבר שעולה לך</label>
-      <textarea id="extra" name="extra" placeholder="כתוב כאן חופשי"></textarea>
     </div>
   </div>
 
   <footer class="close">
-    <p>אחרי זה סקשן החברים נבנה, וההצהרה נכתבת. <strong>אלה הפרטים האחרונים שחסרים לי.</strong></p>
+    <p>מהתשובות שלך אבנה סקשן שאלות ותשובות באתר. <strong>זה השיפור השיווקי החזק ביותר שנשאר לנו לעשות</strong> — הוא עונה על ההתנגדויות בדיוק ברגע שהן עולות.</p>
     <p class="sig">שחר</p>
   </footer>
 
@@ -421,77 +276,104 @@ select.pill:invalid,select.pill[data-empty="1"]{color:var(--ink-3)}
 
 <script>
 (function(){
-  var KEY='magalei_roi_answers_v3';
+  var KEY='magalei_roi_answers_v4';
 
-  /* ---------- the twelve candidates, ticked by default ----------
-     Pre-ticked on purpose: Roi said nine, so removing three is three
-     taps. Starting from an empty list would have cost him nine. */
-  var PEOPLE=[
-    {k:'r1',  n:'קאמאל',        d:'קטמנדו · יום 2'},
-    {k:'r2',  n:'הנזיר לופסאן', d:'מנזר קופאן · יום 3'},
-    {k:'r3',  n:'סודיפ',        d:'פאטן, קערות טיבטיות · יום 4'},
-    {k:'r4',  n:'בינוד',        d:'נמובודהה · ימים 5–7'},
-    {k:'r5',  n:'דיפק',         d:'פוקרה · ימים 9–12'},
-    {k:'r6',  n:'סאמאר',        d:'פוקרה, נגן סרנגי · יום 10'},
-    {k:'r7',  n:'צולטרים',      d:'נזיר — הפרטים עדיין חסרים', neu:1, day:'dTsultrim'},
-    {k:'r8',  n:'אניטה',        d:'מדריכה בפוקרה, אשתו של דיפק', neu:1, day:'dAnita'},
-    {k:'r9',  n:'קרישנה',       d:'מדריך בפוקרה, מומחה בהינדואיזם', neu:1, day:'dKrishna'},
-    {k:'r10', n:'ראם',          d:'מפעל נייר לוקטה, מוזיאון ביתי', neu:1, day:'dRam'},
-    {k:'r11', n:'קרוויקה',      d:'אשת עסקים, הייטק בקטמנדו', neu:1, day:'dKarvika'},
-    {k:'r12', n:'סהילנדרה',     d:'לשעבר מפכ"ל משטרת נפאל', neu:1, day:'dShailendra'}
-  ];
-  var DAYS=['יום 1 · יציאה מישראל','יום 2 · קטמנדו, טאמל ובודהנאט',
-    'יום 3 · מנזר קופאן וטימי','יום 4 · פאטן, עיר האמנים',
-    'יום 5 · נמובודהה','יום 6 · שדות הטמאנג','יום 7 · הכפר של בינוד',
-    'יום 8 · רפטינג ובנדיפור','יום 9 · בדרך לפוקרה',
-    'יום 10 · פאגודת השלום','יום 11 · דאמפוס ואסטם',
-    'יום 12 · האנפורנה וסדנת מומו','יום 13 · יום חופשי','יום 14 · חזרה הביתה'];
+  /* Two kinds of item.
+     `draft` — I could write a defensible answer from the site's own content,
+       so Roi only approves or corrects it. One tap instead of a paragraph.
+     `mine`  — I could not. Altitude, vaccinations, insurance and hotel grades
+       are facts about a real trip that I have no way to know, and inventing
+       them would put wrong information in front of paying customers. */
+  var Q = {
+  g1: [
+    {k:'fit', n:1, t:'כמה כושר גופני צריך?',
+     why:'זו השאלה מספר אחת של מי שמעל 55, וההיסוס הגדול ביותר לפני הזמנה. בלי תשובה ברורה, אנשים מניחים את הגרוע.',
+     draft:'המסלול אינו טרק. הולכים בשבילי כפרים, בשווקים ובמנזרים, ורוב הנסיעות הן ברכב. מי שמסוגל ללכת שעה־שעתיים ביום בקצב נינוח, עם הפסקות, ירגיש בנוח.',
+     ask:'כמה שעות הליכה יש ביום העמוס ביותר, ומה החלק התובעני ביותר במסלול?'},
+
+    {k:'alt', n:2, t:'מה הגובה הכי גבוה, ויש סכנת מחלת גבהים?',
+     why:'"נפאל" ו"הימלאיה" גורמים לאנשים להניח 4,000 מטר ואוורסט. אם המסלול נמוך — זו בשורה טובה שחייבת להיאמר.',
+     mine:'לפי המסלול, המקומות הגבוהים ביותר נראים כמו נמובודהה, דאמפוס ואסטם. <b>אני לא יודע את הגבהים בפועל ולא אמציא מספרים רפואיים.</b>',
+     ask:'מה הנקודה הגבוהה במסלול, והאם מטיילים חוו אי־פעם תסמיני גובה?'},
+
+    {k:'age', n:3, t:'מה טווח הגילאים בקבוצה?',
+     why:'אנשים חוששים להיות הזקן בחבורה או היחיד הצעיר. מספר אמיתי מרגיע הרבה יותר מ"כל הגילאים".',
+     ask:'מה היה טווח הגילאים בטיולים האחרונים, ומה הגיל השכיח?'},
+
+    {k:'food', n:4, t:'מה עם האוכל — צמחוני, כשר, בטוח לבטן?',
+     why:'חשש קיבה הוא סיבה אמיתית לוותר על נפאל. וצמחונות בישראל היא כבר לא נישה.',
+     draft:'האוכל כלול לכל אורך הטיול, במסעדות ובבתים של המארחים — כולל ארוחת טאלי נאוורי על גג ביתו של בינוד וסדנת מומו אצל דיפק. המטבח הנפאלי עשיר במנות צמחוניות.',
+     ask:'איך אתם מטפלים בצמחונים, בטבעונים ובאלרגיות? יש אפשרות לכשרות? ומה אתם עושים כדי שאנשים לא יחלו?'}
+  ],
+  g2: [
+    {k:'solo', n:5, t:'אפשר להגיע לבד?',
+     why:'מטיילים בודדים הם פלח גדול, במיוחד בגילאים האלה. הם צריכים לדעת שלא יהיו מוזרים ולא ישלמו קנס.',
+     draft:'בהחלט. הקבוצה קטנה ומתגבשת מהר, וחלק מהמטיילים מגיעים לבד. מי שמעדיף חדר לעצמו משלם תוספת של 500$; מי שמוכן לחלוק חדר, אנחנו משתדלים לחבר בין מטיילים בודדים.',
+     ask:'האם באמת מחברים בין בודדים לחדר משותף, או שזה תמיד תוספת?'},
+
+    {k:'ins', n:6, t:'צריך ביטוח נסיעות? מי מסדר אותו?',
+     why:'שאלה שנשאלת תמיד, ותשובה עמומה כאן נראית כמו התחמקות מאחריות.',
+     mine:'זה תנאי חוזי ולא משהו שאפשר לנחש. <b>אני לא כותב מילה על ביטוח בלי שתכתיב לי אותה.</b>',
+     ask:'ביטוח הוא חובה או המלצה? אתם מסדרים או שכל אחד לעצמו? יש חברה שאתם ממליצים עליה?'},
+
+    {k:'health', n:7, t:'צריך חיסונים? מה עם תרופות ומצב רפואי קיים?',
+     why:'בלי תשובה, אנשים מדמיינים סדרת זריקות ומוותרים.',
+     mine:'מידע רפואי הוא הדבר האחרון שאני אמציא. <b>עדיף שהתשובה תפנה לרופא, ותאמר מה קורה בפועל.</b>',
+     ask:'מה אתם אומרים למתעניינים על חיסונים? יש רופא או מרפאת מטיילים שאתם מפנים אליהם? ואיך מטפלים במי שיש לו מצב רפואי?'},
+
+    {k:'hotel', n:8, t:'איזו רמת מלונות? חדר עם מקלחת פרטית?',
+     why:'"בוטיק" ב-3,600$ יוצר ציפייה. אם המלונות טובים — זו נקודת מכירה שלא מנוצלת היום.',
+     mine:'במסלול כתוב "לינה במלון" בלי דירוג. <b>אין לי דרך לדעת מה הרמה.</b>',
+     ask:'כמה כוכבים בערך? יש מקום אחד מיוחד ששווה להזכיר בשמו? בכל הלינות יש מקלחת ושירותים בחדר?'},
+
+    {k:'cash', n:9, t:'כמה כסף להביא מעבר למחיר?',
+     why:'"הכל כלול" מעורר את השאלה הנגדית: אז למה בכל זאת אצטרך כסף? מספר מוחשי בונה אמון.',
+     ask:'כמה מזומן אתה ממליץ לקחת, ולְמה בעיקר — קניות, טיפים, שתייה? כרטיסי אשראי עובדים שם?'}
+  ],
+  g3: [
+    {k:'weather', n:10, t:'מה מזג האוויר באוקטובר, ומה לארוז?',
+     why:'שאלה תמימה שמסתירה חרדה אמיתית מפני קור ומפני אריזה שגויה. גם הזדמנות להסביר למה דווקא אוקטובר.',
+     ask:'איך אוקטובר בנפאל — טמפרטורות ביום ובלילה, גשם? ומה שלושת הפריטים שאנשים הכי שוכחים לארוז?'},
+
+    {k:'net', n:11, t:'יש אינטרנט? המשפחה תוכל להשיג אותי?',
+     why:'מי שמשאיר הורים מבוגרים או ילדים בבית לא יזמין בלי לדעת את זה.',
+     ask:'יש וויי־פיי במלונות? כדאי כרטיס סים מקומי? ואיך משפחה יוצרת קשר במקרה חירום?'},
+
+    {k:'lang', n:12, t:'ההדרכה בעברית?',
+     why:'קהל היעד ישראלי, ורבים מהם לא בטוחים באנגלית שלהם. תשובה חד־משמעית מסירה מחסום שלם.',
+     draft:'רועי ועדי מלווים את הקבוצה לכל אורך הטיול, והכל נעשה בעברית. במפגשים עם המקומיים הם מתרגמים.',
+     ask:'מדויק? ומה קורה במפגש עם קאמאל או עם דיפק — הם דוברים אנגלית ואתם מתרגמים?'}
+  ]};
 
   /* ---------- render ---------- */
-  var roster=document.getElementById('roster');
-  PEOPLE.forEach(function(p){
-    var l=document.createElement('label');
-    l.className='prow'+(p.neu?' prow--new':'');
-    l.innerHTML='<input type="checkbox" name="'+p.k+'" value="'+p.n+'" checked>'+
-      '<span class="pbox"></span><span class="prow__t"><b>'+p.n+'</b><span>'+p.d+'</span></span>';
-    roster.appendChild(l);
-  });
-
-  var daysHost=document.getElementById('days');
-  PEOPLE.filter(function(p){return p.day}).forEach(function(p){
-    var row=document.createElement('div');
-    row.className='dayrow'; row.setAttribute('data-owner',p.k);
-    var opts='<option value="">— בחר יום —</option>'+
-      DAYS.map(function(d){return '<option value="'+d+'">'+d+'</option>'}).join('');
-    row.innerHTML='<span>'+p.n+'</span><select class="pill" id="'+p.day+'" name="'+p.day+'" data-empty="1">'+opts+'</select>';
-    daysHost.appendChild(row);
-  });
-
-  var fields=[].slice.call(document.querySelectorAll('input, textarea, select'));
-
-  /* ---------- gating: never ask about someone who is not on the list ---------- */
-  function gate(){
-    var anyDay=false;
-    PEOPLE.filter(function(p){return p.day}).forEach(function(p){
-      var on=document.querySelector('input[name="'+p.k+'"]').checked;
-      daysHost.querySelector('[data-owner="'+p.k+'"]').style.display = on ? '' : 'none';
-      if(on) anyDay=true;
-    });
-    document.getElementById('daysEmpty').style.display = anyDay ? 'none' : 'block';
-    document.getElementById('tsultrimItem').classList.toggle('on',
-      document.querySelector('input[name="r7"]').checked);
-    document.getElementById('lopsangItem').classList.toggle('on',
-      document.querySelector('input[name="r2"]').checked);
+  function render(host, list){
+    document.getElementById(host).innerHTML = list.map(function(q){
+      /* three states, not two: a draft to approve, a note explaining why I
+         will not draft one, or - for a plain factual question - nothing at
+         all. The two-way version printed "undefined" for the third. */
+      var body = q.draft
+        ? '<div class="draft"><p class="draft__lbl">הטיוטה שלי — כך זה ייכתב באתר</p><p>'+q.draft+'</p></div>'
+        : (q.mine ? '<div class="mine">'+q.mine+'</div>' : '');
+      var control = q.draft
+        ? '<p class="ask__label">הטיוטה מדויקת?</p><div class="opts">'+
+          '<label class="opt"><input type="radio" name="'+q.k+'" value="מדויק — אפשר לפרסם"><span class="opt__dot"></span>מדויק, לפרסם</label>'+
+          '<label class="opt"><input type="radio" name="'+q.k+'" value="צריך תיקון"><span class="opt__dot"></span>צריך תיקון</label>'+
+          '</div>'
+        : '';
+      return '<div class="item item--urgent" data-q="'+q.k+'">'+
+        '<p class="item__n">'+(q.n<10?'0':'')+q.n+' <span class="item__tick">✓ נענה</span></p>'+
+        '<h3 class="qtitle">'+q.t+'</h3>'+
+        '<p class="why">'+q.why+'</p>'+ body +
+        '<div class="ask">'+control+
+          '<div class="write"><label for="'+q.k+'t">'+q.ask+'</label>'+
+          '<textarea id="'+q.k+'t" name="'+q.k+'t"></textarea></div>'+
+        '</div></div>';
+    }).join('');
   }
+  render('g1', Q.g1); render('g2', Q.g2); render('g3', Q.g3);
 
-  function tally(){
-    var n=PEOPLE.filter(function(p){return document.querySelector('input[name="'+p.k+'"]').checked}).length;
-    var t=document.getElementById('tally');
-    t.classList.toggle('ok', n===9);
-    t.innerHTML = n===9 ? 'סימנת <b>9</b> — בדיוק כמו שאמרת.'
-      : (n>9 ? 'סימנת <b>'+n+'</b>. צריך להוריד עוד <b>'+(n-9)+'</b> כדי להגיע לתשעה.'
-             : 'סימנת <b>'+n+'</b>, פחות מתשעה. זה בסדר — רק תוודא שזה מה שהתכוונת.');
-  }
+  var ALL = Q.g1.concat(Q.g2, Q.g3);
+  var fields=[].slice.call(document.querySelectorAll('input, textarea'));
 
   /* ---------- persistence ---------- */
   function keyOf(f){ return f.type==='radio' ? f.name : (f.id||f.name); }
@@ -499,104 +381,63 @@ select.pill:invalid,select.pill[data-empty="1"]{color:var(--ink-3)}
     var d={};
     fields.forEach(function(f){
       if(f.type==='radio'){ if(f.checked) d[f.name]=f.value; }
-      else if(f.type==='checkbox'){ d[f.name]=f.checked?'1':'0'; }
       else if(f.value.trim()) d[keyOf(f)]=f.value.trim();
     });
     try{ localStorage.setItem(KEY, JSON.stringify(d)); }catch(e){}
-    return d;
   }
   function restore(){
     var d={};
     try{ d=JSON.parse(localStorage.getItem(KEY)||'{}'); }catch(e){}
     fields.forEach(function(f){
-      var k=keyOf(f);
-      if(!(k in d)) return;
-      if(f.type==='radio') f.checked = (f.value===d[k]);
-      else if(f.type==='checkbox') f.checked = (d[k]==='1');
-      else f.value=d[k];
+      var k=keyOf(f); if(!(k in d)) return;
+      if(f.type==='radio') f.checked=(f.value===d[k]); else f.value=d[k];
     });
   }
-
   function refresh(){
-    save(); gate(); tally();
-    [].slice.call(document.querySelectorAll('select.pill')).forEach(function(s){
-      s.setAttribute('data-empty', s.value ? '0' : '1');
-    });
+    save();
     var done=0,total=0;
     [].slice.call(document.querySelectorAll('.item[data-q]')).forEach(function(it){
-      if(it.classList.contains('gated') && !it.classList.contains('on')) return;
       total++;
-      var any=[].slice.call(it.querySelectorAll('input, textarea, select')).some(function(f){
-        if(f.type==='radio'||f.type==='checkbox') return false;
-        return f.value.trim()!=='';
+      var any=[].slice.call(it.querySelectorAll('input, textarea')).some(function(f){
+        return f.type==='radio' ? f.checked : f.value.trim()!=='';
       });
-      if(it.getAttribute('data-q')==='1') any=true;
-      if(it.querySelector('input[type=radio]:checked')) any=true;
       it.classList.toggle('done', any);
       if(any) done++;
     });
     var c=document.getElementById('count');
-    c.innerHTML = done===total ? '<b>ענית על הכל</b> — אפשר לשלוח'
-                               : 'נענו <b>'+done+'</b> מתוך '+total;
+    c.innerHTML = done===0 ? 'טרם נענו שאלות'
+      : (done===total ? '<b>ענית על הכל</b> — אפשר לשלוח' : 'נענו <b>'+done+'</b> מתוך '+total);
   }
 
   /* ---------- the message ---------- */
   function summary(){
-    var L=['מגלי עולמות — סבב שלישי, התשובות של רועי',''];
-    function isOn(k){ return document.querySelector('input[name="'+k+'"]').checked; }
-    var keep=PEOPLE.filter(function(p){return isOn(p.k)});
-    var out=PEOPLE.filter(function(p){return !isOn(p.k)});
-    L.push('1. מי נשאר ('+keep.length+'):');
-    keep.forEach(function(p){ L.push('   • '+p.n); });
-    if(out.length) L.push('   יורדים: '+out.map(function(p){return p.n}).join(', '));
-
-    var days=keep.filter(function(p){return p.day && document.getElementById(p.day).value});
-    if(days.length){
-      L.push('','2. ימים:');
-      days.forEach(function(p){ L.push('   • '+p.n+': '+document.getElementById(p.day).value); });
-    }
-
-    function v(id){ var e=document.getElementById(id); return e? e.value.trim():''; }
-    function r(name){ var e=document.querySelector('input[name="'+name+'"]:checked'); return e? e.value:''; }
-    function add(label,val){ if(val) L.push(label+': '+val); }
-
-    if(document.getElementById('tsultrimItem').classList.contains('on')){
-      L.push('','3. צולטרים:');
-      add('   איפה', r('tsPlace')); add('   פירוט', v('tsWhere')); add('   משפט', v('tsLine'));
-    }
-    if(document.getElementById('lopsangItem').classList.contains('on')){
+    var L=['מגלי עולמות — שאלות ותשובות, התשובות של רועי',''];
+    function v(id){ var e=document.getElementById(id); return e?e.value.trim():''; }
+    function r(n){ var e=document.querySelector('input[name="'+n+'"]:checked'); return e?e.value:''; }
+    ALL.forEach(function(q){
+      var pick=r(q.k), txt=v(q.k+'t');
+      if(!pick && !txt) return;
+      L.push((q.n<10?'0':'')+q.n+'. '+q.t);
+      if(pick) L.push('    '+pick);
+      if(txt)  L.push('    '+txt);
       L.push('');
-      add('4. תמונה של לופסאן', r('lopsang'));
-    }
-    L.push('');
-    add('5. ראם באנגלית', v('ramEn'));
-    add('5. סאמאר באתר', r('samarEn'));
-    L.push('');
-    add('6. ח.פ / עוסק', v('hp'));
-    add('7. מייל לנגישות', v('mail'));
-    add('7. להציג באתר', r('mailShow'));
-    add('8. כתובת', v('addr'));
-    add('8. כניסה', r('access'));
-    add('8. מי מגיע', r('who'));
-    add('9. מחזור', r('rev'));
-    var ex=v('extra'); if(ex) L.push('', 'הערות: '+ex);
+    });
+    var ex=v('extra'); if(ex) L.push('13. שאלה שחוזרת אצלך:', '    '+ex);
+    if(L.length===2) L.push('(עדיין לא מולאו תשובות)');
     return L.join('\n');
   }
 
-  /* ---------- one copier, used by both buttons ---------- */
-  function copyText(txt,onOk,onFail){
-    function fallback(){
+  function copyText(txt,ok,fail){
+    function fb(){
       var ta=document.createElement('textarea');
       ta.value=txt; ta.style.position='fixed'; ta.style.opacity='0';
       document.body.appendChild(ta); ta.select();
-      var done=false;
-      try{ done=document.execCommand('copy'); }catch(e){}
-      document.body.removeChild(ta);
-      done?onOk():onFail();
+      var d=false; try{ d=document.execCommand('copy'); }catch(e){}
+      document.body.removeChild(ta); d?ok():fail();
     }
-    if(navigator.clipboard && navigator.clipboard.writeText){
-      navigator.clipboard.writeText(txt).then(onOk, fallback);
-    } else fallback();
+    if(navigator.clipboard && navigator.clipboard.writeText)
+      navigator.clipboard.writeText(txt).then(ok, fb);
+    else fb();
   }
   var note=document.getElementById('note');
   var IDLE='התשובות נשמרות אוטומטית בדפדפן שלך.';
@@ -604,8 +445,8 @@ select.pill:invalid,select.pill[data-empty="1"]{color:var(--ink-3)}
 
   document.getElementById('send').addEventListener('click', function(){
     var txt=summary();
-    /* copy first: a long message can be clipped on its way into WhatsApp,
-       and a clipped message looks complete */
+    /* copy first: these answers run long, and a message clipped on its way
+       into WhatsApp looks complete */
     copyText(txt, function(){ say('נפתח וואטסאפ. גם העתקתי את התשובות — אם משהו נראה חסר, פשוט הדבק.'); }, function(){});
     window.open('https://wa.me/?text='+encodeURIComponent(txt), '_blank', 'noopener');
   });
@@ -618,9 +459,7 @@ select.pill:invalid,select.pill[data-empty="1"]{color:var(--ink-3)}
     f.addEventListener('input', refresh);
     f.addEventListener('change', refresh);
   });
-
-  restore();
-  refresh();
+  restore(); refresh();
 })();
 </script>
 
