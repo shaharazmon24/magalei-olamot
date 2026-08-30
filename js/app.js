@@ -15,6 +15,28 @@
   var isMobile = function () { return window.matchMedia('(max-width: 768px)').matches; };
 
   /* ------------------------------------------------------------
+     0b. MEASUREMENT
+     A tool-agnostic shim. It counts nothing on its own and sends
+     nothing anywhere - it simply hands an event to whichever
+     analytics tool happens to be loaded, and stays silent when
+     none is. Wiring the events now means the day a tool is added
+     is a one-line change, not an archaeology exercise.
+
+     Nothing here identifies a person: no name, no email, no phone.
+     Only that something happened.
+     ------------------------------------------------------------ */
+  function track(name, detail) {
+    try {
+      if (typeof goatcounter !== 'undefined' && goatcounter.count) {
+        goatcounter.count({ path: 'event/' + name, title: name, event: true });
+      }
+      if (typeof plausible === 'function') { plausible(name, detail ? { props: detail } : undefined); }
+      if (typeof umami !== 'undefined' && umami.track) { umami.track(name, detail); }
+      if (typeof gtag === 'function') { gtag('event', name, detail || {}); }
+    } catch (e) { /* measurement must never break the page */ }
+  }
+
+  /* ------------------------------------------------------------
      1. CINEMATIC STAGE
      Each [data-bg] section owns a background frame. Scroll position
      decides which frame is showing and hands over to the next one
@@ -1038,6 +1060,7 @@
          visitor staring at the same form with no idea whether anything had
          happened. Their details are already on their way by email either way. */
       showSent(v('fn'));
+      track('enquiry_sent', { departure: v('dep') || '' });
     });
   }
 
@@ -1142,6 +1165,17 @@
   var saved = null;
   try { saved = localStorage.getItem('mo_lang'); } catch (e) {}
   applyLang(saved === 'en' ? 'en' : 'he');
+
+
+  /* the three moments worth counting, beyond a page view: someone asked to be
+     contacted, someone took the brochure away to read or forward, and someone
+     opened a conversation. Everything else is noise. */
+  document.querySelectorAll('a[href*="pdf/"]').forEach(function (a) {
+    a.addEventListener('click', function () { track('brochure_downloaded'); });
+  });
+  document.querySelectorAll('a[href*="wa.me"], #waLink').forEach(function (a) {
+    a.addEventListener('click', function () { track('whatsapp_opened'); });
+  });
 
   mapArm();          /* the route draws itself the first time the map is scrolled into view */
   observeReveals();
