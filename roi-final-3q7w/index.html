@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#faf8f4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141310" media="(prefers-color-scheme: dark)">
+<title>מגלי עולמות — עשר האחרונות</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700&family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --paper:#faf8f4; --paper-2:#f2eee6; --card:#ffffff;
+  --ink:#1d1b18; --ink-2:#4a453e; --ink-3:#7d766c;
+  --rule:#e0d9cc; --field:#ffffff; --field-line:#cfc6b6;
+  --brass:#a8761f; --brass-soft:#f5ead6;
+  --urgent:#9a5245; --ok:#4f6b45; --ok-soft:#e9f0e5;
+  --wa:#1f8f5f;
+  --display:"Frank Ruhl Libre",Georgia,serif;
+  --body:"Assistant","Helvetica Neue",Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#141310; --paper-2:#1c1a16; --card:#1a1814;
+    --ink:#f2ece1; --ink-2:#c4bcae; --ink-3:#8d857a;
+    --rule:#332f28; --field:#232019; --field-line:#4a4438;
+    --brass:#d9a44e; --brass-soft:#2a2118;
+    --urgent:#d1897a; --ok:#9dbd8e; --ok-soft:#1e2619;
+    --wa:#25a56d;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#141310; --paper-2:#1c1a16; --card:#1a1814;
+  --ink:#f2ece1; --ink-2:#c4bcae; --ink-3:#8d857a;
+  --rule:#332f28; --field:#232019; --field-line:#4a4438;
+  --brass:#d9a44e; --brass-soft:#2a2118;
+  --urgent:#d1897a; --ok:#9dbd8e; --ok-soft:#1e2619;
+  --wa:#25a56d;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--paper); color:var(--ink);
+  font-family:var(--body); font-weight:300; line-height:1.75;
+  direction:rtl;
+  padding:clamp(1.5rem,5vw,4rem) clamp(1rem,5vw,2rem) 9rem;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:44rem;margin:0 auto}
+
+/* ---------- masthead ---------- */
+.top{text-align:center;padding-bottom:2.5rem;border-bottom:1px solid var(--rule);margin-bottom:2.5rem}
+.top__eyebrow{font-size:.7rem;font-weight:600;letter-spacing:.32em;color:var(--brass);margin-bottom:1.2rem}
+.top h1{font-family:var(--display);font-weight:400;font-size:clamp(2rem,6.5vw,3rem);line-height:1.1;text-wrap:balance}
+.top__sub{margin-top:1rem;color:var(--ink-2);font-size:1.02rem;max-width:34rem;margin-inline:auto}
+.top__date{margin-top:1.6rem;font-size:.76rem;letter-spacing:.14em;color:var(--ink-3)}
+
+.intro{background:var(--paper-2);border-radius:4px;padding:1.8rem;margin-bottom:1.5rem}
+.intro p{color:var(--ink-2);font-size:1rem}
+.intro p + p{margin-top:.9rem}
+.intro strong{color:var(--ink);font-weight:600}
+
+.howto{
+  border:1px dashed var(--brass);border-radius:4px;padding:1.1rem 1.4rem;
+  background:var(--brass-soft);font-size:.95rem;color:var(--ink-2);margin-bottom:2rem;
+}
+.howto b{color:var(--ink);font-weight:600}
+
+/* ---------- groups ---------- */
+.group{margin:3rem 0 1.5rem;display:flex;align-items:baseline;gap:.8rem}
+.group h2{font-family:var(--display);font-weight:500;font-size:1.35rem;white-space:nowrap}
+.group span{font-size:.78rem;color:var(--ink-3)}
+.group::after{content:"";flex:1;height:1px;background:var(--rule)}
+
+/* ---------- items ---------- */
+.item{
+  border:1px solid var(--rule);border-radius:4px;
+  padding:1.5rem 1.6rem;margin-bottom:1rem;background:var(--card);
+  transition:border-color .3s;
+}
+.item--urgent{border-inline-start:3px solid var(--urgent)}
+.item--nice{border-inline-start:3px solid var(--brass)}
+.item.done{border-color:var(--ok)}
+.item__n{
+  display:flex;align-items:center;gap:.6rem;
+  font-size:.68rem;font-weight:700;letter-spacing:.14em;color:var(--brass);margin-bottom:.6rem;
+}
+.item__tick{opacity:0;color:var(--ok);font-size:.9rem;transition:opacity .3s}
+.item.done .item__tick{opacity:1}
+.item h3{font-family:var(--display);font-weight:500;font-size:1.18rem;line-height:1.35;margin-bottom:.7rem}
+.item p{color:var(--ink-2);font-size:.97rem}
+.item p + p{margin-top:.7rem}
+.item strong{color:var(--ink);font-weight:600}
+.item em{color:var(--ink);font-style:italic}
+
+.quote{
+  background:var(--paper-2);border-radius:3px;padding:.9rem 1.1rem;margin:.9rem 0;
+  font-family:var(--display);font-size:1.02rem;color:var(--ink);line-height:1.6;
+}
+.quote small{display:block;font-family:var(--body);font-size:.78rem;color:var(--ink-3);margin-top:.4rem}
+
+/* ---------- the answer controls ---------- */
+.ask{
+  margin-top:1.2rem;padding-top:1.1rem;border-top:1px dashed var(--rule);
+}
+.ask__label{font-size:.74rem;font-weight:600;letter-spacing:.12em;color:var(--ink-3);margin-bottom:.7rem}
+.opts{display:flex;flex-wrap:wrap;gap:.55rem}
+.opt{
+  display:inline-flex;align-items:center;gap:.5rem;cursor:pointer;
+  border:1px solid var(--field-line);border-radius:100px;
+  padding:.5rem 1rem .5rem .8rem;font-size:.93rem;color:var(--ink-2);
+  transition:all .25s;user-select:none;background:var(--field);
+}
+.opt:hover{border-color:var(--brass)}
+.opt input{position:absolute;opacity:0;width:0;height:0}
+.opt__dot{
+  width:16px;height:16px;border-radius:50%;flex:none;
+  border:1.5px solid var(--field-line);transition:all .25s;position:relative;
+}
+.opt input:checked + .opt__dot{border-color:var(--ok);background:var(--ok)}
+.opt input:checked + .opt__dot::after{
+  content:"";position:absolute;inset:0;margin:auto;
+  width:5px;height:8px;border:solid var(--card);border-width:0 2px 2px 0;
+  transform:rotate(45deg) translate(-1px,-1px);
+}
+.opt:has(input:checked){border-color:var(--ok);color:var(--ink);font-weight:400}
+.opt input:focus-visible + .opt__dot{outline:2px solid var(--brass);outline-offset:2px}
+
+.write{margin-top:.8rem}
+.write label{display:block;font-size:.84rem;color:var(--ink-3);margin-bottom:.35rem}
+.write input, .write textarea{
+  width:100%;background:var(--field);color:var(--ink);
+  border:1px solid var(--field-line);border-radius:3px;
+  font-family:var(--body);font-size:1rem;font-weight:300;
+  padding:.7rem .85rem;transition:border-color .25s;
+}
+.write textarea{min-height:76px;resize:vertical;line-height:1.6}
+.write input:focus, .write textarea:focus{outline:none;border-color:var(--brass)}
+.write input::placeholder, .write textarea::placeholder{color:var(--ink-3);opacity:.7}
+
+table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.93rem}
+th{text-align:start;font-weight:600;color:var(--ink-3);font-size:.74rem;letter-spacing:.1em;padding-bottom:.5rem;border-bottom:1px solid var(--rule)}
+td{padding:.62rem 0;border-bottom:1px solid var(--rule);color:var(--ink-2);vertical-align:top}
+td:last-child{text-align:end;white-space:nowrap;padding-inline-start:1rem}
+tr:last-child td{border-bottom:0}
+.was{color:var(--urgent)}
+.now{color:var(--ok);font-weight:600}
+
+.steps{list-style:none;counter-reset:s;margin-top:.9rem}
+.steps li{counter-increment:s;position:relative;padding-inline-start:2rem;margin-bottom:.6rem;color:var(--ink-2);font-size:.95rem}
+.steps li::before{
+  content:counter(s);position:absolute;inset-inline-start:0;top:.15rem;
+  width:1.35rem;height:1.35rem;border-radius:50%;background:var(--brass-soft);color:var(--brass);
+  font-size:.72rem;font-weight:700;display:grid;place-items:center;
+}
+.steps a{color:var(--brass);font-weight:600}
+
+.fixed{background:var(--ok-soft);border-radius:4px;padding:1.6rem 1.8rem;margin-top:1rem}
+.fixed h3{font-family:var(--display);font-weight:500;font-size:1.1rem;margin-bottom:.9rem;color:var(--ink)}
+.fixed ul{list-style:none}
+.fixed li{padding-inline-start:1.6rem;position:relative;margin-bottom:.55rem;color:var(--ink-2);font-size:.95rem}
+.fixed li::before{content:"✓";position:absolute;inset-inline-start:0;color:var(--ok);font-weight:700}
+
+/* ---------- send bar ---------- */
+.bar{
+  position:fixed;inset-inline:0;bottom:0;z-index:20;
+  background:var(--card);border-top:1px solid var(--rule);
+  padding:.9rem clamp(1rem,5vw,2rem);
+  box-shadow:0 -6px 24px rgba(0,0,0,.09);
+}
+.bar__in{max-width:44rem;margin:0 auto;display:flex;align-items:center;gap:.7rem;flex-wrap:wrap}
+.bar__count{flex:1;min-width:8rem;font-size:.88rem;color:var(--ink-3)}
+.bar__count b{color:var(--ink);font-weight:600}
+.btn{
+  display:inline-flex;align-items:center;gap:.5rem;cursor:pointer;
+  border:0;border-radius:100px;padding:.75rem 1.4rem;
+  font-family:var(--body);font-size:.92rem;font-weight:600;
+  transition:filter .25s,transform .15s;white-space:nowrap;
+}
+.btn:active{transform:translateY(1px)}
+.btn:hover{filter:brightness(1.07)}
+.btn--wa{background:var(--wa);color:#fff}
+.btn--ghost{background:transparent;color:var(--ink-2);border:1px solid var(--field-line)}
+.btn svg{width:17px;height:17px}
+.bar__note{width:100%;font-size:.79rem;color:var(--ink-3);margin-top:.15rem}
+
+.close{margin-top:3.5rem;padding-top:2rem;border-top:1px solid var(--rule);text-align:center}
+.close p{color:var(--ink-3);font-size:.9rem}
+.close .sig{font-family:var(--display);font-size:1.15rem;color:var(--ink);margin-top:.8rem}
+
+/* the send bar grows taller when it wraps on a phone - keep it off the signature */
+@media (max-width:560px){body{padding-bottom:12.5rem}}
+
+@media print{
+  body{background:#fff;color:#000;padding:1cm}
+  .bar,.howto{display:none}
+  .item,.intro,.fixed{break-inside:avoid}
+}
+
+/* ---------- last round: a tap wherever a tap will do ---------- */
+.qtitle{font-family:var(--display);font-weight:500;font-size:1.18rem;line-height:1.35;margin-bottom:.5rem}
+.why{font-size:.9rem;color:var(--ink-2);line-height:1.8;margin-bottom:1rem}
+.why b{color:var(--ink);font-weight:600}
+.hintline{font-size:.86rem;color:var(--ink-3);background:var(--paper-2);border-radius:4px;
+  padding:.7rem .9rem;margin-bottom:1rem;line-height:1.7}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="top">
+    <p class="top__eyebrow">מגלי עולמות · האתר החדש · האחרונות</p>
+    <h1>עשר שאלות,<br>ואנחנו סגורים</h1>
+    <p class="top__sub">אלה כל מה שנשאר. רובן לחיצה אחת. אחרי שתענה, האתר שלם — ואין לי עוד מה לבקש ממך.</p>
+    <p class="top__date">27 באוגוסט 2026</p>
+  </header>
+
+  <div class="intro">
+    <p>רועי,</p>
+    <p><strong>הצהרת הנגישות כבר באוויר</strong> עם הפרטים ששלחת, וסקשן השאלות והתשובות עלה בדיוק כפי שכתבת אותן.</p>
+    <p>נשארו כאן עשרה דברים קטנים. שלושה מהם פותחים את סקשן החברים, שממתין כבר שבועיים.</p>
+  </div>
+
+  <div class="howto">
+    <b>הכל נשמר תוך כדי.</b> אפשר לסגור ולחזור מחר. בסיום — הכפתור הירוק למטה שולח לי הכל בוואטסאפ.
+  </div>
+
+  <div class="group"><h2>החברים מנפאל</h2><span>4 פריטים · פותחים את הסקשן</span></div>
+  <div id="g1"></div>
+
+  <div class="group"><h2>נגישות ומשרד</h2><span>2 פריטים</span></div>
+  <div id="g2"></div>
+
+  <div class="group"><h2>שתי שאלות שנשארו פתוחות</h2><span>2 פריטים</span></div>
+  <div id="g3"></div>
+
+  <div class="group"><h2>ולסיום</h2><span>2 פריטים</span></div>
+  <div id="g4"></div>
+
+  <footer class="close">
+    <p>אחרי עשר התשובות האלה <strong>אין לי עוד שאלות פתוחות</strong>. האתר יהיה שלם.</p>
+    <p class="sig">שחר</p>
+  </footer>
+
+</div>
+
+</div>
+
+<div class="bar">
+  <div class="bar__in">
+    <div class="bar__count" id="count">טרם נענו שאלות</div>
+    <button class="btn btn--ghost" id="copy" type="button">העתקה</button>
+    <button class="btn btn--wa" id="send" type="button">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96s-.47-.15-.67.15-.77.96-.94 1.16-.35.22-.64.07a8.2 8.2 0 0 1-2.4-1.48 9 9 0 0 1-1.66-2.07c-.17-.3 0-.46.13-.6s.3-.35.44-.52a2 2 0 0 0 .3-.5.55.55 0 0 0 0-.52c-.08-.15-.67-1.6-.91-2.2s-.49-.5-.67-.51h-.57a1.1 1.1 0 0 0-.79.37 3.32 3.32 0 0 0-1.04 2.47 5.76 5.76 0 0 0 1.21 3.06 13.2 13.2 0 0 0 5.05 4.46c.7.3 1.26.49 1.69.63a4.07 4.07 0 0 0 1.86.12 3.05 3.05 0 0 0 2-1.41 2.47 2.47 0 0 0 .17-1.41c-.07-.13-.27-.2-.56-.35M12.05 21.8h-.02a9.8 9.8 0 0 1-4.99-1.37l-.36-.21-3.71.97 1-3.62-.24-.37a9.78 9.78 0 0 1 15.2-12.1 9.72 9.72 0 0 1 2.87 6.92 9.8 9.8 0 0 1-9.75 9.78M20.52 3.45A11.7 11.7 0 0 0 12.05 0 11.82 11.82 0 0 0 1.79 17.72L.1 24l6.43-1.69a11.8 11.8 0 0 0 5.65 1.44h.01A11.82 11.82 0 0 0 20.52 3.45"/></svg>
+      שליחה לשחר
+    </button>
+
+<script>
+(function(){
+  var KEY='magalei_roi_answers_v5';
+
+  /* Each item is a question, why it matters, and the lightest control that can
+     answer it. Where a tap will do, there is no text field. */
+  var Q = {
+  g1: [
+    {k:'lop', n:1, t:'תמונה של הנזיר לופסאן',
+     why:'התברר שהתמונה שחשבתי שהיא שלו היא בעצם של צולטרים — ולכן <b>ללופסאן אין פנים באתר</b>. הוא היחיד מששת החברים שחסר.',
+     hint:'תמונה רגילה מהטלפון מספיקה. אני מייצר ממנה את הדיוקן.',
+     opts:['אשלח תמונה שלו','אין לי — שיישאר בלי פנים','אין לי — להוריד אותו מהאתר']},
+
+    {k:'tsu', n:2, t:'מה עושים עם צולטרים?',
+     why:'יש לי דיוקן שלו, ואתה אמרת שהוא נזיר <b>נוסף</b> ללופסאן. אבל <b>הוא לא מופיע באתר בשום מקום</b>, ואין לי עליו מילה — לא איפה פוגשים אותו ולא באיזה יום.',
+     opts:['להוסיף אותו — אשלח פרטים','לא להוסיף אותו כרגע'],
+     write:'אם מוסיפים — איפה פוגשים אותו, ובאיזה יום?'},
+
+    {k:'eng', n:3, t:'שני איותים באנגלית',
+     why:'ברשימת השמות ששלחת <b>ראם לא הופיע</b>. ועל סאמאר כתבת <b>Samar DAI</b> — ואני לא בטוח אם DAI אמור להופיע באתר.',
+     write:'איך כותבים את ראם באנגלית',
+     ph:'Ram',
+     opts2:['להציג Samar','להציג Samar Dai'],
+     opts2label:'ומה להציג על סאמאר?'},
+
+    {k:'pub', n:4, t:'להעלות את התמונות של החברים לאתר?',
+     why:'הדיוקנאות מוכנים ומחכים, והכרטיסים בנויים. <b>אלה פנים של אנשים אמיתיים</b>, ולכן אני לא מעלה אותן בלי אישור מפורש ממך — גם אם כבר אישרת שהדמיון מדויק.',
+     hint:'ברגע שתאשר, זה עולה באותו יום.',
+     opts:['כן, להעלות','עוד לא — נחכה','לא להעלות תמונות בכלל']}
+  ],
+  g2: [
+    {k:'off', n:5, t:'המשרד — מגיעים לשם לקוחות?',
+     why:'בהצהרת הנגישות כתבתי את כתובת המשרד, אבל <b>לא כתבתי עליו מילה נוספת</b> כי לא ידעתי. אם זו רק כתובת רשומה ואף לקוח לא מגיע — הסעיף פשוט יורד וההצהרה נסגרת.',
+     opts:['רק כתובת רשומה, לא מגיעים לקוחות','כן, מגיעים לפעמים — מפגשי הכנה וכדומה'],
+     opts2:['הכניסה מפולסת, אפשר להיכנס בכיסא גלגלים','יש מדרגות בכניסה','יש מדרגות אבל יש גם מעקף','צריך לבדוק'],
+     opts2label:'ואם מגיעים — איך נכנסים?'},
+
+    {k:'mail', n:6, t:'איזה מייל בהצהרה?',
+     why:'נתת שניים. שמתי בינתיים את <b>royassaf.olamot@gmail.com</b> כי הוא נראה עסקי יותר. שינוי לוקח שורה.',
+     opts:['royassaf.olamot@gmail.com — להשאיר','royadiassaf@gmail.com — להחליף']}
+  ],
+  g3: [
+    {k:'bath', n:7, t:'בכל החדרים יש מקלחת ושירותים?',
+     why:'בתשובה על המלונות כתבת שהם נבחרים לפי רמה ומיקום, אבל <b>לא ענית על זה</b> — וזו שאלה שנשאלת בפועל, במיוחד בגילאים האלה.',
+     opts:['כן, בכל החדרים','ברובם','צריך לבדוק']},
+
+    {k:'pack', n:8, t:'מה לארוז?',
+     why:'הסברת יפה למה דווקא אוקטובר, אבל <b>החצי המעשי של השאלה נשאר בלי תשובה</b>. שלושה-ארבעה פריטים שאנשים הכי שוכחים יספיקו.',
+     write:'מה שאתה אומר להם בטלפון',
+     ph:'למשל: נעלי הליכה סגורות, שכבה חמה לערב...'}
+  ],
+  g4: [
+    {k:'photo', n:9, t:'תמונה שלך ושל עדי',
+     why:'זו הבקשה הוותיקה ביותר שלי — מהסבב הראשון. <b>בסקשן "מי אנחנו" יש רק שמות וטלפונים</b>, וההמלצות אומרות פעמיים "כמו אבא ואמא". אנשים רוצים לראות את הפרצופים.',
+     opts:['אשלח עכשיו בוואטסאפ','אצטרך לחפש','נמשיך בלי']},
+
+    {k:'y27', n:10, t:'תאריכי 2027',
+     why:'ספטמבר מלא ואוקטובר הוא היציאה היחידה. <b>מ-18 באוקטובר האתר בלי מה למכור.</b> שמתי בינתיים כרטיס שאומר "ייקבעו בקרוב" עם כפתור להשארת פרטים.',
+     opts:['עוד לא נקבעו','נקבעו — הנה הם'],
+     write:'אם נקבעו — התאריכים',
+     ph:'למשל: 3–16 באוקטובר 2027'}
+  ]};
+
+  function render(host, list){
+    document.getElementById(host).innerHTML = list.map(function(q){
+      var h = '<div class="item item--urgent" data-q="'+q.k+'">' +
+        '<p class="item__n">'+(q.n<10?'0':'')+q.n+' <span class="item__tick">✓ נענה</span></p>' +
+        '<h3 class="qtitle">'+q.t+'</h3>' +
+        '<p class="why">'+q.why+'</p>';
+      if(q.hint) h += '<p class="hintline">'+q.hint+'</p>';
+      h += '<div class="ask">';
+      if(q.opts){
+        h += '<div class="opts">' + q.opts.map(function(o){
+          return '<label class="opt"><input type="radio" name="'+q.k+'" value="'+o+'">'+
+                 '<span class="opt__dot"></span>'+o+'</label>';
+        }).join('') + '</div>';
+      }
+      if(q.write){
+        h += '<div class="write"><label for="'+q.k+'t">'+q.write+'</label>'+
+             '<textarea id="'+q.k+'t" name="'+q.k+'t" placeholder="'+(q.ph||'')+'"></textarea></div>';
+      }
+      if(q.opts2){
+        h += '<p class="ask__label" style="margin-top:1.2rem">'+q.opts2label+'</p><div class="opts">' +
+             q.opts2.map(function(o){
+               return '<label class="opt"><input type="radio" name="'+q.k+'b" value="'+o+'">'+
+                      '<span class="opt__dot"></span>'+o+'</label>';
+             }).join('') + '</div>';
+      }
+      return h + '</div></div>';
+    }).join('');
+  }
+  render('g1',Q.g1); render('g2',Q.g2); render('g3',Q.g3); render('g4',Q.g4);
+
+  var ALL = Q.g1.concat(Q.g2, Q.g3, Q.g4);
+  var fields=[].slice.call(document.querySelectorAll('input, textarea'));
+
+  function keyOf(f){ return f.type==='radio' ? f.name : (f.id||f.name); }
+  function save(){
+    var d={};
+    fields.forEach(function(f){
+      if(f.type==='radio'){ if(f.checked) d[f.name]=f.value; }
+      else if(f.value.trim()) d[keyOf(f)]=f.value.trim();
+    });
+    try{ localStorage.setItem(KEY, JSON.stringify(d)); }catch(e){}
+  }
+  function restore(){
+    var d={};
+    try{ d=JSON.parse(localStorage.getItem(KEY)||'{}'); }catch(e){}
+    fields.forEach(function(f){
+      var k=keyOf(f); if(!(k in d)) return;
+      if(f.type==='radio') f.checked=(f.value===d[k]); else f.value=d[k];
+    });
+  }
+  function refresh(){
+    save();
+    var done=0,total=0;
+    [].slice.call(document.querySelectorAll('.item[data-q]')).forEach(function(it){
+      total++;
+      var any=[].slice.call(it.querySelectorAll('input, textarea')).some(function(f){
+        return f.type==='radio' ? f.checked : f.value.trim()!=='';
+      });
+      it.classList.toggle('done', any);
+      if(any) done++;
+    });
+    var c=document.getElementById('count');
+    c.innerHTML = done===0 ? 'טרם נענו שאלות'
+      : (done===total ? '<b>ענית על הכל</b> — אפשר לשלוח' : 'נענו <b>'+done+'</b> מתוך '+total);
+  }
+
+  function summary(){
+    var L=['מגלי עולמות — עשר האחרונות, התשובות של רועי',''];
+    function v(id){ var e=document.getElementById(id); return e?e.value.trim():''; }
+    function r(n){ var e=document.querySelector('input[name="'+n+'"]:checked'); return e?e.value:''; }
+    ALL.forEach(function(q){
+      var a=r(q.k), b=r(q.k+'b'), txt=v(q.k+'t');
+      if(!a && !b && !txt) return;
+      L.push((q.n<10?'0':'')+q.n+'. '+q.t);
+      if(a) L.push('    '+a);
+      if(b) L.push('    '+b);
+      if(txt) L.push('    '+txt);
+      L.push('');
+    });
+    if(L.length===2) L.push('(עדיין לא מולאו תשובות)');
+    return L.join('\n');
+  }
+
+  function copyText(txt,ok,fail){
+    function fb(){
+      var ta=document.createElement('textarea');
+      ta.value=txt; ta.style.position='fixed'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.select();
+      var d=false; try{ d=document.execCommand('copy'); }catch(e){}
+      document.body.removeChild(ta); d?ok():fail();
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText)
+      navigator.clipboard.writeText(txt).then(ok, fb);
+    else fb();
+  }
+  var note=document.getElementById('note');
+  var IDLE='התשובות נשמרות אוטומטית בדפדפן שלך.';
+  function say(m){ note.textContent=m; setTimeout(function(){ note.textContent=IDLE; },5000); }
+
+  document.getElementById('send').addEventListener('click', function(){
+    var txt=summary();
+    copyText(txt, function(){ say('נפתח וואטסאפ. גם העתקתי את התשובות — אם משהו נראה חסר, פשוט הדבק.'); }, function(){});
+    window.open('https://wa.me/?text='+encodeURIComponent(txt), '_blank', 'noopener');
+  });
+  document.getElementById('copy').addEventListener('click', function(){
+    copyText(summary(), function(){ say('הועתק. אפשר להדביק בוואטסאפ, במייל או בכל מקום.'); },
+                        function(){ say('לא הצלחתי להעתיק — אפשר לשלוח בוואטסאפ במקום.'); });
+  });
+
+  fields.forEach(function(f){
+    f.addEventListener('input', refresh);
+    f.addEventListener('change', refresh);
+  });
+  restore(); refresh();
+})();
+</script>
+
+</body>
+</html>
