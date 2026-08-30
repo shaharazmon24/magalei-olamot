@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>הצהרת נגישות · מגלי עולמות</title>
+<meta name="description" content="הצהרת הנגישות של מגלי עולמות — טיולי בוטיק לנפאל. פירוט ההתאמות שבוצעו באתר, המגבלות הידועות, ודרכי פנייה בנושא נגישות.">
+<link rel="canonical" href="https://boutiquetournepal.com/accessibility.html">
+<meta name="theme-color" content="#0a0b0d">
+<link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500&family=Assistant:wght@200;300;400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0a0b0d; --ink-2:#101319;
+  --paper:#f4f1ea; --paper-2:rgba(244,241,234,.74); --paper-3:rgba(244,241,234,.52);
+  --line:rgba(244,241,234,.14);
+  --brass:#c8912f; --brass-lite:#e8c477;
+  --display:"Frank Ruhl Libre",Georgia,serif;
+  --body:"Assistant","Helvetica Neue",Arial,sans-serif;
+  --pad:clamp(1.4rem,6vw,4rem);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--ink);color:var(--paper);font-family:var(--body);font-weight:300;
+  line-height:1.85;-webkit-font-smoothing:antialiased;padding:0 var(--pad) 5rem}
+.wrap{max-width:46rem;margin:0 auto}
+
+.skip{position:absolute;z-index:100;top:0;inset-inline-start:0;transform:translateY(-120%);
+  background:var(--brass);color:var(--ink);padding:.8rem 1.4rem;font-weight:600;
+  text-decoration:none;border-radius:0 0 3px 0}
+.skip:focus{transform:translateY(0)}
+
+.top{padding:3.5rem 0 2.5rem;border-bottom:1px solid var(--line);margin-bottom:2.8rem}
+.top a.back{display:inline-flex;align-items:center;gap:.5rem;color:var(--brass-lite);
+  text-decoration:none;font-size:.8rem;letter-spacing:.14em;margin-bottom:2rem}
+.top a.back:hover{color:var(--paper)}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(2rem,6vw,2.8rem);line-height:1.15}
+.top p{margin-top:1rem;color:var(--paper-2);font-size:.96rem}
+
+h2{font-family:var(--display);font-weight:500;font-size:1.28rem;margin:2.8rem 0 .9rem;
+  color:var(--brass-lite)}
+p{color:var(--paper-2);font-size:.98rem}
+p + p{margin-top:.9rem}
+strong{color:var(--paper);font-weight:600}
+ul{list-style:none;margin-top:.9rem}
+li{position:relative;padding-inline-start:1.5rem;margin-bottom:.6rem;color:var(--paper-2);
+  font-size:.96rem}
+li::before{content:"";position:absolute;inset-inline-start:0;top:.72em;width:6px;height:1px;
+  background:var(--brass)}
+
+.box{border:1px solid var(--line);border-radius:3px;padding:1.5rem 1.7rem;margin-top:1.3rem;
+  background:var(--ink-2)}
+.box dl{display:grid;grid-template-columns:auto 1fr;gap:.55rem 1.4rem;font-size:.95rem}
+.box dt{color:var(--paper-3);white-space:nowrap}
+.box dd{color:var(--paper)}
+.box a{color:var(--brass-lite)}
+
+.updated{margin-top:3rem;padding-top:1.6rem;border-top:1px solid var(--line);
+  font-size:.82rem;color:var(--paper-3)}
+a{color:var(--brass-lite)}
+a:focus-visible,.skip:focus-visible{outline:2px solid var(--brass-lite);outline-offset:3px}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">דילוג לתוכן</a>
+
+<div class="wrap">
+  <header class="top">
+    <a class="back" href="/">→ חזרה לאתר</a>
+    <h1>הצהרת נגישות</h1>
+    <p>אנחנו רואים בנגישות האתר חלק מהשירות עצמו, ופועלים כדי שכל אדם יוכל להשתמש בו באופן עצמאי ונוח.</p>
+  </header>
+
+  <main id="main" tabindex="-1">
+
+    <h2>מי אנחנו</h2>
+    <div class="box">
+      <dl>
+        <dt>שם העסק</dt><dd>מגלי עולמות — טיולי בוטיק לנפאל</dd>
+        <dt>בעלת העסק</dt><dd>עדי אסף</dd>
+        <dt>מספר עוסק</dt><dd dir="ltr" style="text-align:start">058502980</dd>
+        <dt>כתובת האתר</dt><dd dir="ltr" style="text-align:start">boutiquetournepal.com</dd>
+      </dl>
+    </div>
+
+    <h2>מה נעשה באתר</h2>
+    <p>האתר נבנה ונבדק מול <strong>ת"י 5568</strong>, התקן הישראלי לנגישות תכנים באינטרנט, המבוסס על הנחיות <strong>WCAG 2.0 ברמה AA</strong>. בין ההתאמות שבוצעו:</p>
+    <ul>
+      <li><strong>ניווט מלא במקלדת.</strong> כל הקישורים, הכפתורים ושדות הטופס נגישים במקלדת בלבד, בסדר הגיוני, עם סימון ברור של הפוקוס.</li>
+      <li><strong>קישור דילוג לתוכן</strong> בראש הדף, המאפשר לדלג על התפריט.</li>
+      <li><strong>ניגודיות צבעים נמדדה ותוקנה.</strong> טקסט הגוף עומד ביחס של 4.5:1 לפחות מול הרקע שמאחוריו.</li>
+      <li><strong>תמיכה בקורא מסך</strong> — מבנה כותרות היררכי, תוויות לכל הכפתורים והשדות, סימון אזורים, ותיאור חלופי לתמונות.</li>
+      <li><strong>כיבוד העדפת "תנועה מופחתת".</strong> משתמש שהגדיר במערכת ההפעלה שלו העדפה להפחתת אנימציות — האתר מכבד אותה ומשבית את ההנפשות והגלילה החלקה.</li>
+      <li><strong>טקסט הניתן להגדלה</strong> עד 200% בלי אובדן תוכן או תפקוד.</li>
+      <li><strong>האתר עובד בעברית ובאנגלית</strong>, עם סימון שפה וכיוון כתיבה נכונים בכל מצב.</li>
+    </ul>
+
+    <h2>מגבלות ידועות</h2>
+    <p>למרות המאמץ, ייתכנו חלקים באתר שטרם הונגשו במלואם:</p>
+    <ul>
+      <li><strong>האתר לא נבדק על ידי בודק נגישות מוסמך.</strong> ההתאמות בוצעו על בסיס בדיקות ומדידות פנימיות מול דרישות התקן.</li>
+      <li><strong>מפת המסלול היא רכיב חזותי.</strong> כל המידע שבה — שמות המקומות, מספרי הימים ותיאור כל יום — מופיע גם כטקסט מלא בסעיף "המסלול", ונגיש שם לקורא מסך.</li>
+      <li>האתר עושה שימוש בגופנים חיצוניים (Google Fonts). אם הם אינם נטענים, האתר יוצג בגופן ברירת המחדל של המכשיר, והתוכן יישאר קריא במלואו.</li>
+    </ul>
+
+    <h2>נתקלתם בבעיה?</h2>
+    <p>אם נתקלתם בקושי כלשהו בשימוש באתר, או שיש לכם הצעה לשיפור — נשמח מאוד לשמוע. אנחנו מתייחסים לכל פנייה בנושא נגישות ברצינות, ומשתדלים לתקן במהירות.</p>
+    <div class="box">
+      <dl>
+        <dt>דואר אלקטרוני</dt><dd><a href="mailto:royassaf.olamot@gmail.com" dir="ltr" style="display:inline-block">royassaf.olamot@gmail.com</a></dd>
+        <dt>טלפון — רועי</dt><dd><a href="tel:+972544772010" dir="ltr" style="display:inline-block">054-477-2010</a></dd>
+        <dt>טלפון — עדי</dt><dd><a href="tel:+972504030921" dir="ltr" style="display:inline-block">050-403-0921</a></dd>
+      </dl>
+    </div>
+
+    <h2>המשרד</h2>
+    <p>פעילות העסק מתנהלת ברובה בטלפון, בדואר אלקטרוני ובוואטסאפ. כתובת המשרד היא <strong>עולמי יעקב 47, מושב משמר השבעה</strong>.</p>
+
+    <p class="updated">הצהרה זו עודכנה לאחרונה ב-27 באוגוסט 2026.</p>
+  </main>
+</div>
+</body>
+</html>

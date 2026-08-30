@@ -100,7 +100,7 @@ const I18N = {
 
     /* footer + form messages */
     "ftr.tag":"מסע רחוק למקום קרוב",
-    "ftr.fine":"מגלי עולמות · טיולי בוטיק לנפאל",
+    "ftr.a11y":"הצהרת נגישות", "ftr.fine":"מגלי עולמות · טיולי בוטיק לנפאל",
     "form.missing":"נשארו עוד כמה פרטים למלא.",
     "form.badEmail":"כתובת האימייל לא נראית תקינה.",
     "form.consent":"צריך לאשר שנוכל לחזור אליכם.",
@@ -194,7 +194,7 @@ const I18N = {
     "c.p4":"From 7 days before departure", "c.p4v":"Full price",
 
     "ftr.tag":"A far journey to a close place",
-    "ftr.fine":"Magalei Olamot · Boutique Journeys to Nepal",
+    "ftr.a11y":"Accessibility statement", "ftr.fine":"Magalei Olamot · Boutique Journeys to Nepal",
     "form.missing":"A few details are still missing.",
     "form.badEmail":"That email address doesn't look right.",
     "form.consent":"Please confirm we may get back to you.",
