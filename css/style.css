@@ -767,3 +767,35 @@ svg.jmap{display:block;width:100%;height:auto}
   transition:color .3s,border-color .3s}
 .ftr__links a:hover{color:var(--brass-lite);border-color:var(--brass)}
 .ftr__links a:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+
+/* Cancellation policy. Quoted word for word from the client's own terms —
+   this is the one block on the page where a rewrite would be a liability,
+   not an improvement. */
+.cancel{margin-top:3.2rem;padding-top:2rem;border-top:1px solid var(--line);max-width:44rem}
+.cancel__list{list-style:none;margin-top:1.2rem}
+.cancel__list li{display:flex;gap:1.2rem;align-items:baseline;justify-content:space-between;
+  padding:.85rem 0;border-bottom:1px solid var(--line);font-size:.94rem;color:var(--paper-2)}
+.cancel__list li:last-child{border-bottom:0}
+.cancel__list b{flex:none;font-weight:600;color:var(--brass-lite);font-size:.9rem}
+@media (max-width:520px){
+  .cancel__list li{flex-direction:column;gap:.3rem}
+  .cancel__list b{align-self:flex-start}
+}
+
+/* The state after sending. It appears whether or not WhatsApp opened, because
+   the one thing a visitor must never wonder is whether their enquiry went
+   anywhere at all. */
+.sent{border:1px solid var(--brass);border-radius:3px;background:rgba(200,145,47,.07);
+  padding:2.2rem 2rem;animation:sentIn .55s var(--ease-out)}
+.sent:focus{outline:none}
+@keyframes sentIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.sent__h{font-family:var(--display);font-weight:400;font-size:clamp(1.4rem,3.4vw,1.9rem);
+  color:var(--brass-lite)}
+.sent__b{margin-top:.9rem;font-size:.96rem;line-height:1.9;color:var(--paper-2);max-width:46ch}
+.sent__again{margin-top:1.6rem;cursor:pointer;font-family:var(--body);font-size:.76rem;
+  font-weight:600;letter-spacing:.16em;padding:.8rem 1.6rem;border-radius:2px;
+  background:transparent;border:1px solid var(--line);color:var(--paper-2);
+  transition:border-color .3s,color .3s}
+.sent__again:hover{border-color:var(--brass);color:var(--paper)}
+.sent__again:focus-visible{outline:2px solid var(--brass-lite);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){ .sent{animation:none} }

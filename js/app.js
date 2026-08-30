@@ -882,6 +882,27 @@
 
       wrap.appendChild(btn); wrap.appendChild(body); host.appendChild(wrap);
     });
+
+    /* Google shows these questions in the results page itself when the markup
+       is there. Generated from the same array the accordion renders, so the
+       two can never disagree - a rich result that quotes an answer the page
+       does not contain is worse than no rich result. */
+    var ld = document.getElementById('faqLd');
+    if (!ld) {
+      ld = document.createElement('script');
+      ld.type = 'application/ld+json';
+      ld.id = 'faqLd';
+      document.head.appendChild(ld);
+    }
+    ld.textContent = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      'inLanguage': current_lang === 'en' ? 'en' : 'he',
+      'mainEntity': src.map(function (item) {
+        return { '@type': 'Question', 'name': item.q,
+                 'acceptedAnswer': { '@type': 'Answer', 'text': item.a } };
+      })
+    });
   }
 
   /* ------------------------------------------------------------
@@ -1011,6 +1032,43 @@
       }
 
       window.open('https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(lines.join('\n')), '_blank', 'noopener');
+
+      /* Say something, always. Until now the only acknowledgement was WhatsApp
+         opening - so a blocked popup, or a desktop with no WhatsApp, left the
+         visitor staring at the same form with no idea whether anything had
+         happened. Their details are already on their way by email either way. */
+      showSent(v('fn'));
+    });
+  }
+
+  function showSent(name) {
+    var form = document.getElementById('form');
+    if (!form) return;
+    var he = (current_lang !== 'en');
+    var box = document.createElement('div');
+    box.className = 'sent';
+    box.setAttribute('role', 'status');
+    box.setAttribute('tabindex', '-1');
+    box.innerHTML =
+      '<p class="sent__h">' +
+        (he ? 'קיבלנו' + (name ? ', ' + name : '') + '.'
+            : 'Got it' + (name ? ', ' + name : '') + '.') +
+      '</p><p class="sent__b">' +
+        (he ? 'הפרטים שלכם הגיעו אלינו, ואנחנו חוזרים אליכם בהקדם. אם נפתח חלון וואטסאפ — אפשר פשוט לשלוח את ההודעה ונדבר מיד.'
+            : 'Your details have reached us and we will get back to you shortly. If a WhatsApp window opened, just send the message and we can talk right away.') +
+      '</p><button class="sent__again" type="button">' +
+        (he ? 'לשלוח פנייה נוספת' : 'Send another enquiry') +
+      '</button>';
+    form.style.display = 'none';
+    form.parentNode.insertBefore(box, form.nextSibling);
+    box.focus({ preventScroll: true });
+    box.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' });
+    box.querySelector('.sent__again').addEventListener('click', function () {
+      box.remove();
+      form.style.display = '';
+      form.reset();
+      var first = form.querySelector('input, select, textarea');
+      if (first) first.focus();
     });
   }
 
