@@ -28,7 +28,7 @@
   function track(name, detail) {
     try {
       if (typeof goatcounter !== 'undefined' && goatcounter.count) {
-        goatcounter.count({ path: 'event/' + name, title: name, event: true });
+        goatcounter.count({ path: name, title: name, event: true });
       }
       if (typeof plausible === 'function') { plausible(name, detail ? { props: detail } : undefined); }
       if (typeof umami !== 'undefined' && umami.track) { umami.track(name, detail); }
