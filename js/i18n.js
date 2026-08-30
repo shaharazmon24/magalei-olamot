@@ -7,7 +7,7 @@ const I18N = {
   he: {
     /* nav */
     "nav.journey":"המסלול", "nav.hosts":"האנשים", "nav.price":"המחיר",
-    "nav.about":"מי אנחנו", "nav.voices":"המלצות", "nav.contact":"צרו קשר",
+    "nav.about":"מי אנחנו", "nav.voices":"המלצות", "nav.faq":"שאלות", "nav.contact":"צרו קשר",
     "nav.langLabel":"EN", "nav.menu":"תפריט",
 
     /* hero */
@@ -75,6 +75,9 @@ const I18N = {
 
     /* voices */
     "voices.kicker":"מה אומרים מי שכבר היו",
+    "faq.kicker":"לפני שתשאלו",
+    "faq.h":"מה ששואלים אותנו<br>בטלפון",
+    "faq.lede":"אלה השאלות שחוזרות אצלנו שוב ושוב. אם נשאר משהו — כתבו לנו.",
     "voices.h":"הם חזרו,<br>וזה מה שהם כתבו",
 
     /* contact */
@@ -108,7 +111,7 @@ const I18N = {
 
   en: {
     "nav.journey":"The Route", "nav.hosts":"The People", "nav.price":"Pricing",
-    "nav.about":"About Us", "nav.voices":"Reviews", "nav.contact":"Contact",
+    "nav.about":"About Us", "nav.voices":"Reviews", "nav.faq":"FAQ", "nav.contact":"Contact",
     "nav.langLabel":"עב", "nav.menu":"Menu",
 
     "hero.h1a":"A Far Journey", "hero.h1b":"to a Close Place",
@@ -168,6 +171,9 @@ const I18N = {
     "about.motto":"Our motto on every journey is simple:<br>people, landscapes and flavours.",
 
     "voices.kicker":"From Those Who Have Been",
+    "faq.kicker":"Before you ask",
+    "faq.h":"What people ask us<br>on the phone",
+    "faq.lede":"These are the questions that come up again and again. If something is still open, write to us.",
     "voices.h":"They came home,<br>and this is what they wrote",
 
     "c.kicker":"Contact", "c.h":"Let's talk",

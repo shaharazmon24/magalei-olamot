@@ -87,3 +87,44 @@ const VOICES_EN = [
 
   { n:"Anat", m:"Nepal", q:"Warmly recommended. An unforgettable experience." }
 ];
+
+/* ------------------------------------------------------------
+   FAQ - a translation of the client's own answers, never a rewrite.
+   ------------------------------------------------------------ */
+const FAQ_EN = [
+  { q:"How fit do I need to be?",
+    a:"This is not a trek. It suits anyone in reasonable health and basic fitness. Some days involve a little more walking and others are easier, but the pace is always unhurried and set by the group. With three leaders accompanying us, we can split the group into up to three walking paces. A vehicle also follows the route at all times, so anyone who prefers can get in and continue in comfort." },
+
+  { q:"What is the highest point on the route? Is there any altitude risk?",
+    a:"We do not go above 2,000 metres — lower than Mount Hermon." },
+
+  { q:"What is the age range in the group?",
+    a:"We are blind to age, and the average is usually around 60." },
+
+  { q:"What about the food — vegetarian, vegan, safe to eat?",
+    a:"Food is included throughout the trip. We eat at excellent restaurants and everyone orders what they like, and between meals too — a shake, coffee, ice cream, cake. Everyone finds a menu that suits them: vegetarian, vegan or meat." },
+
+  { q:"Can I come on my own?",
+    a:"Absolutely. The group is small and comes together quickly, and some travellers do come alone. Anyone who prefers a room to themselves pays a $500 supplement." },
+
+  { q:"Do I need travel insurance?",
+    a:"Yes. Personal insurance must be purchased." },
+
+  { q:"Are vaccinations needed? And what about an existing medical condition?",
+    a:"Nepal itself requires no vaccination, but we recommend consulting a travellers' clinic or your family doctor." },
+
+  { q:"What standard are the hotels?",
+    a:"The hotels are chosen for their high standard and their location." },
+
+  { q:"How much money should I bring beyond the price?",
+    a:"This is a trip without a wallet — everything during the trip is included, apart from souvenirs and the like." },
+
+  { q:"What is the weather like in October?",
+    a:"We travel in Nepal between the summer and the monsoon on one side, and the cold winter with its short days and early darkness on the other. From mid-March to mid-May, and from mid-September to mid-November, the weather is spring-like." },
+
+  { q:"Is there internet? Can my family reach me?",
+    a:"Everywhere we are — hotels, restaurants — there is Wi-Fi, and a local SIM card can be bought cheaply." },
+
+  { q:"Is the guiding in Hebrew?",
+    a:"A local English-speaking guide joins us everywhere, and for anyone who struggles with it, we translate simultaneously." }
+];

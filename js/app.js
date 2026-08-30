@@ -840,6 +840,50 @@
     io.observe(svg);
   }
 
+
+  /* ------------------------------------------------------------
+     5b. FAQ
+     The client's own answers. Built like the itinerary accordion so
+     the two behave identically - one open/close idiom on the page,
+     not two.
+     ------------------------------------------------------------ */
+  function buildFaq() {
+    var host = document.getElementById('faqs');
+    if (!host) return;
+    var src = (current_lang === 'en' && typeof FAQ_EN !== 'undefined') ? FAQ_EN : FAQ;
+    if (typeof src === 'undefined') return;
+    host.innerHTML = '';
+
+    src.forEach(function (item, i) {
+      var wrap = document.createElement('div');
+      wrap.className = 'faq';
+
+      var btn = document.createElement('button');
+      btn.className = 'faq__q';
+      btn.type = 'button';
+      btn.id = 'faqQ' + i;
+      btn.setAttribute('aria-expanded', 'false');
+      btn.setAttribute('aria-controls', 'faqA' + i);
+      btn.innerHTML = '<span class="faq__txt">' + item.q + '</span>' +
+                      '<span class="faq__x" aria-hidden="true"></span>';
+
+      var body = document.createElement('div');
+      body.className = 'faq__a';
+      body.id = 'faqA' + i;
+      body.setAttribute('role', 'region');
+      body.setAttribute('aria-labelledby', 'faqQ' + i);
+      body.innerHTML = '<p>' + item.a + '</p>';
+
+      btn.addEventListener('click', function () {
+        var open = wrap.classList.toggle('open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        body.style.maxHeight = open ? body.scrollHeight + 'px' : 0;
+      });
+
+      wrap.appendChild(btn); wrap.appendChild(body); host.appendChild(wrap);
+    });
+  }
+
   /* ------------------------------------------------------------
      5. TESTIMONIALS
      ------------------------------------------------------------ */
@@ -1012,6 +1056,7 @@
     // rebuild the generated lists in the new language
     buildDays();
     buildVoices();
+    buildFaq();
     buildRailLabels();
     buildMap();
 
