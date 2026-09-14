@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#faf8f4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141310" media="(prefers-color-scheme: dark)">
+<title>מגלי עולמות — סבב אחרון על המסלול</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700&family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --paper:#faf8f4; --paper-2:#f2eee6; --card:#ffffff;
+  --ink:#1d1b18; --ink-2:#4a453e; --ink-3:#7d766c;
+  --rule:#e0d9cc; --field:#ffffff; --field-line:#cfc6b6;
+  --brass:#a8761f; --brass-soft:#f5ead6;
+  --urgent:#9a5245; --ok:#4f6b45; --ok-soft:#e9f0e5;
+  --wa:#1f8f5f;
+  --display:"Frank Ruhl Libre",Georgia,serif;
+  --body:"Assistant","Helvetica Neue",Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#141310; --paper-2:#1c1a16; --card:#1a1814;
+    --ink:#f2ece1; --ink-2:#c4bcae; --ink-3:#8d857a;
+    --rule:#332f28; --field:#232019; --field-line:#4a4438;
+    --brass:#d9a44e; --brass-soft:#2a2118;
+    --urgent:#d1897a; --ok:#9dbd8e; --ok-soft:#1e2619;
+    --wa:#25a56d;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#141310; --paper-2:#1c1a16; --card:#1a1814;
+  --ink:#f2ece1; --ink-2:#c4bcae; --ink-3:#8d857a;
+  --rule:#332f28; --field:#232019; --field-line:#4a4438;
+  --brass:#d9a44e; --brass-soft:#2a2118;
+  --urgent:#d1897a; --ok:#9dbd8e; --ok-soft:#1e2619;
+  --wa:#25a56d;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--paper); color:var(--ink);
+  font-family:var(--body); font-weight:300; line-height:1.75;
+  direction:rtl;
+  padding:clamp(1.5rem,5vw,4rem) clamp(1rem,5vw,2rem) 9rem;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:44rem;margin:0 auto}
+
+/* ---------- masthead ---------- */
+.top{text-align:center;padding-bottom:2.5rem;border-bottom:1px solid var(--rule);margin-bottom:2.5rem}
+.top__eyebrow{font-size:.7rem;font-weight:600;letter-spacing:.32em;color:var(--brass);margin-bottom:1.2rem}
+.top h1{font-family:var(--display);font-weight:400;font-size:clamp(2rem,6.5vw,3rem);line-height:1.1;text-wrap:balance}
+.top__sub{margin-top:1rem;color:var(--ink-2);font-size:1.02rem;max-width:34rem;margin-inline:auto}
+.top__date{margin-top:1.6rem;font-size:.76rem;letter-spacing:.14em;color:var(--ink-3)}
+
+.intro{background:var(--paper-2);border-radius:4px;padding:1.8rem;margin-bottom:1.5rem}
+.intro p{color:var(--ink-2);font-size:1rem}
+.intro p + p{margin-top:.9rem}
+.intro strong{color:var(--ink);font-weight:600}
+
+.howto{
+  border:1px dashed var(--brass);border-radius:4px;padding:1.1rem 1.4rem;
+  background:var(--brass-soft);font-size:.95rem;color:var(--ink-2);margin-bottom:2rem;
+}
+.howto b{color:var(--ink);font-weight:600}
+
+/* ---------- groups ---------- */
+.group{margin:3rem 0 1.5rem;display:flex;align-items:baseline;gap:.8rem}
+.group h2{font-family:var(--display);font-weight:500;font-size:1.35rem;white-space:nowrap}
+.group span{font-size:.78rem;color:var(--ink-3)}
+.group::after{content:"";flex:1;height:1px;background:var(--rule)}
+
+/* ---------- items ---------- */
+.item{
+  border:1px solid var(--rule);border-radius:4px;
+  padding:1.5rem 1.6rem;margin-bottom:1rem;background:var(--card);
+  transition:border-color .3s;
+}
+.item--urgent{border-inline-start:3px solid var(--urgent)}
+.item--nice{border-inline-start:3px solid var(--brass)}
+.item.done{border-color:var(--ok)}
+.item__n{
+  display:flex;align-items:center;gap:.6rem;
+  font-size:.68rem;font-weight:700;letter-spacing:.14em;color:var(--brass);margin-bottom:.6rem;
+}
+.item__tick{opacity:0;color:var(--ok);font-size:.9rem;transition:opacity .3s}
+.item.done .item__tick{opacity:1}
+.item h3{font-family:var(--display);font-weight:500;font-size:1.18rem;line-height:1.35;margin-bottom:.7rem}
+.item p{color:var(--ink-2);font-size:.97rem}
+.item p + p{margin-top:.7rem}
+.item strong{color:var(--ink);font-weight:600}
+.item em{color:var(--ink);font-style:italic}
+
+.quote{
+  background:var(--paper-2);border-radius:3px;padding:.9rem 1.1rem;margin:.9rem 0;
+  font-family:var(--display);font-size:1.02rem;color:var(--ink);line-height:1.6;
+}
+.quote small{display:block;font-family:var(--body);font-size:.78rem;color:var(--ink-3);margin-top:.4rem}
+
+/* ---------- the answer controls ---------- */
+.ask{
+  margin-top:1.2rem;padding-top:1.1rem;border-top:1px dashed var(--rule);
+}
+.ask__label{font-size:.74rem;font-weight:600;letter-spacing:.12em;color:var(--ink-3);margin-bottom:.7rem}
+.opts{display:flex;flex-wrap:wrap;gap:.55rem}
+.opt{
+  display:inline-flex;align-items:center;gap:.5rem;cursor:pointer;
+  border:1px solid var(--field-line);border-radius:100px;
+  padding:.5rem 1rem .5rem .8rem;font-size:.93rem;color:var(--ink-2);
+  transition:all .25s;user-select:none;background:var(--field);
+}
+.opt:hover{border-color:var(--brass)}
+.opt input{position:absolute;opacity:0;width:0;height:0}
+.opt__dot{
+  width:16px;height:16px;border-radius:50%;flex:none;
+  border:1.5px solid var(--field-line);transition:all .25s;position:relative;
+}
+.opt input:checked + .opt__dot{border-color:var(--ok);background:var(--ok)}
+.opt input:checked + .opt__dot::after{
+  content:"";position:absolute;inset:0;margin:auto;
+  width:5px;height:8px;border:solid var(--card);border-width:0 2px 2px 0;
+  transform:rotate(45deg) translate(-1px,-1px);
+}
+.opt:has(input:checked){border-color:var(--ok);color:var(--ink);font-weight:400}
+.opt input:focus-visible + .opt__dot{outline:2px solid var(--brass);outline-offset:2px}
+
+.write{margin-top:.8rem}
+.write label{display:block;font-size:.84rem;color:var(--ink-3);margin-bottom:.35rem}
+.write input, .write textarea{
+  width:100%;background:var(--field);color:var(--ink);
+  border:1px solid var(--field-line);border-radius:3px;
+  font-family:var(--body);font-size:1rem;font-weight:300;
+  padding:.7rem .85rem;transition:border-color .25s;
+}
+.write textarea{min-height:76px;resize:vertical;line-height:1.6}
+.write input:focus, .write textarea:focus{outline:none;border-color:var(--brass)}
+.write input::placeholder, .write textarea::placeholder{color:var(--ink-3);opacity:.7}
+
+table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.93rem}
+th{text-align:start;font-weight:600;color:var(--ink-3);font-size:.74rem;letter-spacing:.1em;padding-bottom:.5rem;border-bottom:1px solid var(--rule)}
+td{padding:.62rem 0;border-bottom:1px solid var(--rule);color:var(--ink-2);vertical-align:top}
+td:last-child{text-align:end;white-space:nowrap;padding-inline-start:1rem}
+tr:last-child td{border-bottom:0}
+.was{color:var(--urgent)}
+.now{color:var(--ok);font-weight:600}
+
+.steps{list-style:none;counter-reset:s;margin-top:.9rem}
+.steps li{counter-increment:s;position:relative;padding-inline-start:2rem;margin-bottom:.6rem;color:var(--ink-2);font-size:.95rem}
+.steps li::before{
+  content:counter(s);position:absolute;inset-inline-start:0;top:.15rem;
+  width:1.35rem;height:1.35rem;border-radius:50%;background:var(--brass-soft);color:var(--brass);
+  font-size:.72rem;font-weight:700;display:grid;place-items:center;
+}
+.steps a{color:var(--brass);font-weight:600}
+
+.fixed{background:var(--ok-soft);border-radius:4px;padding:1.6rem 1.8rem;margin-top:1rem}
+.fixed h3{font-family:var(--display);font-weight:500;font-size:1.1rem;margin-bottom:.9rem;color:var(--ink)}
+.fixed ul{list-style:none}
+.fixed li{padding-inline-start:1.6rem;position:relative;margin-bottom:.55rem;color:var(--ink-2);font-size:.95rem}
+.fixed li::before{content:"✓";position:absolute;inset-inline-start:0;color:var(--ok);font-weight:700}
+
+/* ---------- send bar ---------- */
+.bar{
+  position:fixed;inset-inline:0;bottom:0;z-index:20;
+  background:var(--card);border-top:1px solid var(--rule);
+  padding:.9rem clamp(1rem,5vw,2rem);
+  box-shadow:0 -6px 24px rgba(0,0,0,.09);
+}
+.bar__in{max-width:44rem;margin:0 auto;display:flex;align-items:center;gap:.7rem;flex-wrap:wrap}
+.bar__count{flex:1;min-width:8rem;font-size:.88rem;color:var(--ink-3)}
+.bar__count b{color:var(--ink);font-weight:600}
+.btn{
+  display:inline-flex;align-items:center;gap:.5rem;cursor:pointer;
+  border:0;border-radius:100px;padding:.75rem 1.4rem;
+  font-family:var(--body);font-size:.92rem;font-weight:600;
+  transition:filter .25s,transform .15s;white-space:nowrap;
+}
+.btn:active{transform:translateY(1px)}
+.btn:hover{filter:brightness(1.07)}
+.btn--wa{background:var(--wa);color:#fff}
+.btn--ghost{background:transparent;color:var(--ink-2);border:1px solid var(--field-line)}
+.btn svg{width:17px;height:17px}
+.bar__note{width:100%;font-size:.79rem;color:var(--ink-3);margin-top:.15rem}
+
+.close{margin-top:3.5rem;padding-top:2rem;border-top:1px solid var(--rule);text-align:center}
+.close p{color:var(--ink-3);font-size:.9rem}
+.close .sig{font-family:var(--display);font-size:1.15rem;color:var(--ink);margin-top:.8rem}
+
+/* the send bar grows taller when it wraps on a phone - keep it off the signature */
+@media (max-width:560px){body{padding-bottom:12.5rem}}
+
+@media print{
+  body{background:#fff;color:#000;padding:1cm}
+  .bar,.howto{display:none}
+  .item,.intro,.fixed{break-inside:avoid}
+}
+
+[hidden]{display:none!important}
+
+/* ---------- itinerary round: order before speed ---------- */
+.nav{position:sticky;top:0;z-index:15;margin:0 -1rem 1.5rem;padding:.7rem 1rem;
+  background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--rule);display:flex;gap:.35rem;overflow-x:auto;scrollbar-width:thin}
+.nav__c{flex:none;font-size:.78rem;font-weight:600;color:var(--ink-2);text-decoration:none;
+  border:1px solid var(--field-line);border-radius:100px;padding:.3rem .75rem;background:var(--card);
+  transition:background .2s,border-color .2s,color .2s}
+.nav__c--day{min-width:2.1rem;text-align:center;padding:.3rem .5rem}
+.nav__c--same{opacity:.62}
+.nav__c.is-part{border-color:var(--brass);color:var(--brass)}
+.nav__c.is-done{background:var(--ok);border-color:var(--ok);color:var(--card);opacity:1}
+.nav__c:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
+
+.sec{scroll-margin-top:4.5rem}
+.sec .lede{color:var(--ink-2);font-size:.95rem;margin:-.6rem 0 1.2rem}
+.sec .lede b{color:var(--ink);font-weight:600}
+
+.dhead{background:var(--card);border:1px solid var(--rule);border-inline-start:3px solid var(--urgent);
+  border-radius:4px;padding:1.2rem 1.4rem;margin-bottom:1rem}
+.dhead--same{border-inline-start-color:var(--ok)}
+.dhead__lbl{font-size:.7rem;font-weight:700;letter-spacing:.14em;color:var(--ink-3);margin-bottom:.6rem}
+.chg{list-style:none}
+.chg li{position:relative;padding-inline-start:1.2rem;margin-bottom:.35rem;font-size:.95rem;color:var(--ink-2)}
+.chg li::before{content:"";position:absolute;inset-inline-start:0;top:.75em;width:6px;height:6px;
+  border-radius:50%;background:var(--urgent)}
+.dhead--same .chg li::before{background:var(--ok)}
+.chg b{color:var(--ink);font-weight:600}
+
+.cmp{margin-top:.9rem;border-top:1px dashed var(--rule);padding-top:.7rem}
+.cmp summary{cursor:pointer;font-size:.85rem;font-weight:600;color:var(--brass)}
+.cmp[open] summary{margin-bottom:.8rem}
+.cmp__col{border-radius:3px;padding:.9rem 1rem;margin-top:.6rem}
+.cmp__col--old{background:var(--paper-2)}
+.cmp__col--new{background:var(--brass-soft)}
+.cmp__h{font-size:.68rem;font-weight:700;letter-spacing:.14em;color:var(--ink-3);margin-bottom:.4rem}
+.cmp__t{font-size:.95rem;color:var(--ink);margin-bottom:.3rem}
+.cmp__b{font-size:.92rem;line-height:1.85;color:var(--ink-2)}
+.cmp__s{font-size:.85rem;color:var(--brass);margin-top:.4rem}
+
+.q__t{font-family:var(--display);font-weight:500;font-size:1.12rem;line-height:1.4;margin-bottom:.5rem}
+.q__ctx{font-size:.92rem;line-height:1.8;color:var(--ink-2);margin-bottom:.9rem}
+.q__ctx b{color:var(--ink);font-weight:600}
+.q__prop{display:inline-flex;gap:.6rem;align-items:baseline;flex-wrap:wrap;background:var(--brass-soft);
+  border:1px dashed var(--brass);border-radius:4px;padding:.55rem .9rem;margin-bottom:.9rem;
+  font-family:var(--display);font-size:1.05rem;color:var(--ink)}
+.q__prop span{font-family:var(--body);font-size:.66rem;font-weight:700;letter-spacing:.14em;color:var(--brass)}
+
+.opts--stack{flex-direction:column;align-items:stretch;gap:.45rem}
+.opts--stack .opt{border-radius:4px;padding:.7rem .9rem;align-items:flex-start;line-height:1.5}
+.opts--stack .opt__dot{margin-top:.18rem}
+.opt__l{flex:1}
+.opt__note{display:block;font-size:.76rem;color:var(--ink-3);font-weight:300;margin-top:.1rem}
+.item.q .ask{margin-top:.6rem}
+.more{margin-top:.7rem}
+.more label{color:var(--brass);font-weight:600}
+
+.qs--grid{display:grid;grid-template-columns:1fr 1fr;gap:0 .8rem}
+.qs--grid .item{margin-bottom:.8rem}
+@media (max-width:640px){.qs--grid{grid-template-columns:1fr}}
+
+.typos{margin:0 0 1rem}
+.typos td.where{color:var(--ink-3);font-size:.82rem;white-space:nowrap}
+
+.dnote{margin:.2rem 0 .6rem}
+.dnote summary{cursor:pointer;font-size:.85rem;color:var(--ink-3);padding:.3rem 0}
+.dnote[open] summary{color:var(--brass)}
+
+.sec--same .item{background:transparent}
+.bar__in .btn{padding:.7rem 1.1rem}
+@media (max-width:560px){body{padding-bottom:15rem}}
+
+.q__seq{margin:-.2rem 0 1rem;padding-inline-start:1.4rem;font-size:.93rem;line-height:1.85;color:var(--ink-2)}
+.q__seq li{padding-inline-start:.2rem}
+.q__seq li::marker{color:var(--brass);font-weight:700}
+.q__seq b{color:var(--ink);font-weight:600}
+.q__cmp{margin:0 0 1rem}
+.q__cmp .cmp__col:first-child{margin-top:0}
+.q__cmp strong{color:var(--ink);font-weight:600}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="top">
+    <p class="top__eyebrow">מגלי עולמות · סבב אחרון על המסלול</p>
+    <h1>כמעט שם</h1>
+    <p class="top__sub">עברנו על כל התשובות שלך. נשארו 14 שאלות קצרות, רובן בלחיצה אחת.</p>
+    <p class="top__date">14 בספטמבר 2026</p>
+  </header>
+
+  <div class="intro">
+    <p>רועי,</p>
+    <p>תודה על התשובות. <strong>כמעט הכל ברור.</strong> מה שנשאר כאן הוא מקומות שבהם שתי תשובות לא לגמרי מסתדרות, או שהבנתי משהו ואני רוצה לוודא שהבנתי נכון.</p>
+    <p>כל השאלות כאן הן על הטיול עצמו. <strong>שום דבר לא משתנה באתר עד שנסיים.</strong></p>
+    <p>אם עוד לא מילאת את הטופס הקודם (עשרה דברים): <strong>שאלה 1 שם, התמונה של לופסאן, כבר לא רלוונטית</strong>, אפשר לדלג עליה.</p>
+  </div>
+
+  <div class="howto">
+    <b>הכל נשמר תוך כדי</b> — אפשר לעצור באמצע ולחזור. <b>הפס שלמעלה</b> מראה מה נענה (ירוק) ומה עוד פתוח. בסיום — הכפתור הירוק שולח הכל בוואטסאפ.
+  </div>
+
+  <nav class="nav" id="nav" aria-label="ניווט בין חלקי הטופס"></nav>
+
+  <div id="form"></div>
+
+  <footer class="close">
+    <p><strong>תודה.</strong> מהתשובות האלה נכתוב טיוטה של כל ימי הטיול, ונשלח לך לאישור לפני שמשהו עולה לאתר.</p>
+    <p class="sig">שחר</p>
+  </footer>
+
+</div>
+
+<div class="bar">
+  <div class="bar__in">
+    <div class="bar__count" id="count">טרם נענו שאלות</div>
+    <button class="btn btn--ghost" id="next" type="button">לשאלה הבאה שלא נענתה ↓</button>
+    <button class="btn btn--ghost" id="copy" type="button">העתקה</button>
+    <button class="btn btn--wa" id="send" type="button">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96s-.47-.15-.67.15-.77.96-.94 1.16-.35.22-.64.07a8.2 8.2 0 0 1-2.4-1.48 9 9 0 0 1-1.66-2.07c-.17-.3 0-.46.13-.6s.3-.35.44-.52a2 2 0 0 0 .3-.5.55.55 0 0 0 0-.52c-.08-.15-.67-1.6-.91-2.2s-.49-.5-.67-.51h-.57a1.1 1.1 0 0 0-.79.37 3.32 3.32 0 0 0-1.04 2.47 5.76 5.76 0 0 0 1.21 3.06 13.2 13.2 0 0 0 5.05 4.46c.7.3 1.26.49 1.69.63a4.07 4.07 0 0 0 1.86.12 3.05 3.05 0 0 0 2-1.41 2.47 2.47 0 0 0 .17-1.41c-.07-.13-.27-.2-.56-.35M12.05 21.8h-.02a9.8 9.8 0 0 1-4.99-1.37l-.36-.21-3.71.97 1-3.62-.24-.37a9.78 9.78 0 0 1 15.2-12.1 9.72 9.72 0 0 1 2.87 6.92 9.8 9.8 0 0 1-9.75 9.78M20.52 3.45A11.7 11.7 0 0 0 12.05 0 11.82 11.82 0 0 0 1.79 17.72L.1 24l6.43-1.69a11.8 11.8 0 0 0 5.65 1.44h.01A11.82 11.82 0 0 0 20.52 3.45"/></svg>
+      שליחה לשחר
+    </button>
+    <p class="bar__note" id="note">התשובות נשמרות אוטומטית בדפדפן שלך.</p>
+  </div>
+</div>
+
+
+<script type="application/json" id="qdata">{"sections": [{"id": "dates", "nav": "תאריכים", "title": "תאריכים ומשך הטיול", "sub": "3 שאלות", "lede": "את אוקטובר כבר סגרנו: <b>4–18 באוקטובר<\/b>. נשארו שלושה פרטים שקשורים לזה.", "items": [{"s": "תאריכי ספטמבר", "ctx": "כתבת שהמסלול החדש חל <b>גם על ספטמבר<\/b>. באתר כתוב היום <b>16–29 בספטמבר<\/b>. באוקטובר הנחיתה בארץ זזה ביום אחד (4–17 הפך ל-4–18), אז צריך לדעת אם גם בספטמבר.", "opts": ["16–30 בספטמבר — גם כאן הנחיתה יום אחד מאוחר יותר", "16–29 בספטמבר — נשאר כמו שכתוב", {"v": "אחר", "more": "מה התאריכים?"}], "k": "dt_sep", "t": "יציאת ספטמבר — מה התאריכים?", "n": 1}, {"s": "אורך הטיול", "ctx": "היום כתוב באתר <b>\"14 ימים\"<\/b> בכ-20 מקומות. כתבת שלפעמים זה 15 ימים, ו\"תשאיר שבועיים\". הבנתי שבכל המקומות האלה ייכתב <b>\"שבועיים\"<\/b>, למשל:", "proposal": "שבועיים · קבוצה של 10–12 מטיילים", "opts": ["נכון — \"שבועיים\" בכל מקום", "לא — להשאיר \"14 ימים\"", {"v": "אחר", "more": "פרט"}], "k": "dt_len", "t": "\"תשאיר שבועיים\" — כך זה ייכתב באתר?", "n": 2}, {"s": "סוף יום 14", "ctx": "ביום 14 יוצאים לשדה התעופה לקראת ערב, והנחיתה בארץ למחרת. <b>אין \"יום 15\" ברשימת הימים<\/b>, ולכן הנחיתה תיכתב בסוף יום 14. בלי תאריך, כי אותה רשימת ימים משמשת גם את ספטמבר וגם את אוקטובר.", "proposal": "לקראת ערב יציאה לשדה התעופה לטיסה חזרה, ונחיתה בישראל למחרת.", "opts": ["מאשר", {"v": "לנסח אחרת", "more": "איך?"}], "k": "dt_home", "t": "איך נגמר יום 14?", "n": 3}]}, {"id": "stay", "nav": "לינה", "title": "הלילות בקטמנדו", "sub": "שאלה אחת", "items": [{"s": "מלון בקטמנדו", "ctx": "ביום 2 כתבת \"לינה במלון בטאמל\", וביום 12 \"אותו מלון בטאמל\". בימים <b>3, 7 ו-13<\/b> כתוב רק \"לינה בקטמנדו\".", "opts": ["כן — אותו מלון בטאמל בכל הלילות בקטמנדו", "לא בהכרח — בימים 3, 7 ו-13 להשאיר \"לינה בקטמנדו\"", {"v": "אחר", "more": "פרט"}], "k": "st_ktm", "t": "בכל הלילות בקטמנדו — אותו מלון בטאמל?", "n": 4}]}, {"id": "days", "nav": "לוודא", "title": "לוודא שהבנו נכון", "sub": "3 שאלות", "lede": "שלושה מקומות שבהם הבנתי משהו מהתשובות שלך, ואני רוצה לוודא לפני שזה נכתב.", "items": [{"s": "סדר יום 5", "ctx": "הפוג'ה חוזרת, ארוחת הערב השתנתה, והלינה עברה לוישידהי אלייה. כך הבנתי את היום:", "seq": ["נסיעה לנמובודהה, ומפגש עם בינוד", "במנזר נמובודהה — נזיר מקומי ופוג'ת בוקר", "הליכה מהמנזר, דרך הסטופה העתיקה, לריזורט נמובודהה", "ארוחת צהריים קלה בריזורט נמובודהה", "ירידה במורד ההר לריזורט וישידהי אלייה", "ארוחת ערב של שף הריזורט, מהגן האורגני — <b>בוישידהי אלייה<\/b>", "לינה בוישידהי אלייה"], "opts": ["נכון — זה הסדר", {"v": "משהו לא נכון", "more": "מה שונה?"}], "k": "d5_order", "t": "יום 5 — זה סדר היום?", "n": 5}, {"s": "הסרט", "ctx": "כתבת שהוא \"נשאר ככל הנראה, אבל רוצה להשאיר הפתעות\". הבנתי שהסרט <b>לא ייכתב באתר<\/b>, ויישאר הפתעה במקום.", "opts": ["נכון — לא לכתוב, שיישאר הפתעה", "לכתוב אותו באתר, ביום 7", {"v": "אחר", "more": "פרט"}], "k": "d7_film", "t": "הסרט על מטפסת ההרים — לא לכתוב אותו באתר?", "n": 6}, {"s": "רפטינג", "ctx": "על הכותרת של יום 8 כתבת: \"נוסיף, רפטינג בנהר הטריסולי במידה ויתאפשר\". הכותרת היום: <b>רפטינג בטריסולי ובנדיפור<\/b>.", "opts": ["רק בטקסט של היום — הכותרת נשארת", "גם בטקסט וגם בכותרת", {"v": "אחר", "more": "פרט"}], "notes": ["בטקסט: \"נעצור לרפטינג על נהר הטריסולי, במידה ויתאפשר.\"", "בכותרת: \"רפטינג בטריסולי במידה ויתאפשר, ובנדיפור\"", ""], "k": "d8_raft", "t": "הרפטינג ביום 8 — איפה ייכתב \"במידה ויתאפשר\"?", "n": 7}]}, {"id": "pokhara", "nav": "אניטה ודיפאק", "title": "אניטה, דיפאק ופסל השיווה", "sub": "3 שאלות", "lede": "כתבת ש<b>אניטה מצטרפת ביום 10<\/b>, וגם ש\"באחד הימים תהיה איתנו Anita, ביום של פסל השיווה\". אבל <b>פסל השיווה לא מופיע באף יום<\/b> בטקסט של המסלול.", "items": [{"s": "פסל השיווה", "ctx": "פסל השיווה של פומדיקוט עומד בפאנדי בנדי, ממש מעל פאגודת השלום — ושניהם כבר ביום 10. אם לזה הכוונה, הוא ייכנס כך:", "proposal": "ניסע לפאנדי בנדי ולפסל השיווה, בדרך לפאגודת השלום", "opts": ["כן — כמו בהצעה", {"v": "כן, אבל במקום אחר ביום", "more": "איפה ביום, ומה עושים שם?"}, {"v": "לא — לא לכתוב את פסל השיווה", "more": "למה הכוונה ב\"יום של פסל השיווה\"?"}], "k": "pk_shiva", "t": "פסל השיווה — להוסיף אותו ליום 10?", "n": 8}, {"s": "דיפאק ביום 10", "ctx": "על השאלה \"דיפאק איתנו ברציפות מיום 8 עד יום 12?\" ענית \"לא — באחד הימים תהיה איתנו Anita\". <b>בכרטיס של דיפאק באתר כתובים הימים שלו<\/b>, אז צריך לדעת בדיוק.", "opts": ["לא — ביום 10 אניטה במקומו", "כן — ביום 10 שניהם איתנו", {"v": "אחר", "more": "פרט"}], "notes": ["בכרטיס שלו ייכתב: ימים 8–9, 11–12", "בכרטיס שלו ייכתב: ימים 8–12", ""], "k": "pk_dipak", "t": "ביום 10 — גם דיפאק איתנו?", "n": 9}, {"s": "אניטה ביום 10", "ctx": "היום היא מופיעה באתר רק בפסקת החברים, בלי יום.", "proposal": "אניטה, מדריכה בפוקרה ואשתו של דיפאק, מצטרפת אלינו היום", "opts": ["כן — כמו בהצעה", "לא — רק בפסקת החברים", {"v": "אחר", "more": "איך?"}], "k": "pk_anita", "t": "אניטה — להזכיר אותה בשם בטקסט של יום 10?", "n": 10}]}, {"id": "friends", "nav": "חברים", "title": "הפסקה על החברים", "sub": "שאלה אחת", "lede": "מתחת לכרטיסים של החברים יש פסקה על עוד חברים שמצטרפים לאורך המסע. <b>חלק ממנה כבר לא נכון<\/b>: קרישנה הוא תושב בקטפור, וראם נכתב עכשיו רם.", "items": [{"s": "פסקת החברים", "cmp": {"old": "ולצידם, לאורך המסע, מצטרפים אלינו עוד חברים. <strong>אניטה וקרישנה<\/strong>, מדריכים מקומיים שנולדו וגדלו באזור. <strong>ראם<\/strong>, שמייצר נייר לוקטה משיח הדפנה ההררי, ובביתו אולמות של פסלים וקורות עץ מגולפים — מעין מוזיאון פרטי. <strong>קרוויקה<\/strong>, אשת עסקים שמנהלת חברת הייטק בקטמנדו. <strong>וסהילנדרה<\/strong>, חבר קרוב, מפכ\"ל משטרת נפאל לשעבר שהיום מוביל מיזמים חברתיים בקהילה.", "new": "ולצידם, לאורך המסע, מצטרפים אלינו עוד חברים. <strong>אניטה<\/strong>, מדריכה בפוקרה ואשתו של דיפאק. <strong>קרישנה<\/strong>, תושב בקטפור ומומחה במיתולוגיה ההינדואית, שמלווה אותנו בסמטאות העיר. <strong>רם<\/strong>, שמייצר נייר לוקטה משיח הדפנה ההררי, ובביתו אולמות של פסלים וקורות עץ מגולפים — מעין מוזיאון פרטי. <strong>קרוויקה<\/strong>, אשת עסקים שמנהלת חברת הייטק בקטמנדו. <strong>וסהילנדרה<\/strong>, חבר קרוב, מפכ\"ל משטרת נפאל לשעבר שהיום מוביל מיזמים חברתיים בקהילה."}, "opts": ["מאשר את הנוסח החדש", {"v": "לתקן", "more": "מה לתקן?"}], "k": "fr_more", "t": "הנוסח החדש של הפסקה", "n": 11}]}, {"id": "names", "nav": "אנגלית", "title": "איך כותבים באנגלית", "sub": "3 שאלות", "lede": "לגרסה האנגלית של האתר. את <b>רם<\/b> כבר שאלתי בטופס הקודם, אז הוא לא כאן.", "items": [{"s": "דיפאק באנגלית", "spell": true, "opts": ["Deepak", "Dipak", {"v": "אחר", "more": "איך?"}], "notes": ["כך באתר היום, באנגלית", "קרוב לאיות החדש בעברית", ""], "k": "en_dipak", "t": "דיפאק", "n": 12}, {"s": "קרישנה באנגלית", "spell": true, "opts": ["Krishna", {"v": "אחר", "more": "איך?"}], "k": "en_krishna", "t": "קרישנה", "n": 13}, {"s": "סאג'ן באנגלית", "spell": true, "opts": ["Sajan", {"v": "אחר", "more": "איך?"}], "k": "en_sajan", "t": "סאג'ן", "n": 14}]}, {"id": "end", "nav": "סיום", "title": "ולסיום", "sub": "לא חובה", "items": [{"s": "הערה כללית", "optional": true, "fields": [{"k": "end_note_t", "label": "כל דבר שלא נשאל כאן", "ph": "כתוב חופשי", "area": true}], "k": "end_note", "t": "משהו נוסף שחשוב שנדע?", "n": 15}]}], "total": 14}</script>
+<script>
+(function(){
+  var KEY = 'magalei_roi_answers_v7';
+  var DATA = JSON.parse(document.getElementById('qdata').textContent);
+  var host = document.getElementById('form');
+  var nav = document.getElementById('nav');
+
+  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+  /* ---------------- render ---------------- */
+  var html = '';
+  var navHtml = '';
+  DATA.sections.forEach(function(sec){
+    navHtml += '<a class="nav__c' + (sec.day ? ' nav__c--day' : '') + (sec.same ? ' nav__c--same' : '') +
+               '" href="#s-' + sec.id + '" data-sec="' + sec.id + '">' + esc(sec.nav) + '</a>';
+
+    html += '<section class="sec' + (sec.same ? ' sec--same' : '') + '" id="s-' + sec.id + '" data-sec="' + sec.id + '">';
+    html += '<div class="group"><h2>' + esc(sec.title) + '</h2><span>' + esc(sec.sub || '') + '</span></div>';
+    if (sec.lede) html += '<p class="lede">' + sec.lede + '</p>';
+
+    if (sec.day) {
+      html += '<div class="dhead' + (sec.same ? ' dhead--same' : '') + '">' +
+        '<p class="dhead__lbl">' + (sec.same ? 'מה השתנה' : 'מה השתנה ביום הזה') + '</p>' +
+        '<ul class="chg">' + sec.changes.map(function(c){ return '<li>' + c + '</li>'; }).join('') + '</ul>' +
+        '<details class="cmp"><summary>לראות את שני הנוסחים המלאים</summary>' +
+          '<div class="cmp__col cmp__col--old"><p class="cmp__h">באתר היום</p>' +
+            '<p class="cmp__t"><b>' + esc(sec.old.title) + '</b></p>' +
+            '<p class="cmp__b">' + esc(sec.old.body) + '</p>' +
+            (sec.old.stay ? '<p class="cmp__s">' + esc(sec.old.stay) + '</p>' : '') +
+          '</div>' +
+          '<div class="cmp__col cmp__col--new"><p class="cmp__h">מה שכתבת</p>' +
+            '<p class="cmp__b">' + esc(sec.new) + '</p>' +
+          '</div>' +
+        '</details></div>';
+    }
+
+    if (sec.typos) {
+      html += '<table class="typos"><thead><tr><th>כתוב</th><th>יתוקן ל־</th><th>איפה</th></tr></thead><tbody>' +
+        sec.typos.map(function(t){
+          return '<tr><td class="was">' + esc(t[0]) + '</td><td class="now">' + esc(t[1]) + '</td><td class="where">' + esc(t[2]) + '</td></tr>';
+        }).join('') + '</tbody></table>';
+    }
+
+    html += '<div class="' + (sec.id === 'names' ? 'qs qs--grid' : 'qs') + '">';
+    sec.items.forEach(function(q){
+      html += '<div class="item q' + (q.spell ? ' q--spell' : '') + '" data-q="' + q.k + '" data-sec="' + sec.id + '" id="q-' + q.k + '">' +
+        '<p class="item__n">שאלה ' + q.n + ' <span class="item__tick">✓ נענה</span></p>' +
+        '<h3 class="q__t" id="t-' + q.k + '">' + q.t + '</h3>';
+      if (q.ctx) html += '<p class="q__ctx">' + q.ctx + '</p>';
+      if (q.seq) html += '<ol class="q__seq">' + q.seq.map(function(x){ return '<li>' + x + '</li>'; }).join('') + '</ol>';
+      if (q.cmp) html += '<div class="q__cmp">' +
+        '<div class="cmp__col cmp__col--old"><p class="cmp__h">באתר היום</p><p class="cmp__b">' + q.cmp.old + '</p></div>' +
+        '<div class="cmp__col cmp__col--new"><p class="cmp__h">הנוסח המוצע</p><p class="cmp__b">' + q.cmp['new'] + '</p></div></div>';
+      if (q.proposal) html += '<p class="q__prop"><span>הצעה</span>' + esc(q.proposal) + '</p>';
+      html += '<div class="ask">';
+      if (q.opts) {
+        html += '<div class="opts opts--stack" role="radiogroup" aria-labelledby="t-' + q.k + '">';
+        q.opts.forEach(function(o, i){
+          var v = (typeof o === 'string') ? o : o.v;
+          var note = q.notes && q.notes[i] ? '<small class="opt__note">' + esc(q.notes[i]) + '</small>' : '';
+          html += '<label class="opt"><input type="radio" name="' + q.k + '" value="' + esc(v) + '"' +
+                  ((typeof o === 'object' && o.more) ? ' data-more="' + esc(o.more) + '"' : '') + '>' +
+                  '<span class="opt__dot"></span><span class="opt__l">' + esc(v) + note + '</span></label>';
+        });
+        html += '</div>';
+        if (q.opts.some(function(o){ return typeof o === 'object' && o.more; })) {
+          html += '<div class="write more" id="more-' + q.k + '" hidden><label for="' + q.k + '_t" id="morel-' + q.k + '"></label>' +
+                  '<textarea id="' + q.k + '_t" name="' + q.k + '_t"></textarea></div>';
+        }
+      }
+      (q.fields || []).forEach(function(f){
+        html += '<div class="write"><label for="' + f.k + '">' + esc(f.label) + '</label>' +
+          (f.area ? '<textarea id="' + f.k + '" name="' + f.k + '" placeholder="' + esc(f.ph || '') + '"></textarea>'
+                  : '<input type="text" id="' + f.k + '" name="' + f.k + '" placeholder="' + esc(f.ph || '') + '"' +
+                    (/^[A-Za-z]/.test(f.ph || '') ? ' dir="ltr"' : '') + '>') +
+          '</div>';
+      });
+      html += '</div></div>';
+    });
+    html += '</div>';
+
+    if (sec.day) {
+      html += '<details class="dnote"><summary>הערה נוספת על יום ' + sec.day + ' (לא חובה)</summary>' +
+              '<div class="write"><textarea id="note_' + sec.id + '" name="note_' + sec.id + '" placeholder="כל דבר על היום הזה שלא נשאל"></textarea></div></details>';
+    }
+    html += '</section>';
+  });
+  host.innerHTML = html;
+  nav.innerHTML = navHtml;
+
+  var ALLQ = [];
+  DATA.sections.forEach(function(sec){ sec.items.forEach(function(q){ q.sec = sec; ALLQ.push(q); }); });
+  var fields = [].slice.call(host.querySelectorAll('input, textarea'));
+  var REQ = ALLQ.filter(function(q){ return !q.optional; });
+
+  /* ---------------- conditional "please explain" boxes ---------------- */
+  function syncMore(k){
+    var box = document.getElementById('more-' + k);
+    if (!box) return;
+    var sel = host.querySelector('input[name="' + k + '"]:checked');
+    var label = sel && sel.getAttribute('data-more');
+    box.hidden = !label;
+    if (label) document.getElementById('morel-' + k).textContent = label;
+  }
+
+  /* ---------------- persistence ---------------- */
+  function keyOf(f){ return f.type === 'radio' ? f.name : (f.id || f.name); }
+  function save(){
+    var d = {};
+    fields.forEach(function(f){
+      if (f.type === 'radio') { if (f.checked) d[f.name] = f.value; }
+      else if (f.value.trim()) d[keyOf(f)] = f.value;
+    });
+    try { localStorage.setItem(KEY, JSON.stringify(d)); } catch(e) {}
+  }
+  function restore(){
+    var d = {};
+    try { d = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e) {}
+    fields.forEach(function(f){
+      var k = keyOf(f); if (!(k in d)) return;
+      if (f.type === 'radio') f.checked = (f.value === d[k]); else f.value = d[k];
+    });
+    ALLQ.forEach(function(q){ syncMore(q.k); });
+  }
+
+  /* ---------------- progress ---------------- */
+  function answered(q){
+    if (q.opts) return !!host.querySelector('input[name="' + q.k + '"]:checked');
+    return (q.fields || []).some(function(f){ var e = document.getElementById(f.k); return e && e.value.trim(); });
+  }
+  function refresh(){
+    save();
+    var done = 0, doneReq = 0;
+    var perSec = {};
+    ALLQ.forEach(function(q){
+      var a = answered(q);
+      document.getElementById('q-' + q.k).classList.toggle('done', a);
+      if (a) done++;
+      if (a && !q.optional) doneReq++;
+      var s = perSec[q.sec.id] || (perSec[q.sec.id] = {d:0, t:0});
+      s.t++; if (a) s.d++;
+    });
+    [].forEach.call(nav.querySelectorAll('.nav__c'), function(c){
+      var s = perSec[c.getAttribute('data-sec')];
+      c.classList.toggle('is-done', !!s && s.d === s.t);
+      c.classList.toggle('is-part', !!s && s.d > 0 && s.d < s.t);
+    });
+    var c = document.getElementById('count');
+    c.innerHTML = doneReq === 0 ? 'טרם נענו שאלות · ' + DATA.total + ' בסך הכל'
+      : (doneReq === DATA.total ? '<b>ענית על הכל</b> — אפשר לשלוח'
+                             : 'נענו <b>' + doneReq + '</b> מתוך ' + DATA.total);
+    document.getElementById('next').hidden = (doneReq === DATA.total);
+  }
+
+  /* ---------------- the message ---------------- */
+  function summary(){
+    var L = ['מגלי עולמות — סבב אחרון על המסלול, התשובות של רועי'];
+    var done = REQ.filter(answered).length;
+    L.push('נענו ' + done + ' מתוך ' + DATA.total, '');
+    DATA.sections.forEach(function(sec){
+      var lines = [];
+      sec.items.forEach(function(q){
+        var parts = [];
+        if (q.opts) {
+          var sel = host.querySelector('input[name="' + q.k + '"]:checked');
+          if (sel) {
+            parts.push(sel.value.trim());
+            if (sel.getAttribute('data-more')) {
+              var t = document.getElementById(q.k + '_t');
+              if (t && t.value.trim()) parts.push('   ' + t.value.trim());
+            }
+          }
+        }
+        (q.fields || []).forEach(function(f){
+          var e = document.getElementById(f.k);
+          if (e && e.value.trim()) parts.push((q.fields.length > 1 || q.opts ? f.label + ': ' : '') + e.value.trim());
+        });
+        if (parts.length) lines.push(q.n + '. ' + q.s + ': ' + parts.join('\n   '));
+      });
+      var note = document.getElementById('note_' + sec.id);
+      if (note && note.value.trim()) lines.push('   הערה: ' + note.value.trim());
+      if (lines.length) { L.push('— ' + sec.title + ' —'); L = L.concat(lines); L.push(''); }
+    });
+    return L.join('\n');
+  }
+
+  function copyText(txt, ok, fail){
+    function fb(){
+      var ta = document.createElement('textarea');
+      ta.value = txt; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      var d = false; try { d = document.execCommand('copy'); } catch(e) {}
+      document.body.removeChild(ta); d ? ok() : fail();
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(ok, fb);
+    else fb();
+  }
+  var note = document.getElementById('note');
+  var IDLE = 'התשובות נשמרות אוטומטית בדפדפן שלך.';
+  function say(m){ if (!note) return; note.textContent = m; setTimeout(function(){ note.textContent = IDLE; }, 6000); }
+
+  document.getElementById('send').addEventListener('click', function(){
+    var txt = summary();
+    /* copied first: this message is long, and WhatsApp can clip a long one
+       without saying so */
+    copyText(txt, function(){ say('נפתח וואטסאפ. גם העתקתי את כל התשובות — אם משהו נחתך, פשוט הדבק.'); }, function(){});
+    window.open('https://wa.me/?text=' + encodeURIComponent(txt), '_blank', 'noopener');
+  });
+  document.getElementById('copy').addEventListener('click', function(){
+    copyText(summary(), function(){ say('הועתק. אפשר להדביק בוואטסאפ, במייל או בכל מקום.'); },
+                        function(){ say('לא הצלחתי להעתיק — אפשר לשלוח בוואטסאפ במקום.'); });
+  });
+  document.getElementById('next').addEventListener('click', function(){
+    var q = REQ.filter(function(q){ return !answered(q); })[0];
+    if (!q) return;
+    var el = document.getElementById('q-' + q.k);
+    var d = el.closest('details'); if (d) d.open = true;
+    el.scrollIntoView({behavior:'smooth', block:'center'});
+    var first = el.querySelector('input, textarea'); if (first) first.focus({preventScroll:true});
+  });
+
+  fields.forEach(function(f){
+    f.addEventListener('change', function(){ if (f.type === 'radio') syncMore(f.name); refresh(); });
+    f.addEventListener('input', refresh);
+  });
+
+  restore();
+  refresh();
+})();
+</script>
+
+</body>
+</html>
