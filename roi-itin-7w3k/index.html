@@ -1,0 +1,551 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#faf8f4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141310" media="(prefers-color-scheme: dark)">
+<title>מגלי עולמות — המסלול החדש</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700&family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --paper:#faf8f4; --paper-2:#f2eee6; --card:#ffffff;
+  --ink:#1d1b18; --ink-2:#4a453e; --ink-3:#7d766c;
+  --rule:#e0d9cc; --field:#ffffff; --field-line:#cfc6b6;
+  --brass:#a8761f; --brass-soft:#f5ead6;
+  --urgent:#9a5245; --ok:#4f6b45; --ok-soft:#e9f0e5;
+  --wa:#1f8f5f;
+  --display:"Frank Ruhl Libre",Georgia,serif;
+  --body:"Assistant","Helvetica Neue",Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#141310; --paper-2:#1c1a16; --card:#1a1814;
+    --ink:#f2ece1; --ink-2:#c4bcae; --ink-3:#8d857a;
+    --rule:#332f28; --field:#232019; --field-line:#4a4438;
+    --brass:#d9a44e; --brass-soft:#2a2118;
+    --urgent:#d1897a; --ok:#9dbd8e; --ok-soft:#1e2619;
+    --wa:#25a56d;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#141310; --paper-2:#1c1a16; --card:#1a1814;
+  --ink:#f2ece1; --ink-2:#c4bcae; --ink-3:#8d857a;
+  --rule:#332f28; --field:#232019; --field-line:#4a4438;
+  --brass:#d9a44e; --brass-soft:#2a2118;
+  --urgent:#d1897a; --ok:#9dbd8e; --ok-soft:#1e2619;
+  --wa:#25a56d;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--paper); color:var(--ink);
+  font-family:var(--body); font-weight:300; line-height:1.75;
+  direction:rtl;
+  padding:clamp(1.5rem,5vw,4rem) clamp(1rem,5vw,2rem) 9rem;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:44rem;margin:0 auto}
+
+/* ---------- masthead ---------- */
+.top{text-align:center;padding-bottom:2.5rem;border-bottom:1px solid var(--rule);margin-bottom:2.5rem}
+.top__eyebrow{font-size:.7rem;font-weight:600;letter-spacing:.32em;color:var(--brass);margin-bottom:1.2rem}
+.top h1{font-family:var(--display);font-weight:400;font-size:clamp(2rem,6.5vw,3rem);line-height:1.1;text-wrap:balance}
+.top__sub{margin-top:1rem;color:var(--ink-2);font-size:1.02rem;max-width:34rem;margin-inline:auto}
+.top__date{margin-top:1.6rem;font-size:.76rem;letter-spacing:.14em;color:var(--ink-3)}
+
+.intro{background:var(--paper-2);border-radius:4px;padding:1.8rem;margin-bottom:1.5rem}
+.intro p{color:var(--ink-2);font-size:1rem}
+.intro p + p{margin-top:.9rem}
+.intro strong{color:var(--ink);font-weight:600}
+
+.howto{
+  border:1px dashed var(--brass);border-radius:4px;padding:1.1rem 1.4rem;
+  background:var(--brass-soft);font-size:.95rem;color:var(--ink-2);margin-bottom:2rem;
+}
+.howto b{color:var(--ink);font-weight:600}
+
+/* ---------- groups ---------- */
+.group{margin:3rem 0 1.5rem;display:flex;align-items:baseline;gap:.8rem}
+.group h2{font-family:var(--display);font-weight:500;font-size:1.35rem;white-space:nowrap}
+.group span{font-size:.78rem;color:var(--ink-3)}
+.group::after{content:"";flex:1;height:1px;background:var(--rule)}
+
+/* ---------- items ---------- */
+.item{
+  border:1px solid var(--rule);border-radius:4px;
+  padding:1.5rem 1.6rem;margin-bottom:1rem;background:var(--card);
+  transition:border-color .3s;
+}
+.item--urgent{border-inline-start:3px solid var(--urgent)}
+.item--nice{border-inline-start:3px solid var(--brass)}
+.item.done{border-color:var(--ok)}
+.item__n{
+  display:flex;align-items:center;gap:.6rem;
+  font-size:.68rem;font-weight:700;letter-spacing:.14em;color:var(--brass);margin-bottom:.6rem;
+}
+.item__tick{opacity:0;color:var(--ok);font-size:.9rem;transition:opacity .3s}
+.item.done .item__tick{opacity:1}
+.item h3{font-family:var(--display);font-weight:500;font-size:1.18rem;line-height:1.35;margin-bottom:.7rem}
+.item p{color:var(--ink-2);font-size:.97rem}
+.item p + p{margin-top:.7rem}
+.item strong{color:var(--ink);font-weight:600}
+.item em{color:var(--ink);font-style:italic}
+
+.quote{
+  background:var(--paper-2);border-radius:3px;padding:.9rem 1.1rem;margin:.9rem 0;
+  font-family:var(--display);font-size:1.02rem;color:var(--ink);line-height:1.6;
+}
+.quote small{display:block;font-family:var(--body);font-size:.78rem;color:var(--ink-3);margin-top:.4rem}
+
+/* ---------- the answer controls ---------- */
+.ask{
+  margin-top:1.2rem;padding-top:1.1rem;border-top:1px dashed var(--rule);
+}
+.ask__label{font-size:.74rem;font-weight:600;letter-spacing:.12em;color:var(--ink-3);margin-bottom:.7rem}
+.opts{display:flex;flex-wrap:wrap;gap:.55rem}
+.opt{
+  display:inline-flex;align-items:center;gap:.5rem;cursor:pointer;
+  border:1px solid var(--field-line);border-radius:100px;
+  padding:.5rem 1rem .5rem .8rem;font-size:.93rem;color:var(--ink-2);
+  transition:all .25s;user-select:none;background:var(--field);
+}
+.opt:hover{border-color:var(--brass)}
+.opt input{position:absolute;opacity:0;width:0;height:0}
+.opt__dot{
+  width:16px;height:16px;border-radius:50%;flex:none;
+  border:1.5px solid var(--field-line);transition:all .25s;position:relative;
+}
+.opt input:checked + .opt__dot{border-color:var(--ok);background:var(--ok)}
+.opt input:checked + .opt__dot::after{
+  content:"";position:absolute;inset:0;margin:auto;
+  width:5px;height:8px;border:solid var(--card);border-width:0 2px 2px 0;
+  transform:rotate(45deg) translate(-1px,-1px);
+}
+.opt:has(input:checked){border-color:var(--ok);color:var(--ink);font-weight:400}
+.opt input:focus-visible + .opt__dot{outline:2px solid var(--brass);outline-offset:2px}
+
+.write{margin-top:.8rem}
+.write label{display:block;font-size:.84rem;color:var(--ink-3);margin-bottom:.35rem}
+.write input, .write textarea{
+  width:100%;background:var(--field);color:var(--ink);
+  border:1px solid var(--field-line);border-radius:3px;
+  font-family:var(--body);font-size:1rem;font-weight:300;
+  padding:.7rem .85rem;transition:border-color .25s;
+}
+.write textarea{min-height:76px;resize:vertical;line-height:1.6}
+.write input:focus, .write textarea:focus{outline:none;border-color:var(--brass)}
+.write input::placeholder, .write textarea::placeholder{color:var(--ink-3);opacity:.7}
+
+table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.93rem}
+th{text-align:start;font-weight:600;color:var(--ink-3);font-size:.74rem;letter-spacing:.1em;padding-bottom:.5rem;border-bottom:1px solid var(--rule)}
+td{padding:.62rem 0;border-bottom:1px solid var(--rule);color:var(--ink-2);vertical-align:top}
+td:last-child{text-align:end;white-space:nowrap;padding-inline-start:1rem}
+tr:last-child td{border-bottom:0}
+.was{color:var(--urgent)}
+.now{color:var(--ok);font-weight:600}
+
+.steps{list-style:none;counter-reset:s;margin-top:.9rem}
+.steps li{counter-increment:s;position:relative;padding-inline-start:2rem;margin-bottom:.6rem;color:var(--ink-2);font-size:.95rem}
+.steps li::before{
+  content:counter(s);position:absolute;inset-inline-start:0;top:.15rem;
+  width:1.35rem;height:1.35rem;border-radius:50%;background:var(--brass-soft);color:var(--brass);
+  font-size:.72rem;font-weight:700;display:grid;place-items:center;
+}
+.steps a{color:var(--brass);font-weight:600}
+
+.fixed{background:var(--ok-soft);border-radius:4px;padding:1.6rem 1.8rem;margin-top:1rem}
+.fixed h3{font-family:var(--display);font-weight:500;font-size:1.1rem;margin-bottom:.9rem;color:var(--ink)}
+.fixed ul{list-style:none}
+.fixed li{padding-inline-start:1.6rem;position:relative;margin-bottom:.55rem;color:var(--ink-2);font-size:.95rem}
+.fixed li::before{content:"✓";position:absolute;inset-inline-start:0;color:var(--ok);font-weight:700}
+
+/* ---------- send bar ---------- */
+.bar{
+  position:fixed;inset-inline:0;bottom:0;z-index:20;
+  background:var(--card);border-top:1px solid var(--rule);
+  padding:.9rem clamp(1rem,5vw,2rem);
+  box-shadow:0 -6px 24px rgba(0,0,0,.09);
+}
+.bar__in{max-width:44rem;margin:0 auto;display:flex;align-items:center;gap:.7rem;flex-wrap:wrap}
+.bar__count{flex:1;min-width:8rem;font-size:.88rem;color:var(--ink-3)}
+.bar__count b{color:var(--ink);font-weight:600}
+.btn{
+  display:inline-flex;align-items:center;gap:.5rem;cursor:pointer;
+  border:0;border-radius:100px;padding:.75rem 1.4rem;
+  font-family:var(--body);font-size:.92rem;font-weight:600;
+  transition:filter .25s,transform .15s;white-space:nowrap;
+}
+.btn:active{transform:translateY(1px)}
+.btn:hover{filter:brightness(1.07)}
+.btn--wa{background:var(--wa);color:#fff}
+.btn--ghost{background:transparent;color:var(--ink-2);border:1px solid var(--field-line)}
+.btn svg{width:17px;height:17px}
+.bar__note{width:100%;font-size:.79rem;color:var(--ink-3);margin-top:.15rem}
+
+.close{margin-top:3.5rem;padding-top:2rem;border-top:1px solid var(--rule);text-align:center}
+.close p{color:var(--ink-3);font-size:.9rem}
+.close .sig{font-family:var(--display);font-size:1.15rem;color:var(--ink);margin-top:.8rem}
+
+/* the send bar grows taller when it wraps on a phone - keep it off the signature */
+@media (max-width:560px){body{padding-bottom:12.5rem}}
+
+@media print{
+  body{background:#fff;color:#000;padding:1cm}
+  .bar,.howto{display:none}
+  .item,.intro,.fixed{break-inside:avoid}
+}
+
+[hidden]{display:none!important}
+
+/* ---------- itinerary round: order before speed ---------- */
+.nav{position:sticky;top:0;z-index:15;margin:0 -1rem 1.5rem;padding:.7rem 1rem;
+  background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--rule);display:flex;gap:.35rem;overflow-x:auto;scrollbar-width:thin}
+.nav__c{flex:none;font-size:.78rem;font-weight:600;color:var(--ink-2);text-decoration:none;
+  border:1px solid var(--field-line);border-radius:100px;padding:.3rem .75rem;background:var(--card);
+  transition:background .2s,border-color .2s,color .2s}
+.nav__c--day{min-width:2.1rem;text-align:center;padding:.3rem .5rem}
+.nav__c--same{opacity:.62}
+.nav__c.is-part{border-color:var(--brass);color:var(--brass)}
+.nav__c.is-done{background:var(--ok);border-color:var(--ok);color:var(--card);opacity:1}
+.nav__c:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
+
+.sec{scroll-margin-top:4.5rem}
+.sec .lede{color:var(--ink-2);font-size:.95rem;margin:-.6rem 0 1.2rem}
+.sec .lede b{color:var(--ink);font-weight:600}
+
+.dhead{background:var(--card);border:1px solid var(--rule);border-inline-start:3px solid var(--urgent);
+  border-radius:4px;padding:1.2rem 1.4rem;margin-bottom:1rem}
+.dhead--same{border-inline-start-color:var(--ok)}
+.dhead__lbl{font-size:.7rem;font-weight:700;letter-spacing:.14em;color:var(--ink-3);margin-bottom:.6rem}
+.chg{list-style:none}
+.chg li{position:relative;padding-inline-start:1.2rem;margin-bottom:.35rem;font-size:.95rem;color:var(--ink-2)}
+.chg li::before{content:"";position:absolute;inset-inline-start:0;top:.75em;width:6px;height:6px;
+  border-radius:50%;background:var(--urgent)}
+.dhead--same .chg li::before{background:var(--ok)}
+.chg b{color:var(--ink);font-weight:600}
+
+.cmp{margin-top:.9rem;border-top:1px dashed var(--rule);padding-top:.7rem}
+.cmp summary{cursor:pointer;font-size:.85rem;font-weight:600;color:var(--brass)}
+.cmp[open] summary{margin-bottom:.8rem}
+.cmp__col{border-radius:3px;padding:.9rem 1rem;margin-top:.6rem}
+.cmp__col--old{background:var(--paper-2)}
+.cmp__col--new{background:var(--brass-soft)}
+.cmp__h{font-size:.68rem;font-weight:700;letter-spacing:.14em;color:var(--ink-3);margin-bottom:.4rem}
+.cmp__t{font-size:.95rem;color:var(--ink);margin-bottom:.3rem}
+.cmp__b{font-size:.92rem;line-height:1.85;color:var(--ink-2)}
+.cmp__s{font-size:.85rem;color:var(--brass);margin-top:.4rem}
+
+.q__t{font-family:var(--display);font-weight:500;font-size:1.12rem;line-height:1.4;margin-bottom:.5rem}
+.q__ctx{font-size:.92rem;line-height:1.8;color:var(--ink-2);margin-bottom:.9rem}
+.q__ctx b{color:var(--ink);font-weight:600}
+.q__prop{display:inline-flex;gap:.6rem;align-items:baseline;flex-wrap:wrap;background:var(--brass-soft);
+  border:1px dashed var(--brass);border-radius:4px;padding:.55rem .9rem;margin-bottom:.9rem;
+  font-family:var(--display);font-size:1.05rem;color:var(--ink)}
+.q__prop span{font-family:var(--body);font-size:.66rem;font-weight:700;letter-spacing:.14em;color:var(--brass)}
+
+.opts--stack{flex-direction:column;align-items:stretch;gap:.45rem}
+.opts--stack .opt{border-radius:4px;padding:.7rem .9rem;align-items:flex-start;line-height:1.5}
+.opts--stack .opt__dot{margin-top:.18rem}
+.opt__l{flex:1}
+.opt__note{display:block;font-size:.76rem;color:var(--ink-3);font-weight:300;margin-top:.1rem}
+.item.q .ask{margin-top:.6rem}
+.more{margin-top:.7rem}
+.more label{color:var(--brass);font-weight:600}
+
+.qs--grid{display:grid;grid-template-columns:1fr 1fr;gap:0 .8rem}
+.qs--grid .item{margin-bottom:.8rem}
+@media (max-width:640px){.qs--grid{grid-template-columns:1fr}}
+
+.typos{margin:0 0 1rem}
+.typos td.where{color:var(--ink-3);font-size:.82rem;white-space:nowrap}
+
+.dnote{margin:.2rem 0 .6rem}
+.dnote summary{cursor:pointer;font-size:.85rem;color:var(--ink-3);padding:.3rem 0}
+.dnote[open] summary{color:var(--brass)}
+
+.sec--same .item{background:transparent}
+.bar__in .btn{padding:.7rem 1.1rem}
+@media (max-width:560px){body{padding-bottom:15rem}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="top">
+    <p class="top__eyebrow">מגלי עולמות · המסלול החדש</p>
+    <h1>לפני שהמסלול<br>עולה לאתר</h1>
+    <p class="top__sub">עברנו על הנוסח החדש ששלחת מול מה שיש היום באתר, יום אחרי יום. מצאנו דברים שהשתנו, דברים שחסרים, ומקומות שאפשר להבין בשתי דרכים.</p>
+    <p class="top__date">14 בספטמבר 2026</p>
+  </header>
+
+  <div class="intro">
+    <p>רועי,</p>
+    <p><strong>שום דבר לא ישתנה באתר עד שנסיים את זה.</strong> המטרה היא שלא יעלה לאתר פרט אחד שלא ברור לגמרי — לא לנו ולא למטייל.</p>
+    <p>לכל שאלה יש <strong>גם אפשרות "כן" וגם אפשרות "לא"</strong>. כשצריך להסביר — ייפתח מקום לכתוב. בראש כל יום מופיע <strong>מה בדיוק השתנה</strong>, ואפשר לפתוח ולראות את שני הנוסחים המלאים זה מול זה.</p>
+    <p>ימים שלא השתנו מסומנים בירוק, ושם מספיקה לחיצה אחת.</p>
+  </div>
+
+  <div class="howto">
+    <b>הכל נשמר תוך כדי</b> — אפשר לעצור באמצע ולחזור מחר. <b>הפס שלמעלה</b> מראה מה נענה (ירוק) ומה עוד פתוח. <b>הכפתור "לשאלה הבאה שלא נענתה"</b> למטה מקפיץ ישר למה שנשאר. בסיום — הכפתור הירוק שולח הכל בוואטסאפ.
+  </div>
+
+  <nav class="nav" id="nav" aria-label="ניווט בין חלקי הטופס"></nav>
+
+  <div id="form"></div>
+
+  <footer class="close">
+    <p><strong>תודה.</strong> מהתשובות האלה נכתוב טיוטה של ארבעה־עשר הימים, ונשלח לך לאישור לפני שמשהו עולה לאתר.</p>
+    <p class="sig">שחר</p>
+  </footer>
+
+</div>
+
+<div class="bar">
+  <div class="bar__in">
+    <div class="bar__count" id="count">טרם נענו שאלות</div>
+    <button class="btn btn--ghost" id="next" type="button">לשאלה הבאה שלא נענתה ↓</button>
+    <button class="btn btn--ghost" id="copy" type="button">העתקה</button>
+    <button class="btn btn--wa" id="send" type="button">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96s-.47-.15-.67.15-.77.96-.94 1.16-.35.22-.64.07a8.2 8.2 0 0 1-2.4-1.48 9 9 0 0 1-1.66-2.07c-.17-.3 0-.46.13-.6s.3-.35.44-.52a2 2 0 0 0 .3-.5.55.55 0 0 0 0-.52c-.08-.15-.67-1.6-.91-2.2s-.49-.5-.67-.51h-.57a1.1 1.1 0 0 0-.79.37 3.32 3.32 0 0 0-1.04 2.47 5.76 5.76 0 0 0 1.21 3.06 13.2 13.2 0 0 0 5.05 4.46c.7.3 1.26.49 1.69.63a4.07 4.07 0 0 0 1.86.12 3.05 3.05 0 0 0 2-1.41 2.47 2.47 0 0 0 .17-1.41c-.07-.13-.27-.2-.56-.35M12.05 21.8h-.02a9.8 9.8 0 0 1-4.99-1.37l-.36-.21-3.71.97 1-3.62-.24-.37a9.78 9.78 0 0 1 15.2-12.1 9.72 9.72 0 0 1 2.87 6.92 9.8 9.8 0 0 1-9.75 9.78M20.52 3.45A11.7 11.7 0 0 0 12.05 0 11.82 11.82 0 0 0 1.79 17.72L.1 24l6.43-1.69a11.8 11.8 0 0 0 5.65 1.44h.01A11.82 11.82 0 0 0 20.52 3.45"/></svg>
+      שליחה לשחר
+    </button>
+    <p class="bar__note" id="note">התשובות נשמרות אוטומטית בדפדפן שלך.</p>
+  </div>
+</div>
+
+
+<script type="application/json" id="qdata">{"sections": [{"id": "gen", "nav": "כללי", "title": "לפני הכל", "sub": "5 שאלות", "lede": "חמש שאלות שקובעות איך לקרוא את כל השאר. אם אין לך זמן לכל הטופס — <b>תענה לפחות על אלה.<\/b>", "items": [{"s": "לאיזו יציאה", "ctx": "באתר יש שתי יציאות ב-2026: ספטמבר (מלאה) ו-4–17 באוקטובר. <b>יציאת אוקטובר יוצאת בעוד שלושה שבועות<\/b>, ויש בה נרשמים.", "opts": ["כבר ליציאת אוקטובר 2026", "רק מ-2027 — אוקטובר 2026 נשאר עם המסלול הקיים", "גם לאוקטובר 2026 וגם ל-2027", {"v": "אחר", "more": "פרט"}], "k": "gen_dep", "t": "לאיזו יציאה המסלול החדש שייך?", "n": 1}, {"s": "נוסח סופי", "ctx": "עד היום כל טקסט של הטיול עלה לאתר <b>מילה במילה<\/b>, ורק שגיאות הקלדה תוקנו באישורך. אני צריך לדעת אם מותר לי לגעת בניסוח.", "opts": ["כן, סופי — לתקן רק שגיאות הקלדה", "כן, ומותר ללטש ניסוח — בלי לשנות עובדות", {"v": "לא, זו טיוטה — יהיו עוד שינויים", "more": "מה עוד ישתנה?"}], "k": "gen_final", "t": "הטקסט ששלחת — הוא הנוסח הסופי לאתר?", "n": 2}, {"s": "שינויים נוספים", "opts": ["לא — הכל בטקסט", {"v": "כן, יש עוד", "more": "מה?"}], "k": "gen_more", "t": "יש שינויים במסלול שלא הופיעו בטקסט ששלחת?", "n": 3}, {"s": "אורך הטיול", "ctx": "באתר כתוב <b>\"14 ימים\"<\/b>. בנוסח החדש יום 1 הוא רק הטיסה, והנחיתה בקטמנדו ביום 2.", "opts": ["14 ימים — כמו היום", "13 ימים בנפאל, ועוד טיסות", {"v": "אחר", "more": "פרט"}], "k": "gen_len", "t": "איך מציגים את אורך הטיול?", "n": 4}, {"s": "טבלת ג'מיני", "ctx": "הטבלה סיכמה את הטקסט שלך, <b>אבל שינתה והוסיפה פרטים שלא כתבת<\/b>: \"סדנת צליל\" במקום סדנת קערות, \"שקיעה\" בימים 9 ו-12, \"סדנאות נייר\" ביום 13, השם \"שיוואפורי באבא\" ביום 14 — ו<b>השמיטה את סאג'ן הקדר.<\/b> לכן אני לא משתמש בה כמקור.", "opts": ["לא רלוונטית — להתעלם", "אני רוצה טבלת \"המסלול במבט אחד\" — שתיבנה מהטקסט שלי", {"v": "אחר", "more": "פרט"}], "k": "gen_gemini", "t": "הטבלה של ג'מיני בסוף ההודעה — מה היא?", "n": 5}]}, {"id": "dates", "nav": "תאריכים", "title": "תאריכים", "sub": "3 שאלות", "lede": "אם המסלול החדש שייך רק ל-2027 — אפשר לדלג על הסקשן הזה.", "items": [{"s": "טיסה מישראל", "ctx": "באתר: <b>4 באוקטובר 2026<\/b>.", "opts": ["4 באוקטובר 2026 — נכון", {"v": "תאריך אחר", "more": "איזה?"}], "k": "dt_out", "t": "הטיסה מישראל — באיזה תאריך?", "n": 6}, {"s": "נחיתה בישראל", "ctx": "באתר: יום 14 הוא <b>\"חזרה הביתה · 17/10/26\"<\/b>. בנוסח החדש ביום 14 יש יום חופשי, ורק <b>לקראת ערב<\/b> יוצאים לשדה התעופה. טיסת ערב מקטמנדו נוחתת בדרך כלל למחרת.", "opts": ["באותו לילה — 17 באוקטובר", "למחרת — 18 באוקטובר", "עוד לא ידוע", {"v": "אחר", "more": "פרט"}], "k": "dt_in", "t": "באיזה תאריך נוחתים בישראל?", "n": 7}, {"s": "טווח תאריכים", "ctx": "\"4–17 באוקטובר\" מופיע <b>ב-13 מקומות באתר<\/b>, בעברית ובאנגלית.", "opts": ["4–17 באוקטובר", "4–18 באוקטובר", {"v": "אחר", "more": "פרט"}], "k": "dt_show", "t": "איך להציג את טווח התאריכים באתר?", "n": 8}]}, {"id": "names", "nav": "איות", "title": "איות — שם אחד לכל מקום ואדם", "sub": "9 שאלות", "lede": "בטקסט, ובאתר, חלק מהשמות נכתבים בשתי צורות. <b>באתר צריך צורה אחת<\/b>, אחרת זה נראה כמו שני מקומות שונים.", "items": [{"s": "בנדיפור", "spell": true, "opts": ["בנדיפור", "בהנדיפור", {"v": "אחר", "more": "איך?"}], "notes": ["כך באתר היום", "כך כתבת עכשיו", ""], "k": "sp_bandipur", "t": "בנדיפור", "n": 9}, {"s": "דיפק", "spell": true, "opts": ["דיפק", "דיפאק", {"v": "אחר", "more": "איך?"}], "notes": ["כך באתר היום", "כתבת את שתי הצורות", ""], "k": "sp_dipak", "t": "דיפק", "n": 10}, {"s": "רם", "spell": true, "opts": ["ראם", "רם", {"v": "אחר", "more": "איך?"}], "notes": ["כך באתר היום", "כך כתבת עכשיו", ""], "k": "sp_ram", "t": "רם", "n": 11}, {"s": "בודהנאט", "spell": true, "opts": ["בודהנאט", "בודאנט", {"v": "אחר", "more": "איך?"}], "notes": ["כך באתר היום", "כך כתבת עכשיו", ""], "k": "sp_boudha", "t": "בודהנאט", "n": 12}, {"s": "דורבאר", "spell": true, "opts": ["דורבאר", "דורבר", {"v": "אחר", "more": "איך?"}], "notes": ["יום 2", "יום 4", ""], "k": "sp_durbar", "t": "דורבאר", "n": 13}, {"s": "שדה התעופה", "spell": true, "opts": ["טריבהוואן", "Tribhuvan", {"v": "אחר", "more": "איך?"}], "notes": ["כך באתר היום", "כך כתבת עכשיו", ""], "k": "sp_tribhuvan", "t": "שדה התעופה", "n": 14}, {"s": "בקטפור", "spell": true, "opts": ["בקטפור", "בהקטפור", {"v": "אחר", "more": "איך?"}], "notes": ["כך כתבת", "צורה נוספת שנפוצה", ""], "k": "sp_bhaktapur", "t": "בקטפור", "n": 15}, {"s": "פשופאטינט", "spell": true, "opts": ["פשופאטינט", "פשופטינאת", {"v": "אחר", "more": "איך?"}], "notes": ["כך כתבת", "צורה נוספת שנפוצה", ""], "k": "sp_pashu", "t": "פשופאטינט", "n": 16}, {"s": "נהר בגמאנטי", "spell": true, "opts": ["בגמאנטי", "בגמטי", {"v": "אחר", "more": "איך?"}], "notes": ["כך כתבת", "צורה נוספת שנפוצה", ""], "k": "sp_bagmati", "t": "נהר בגמאנטי", "n": 17}]}, {"id": "d1", "nav": "1", "title": "יום 1", "day": 1, "sub": "השתנה", "same": false, "changes": ["ההגעה לקטמנדו עברה ליום 2", "אין לינה ביום 1"], "old": {"title": "יציאה מישראל", "body": "יציאה מנמל התעופה בן גוריון, והגעה לנמל התעופה טריבהוואן בקטמנדו.", "stay": "לינה במלון בקטמנדו"}, "new": "יציאה מנמל תעופה בן גוריון.", "items": [{"s": "נחיתה", "opts": ["כן — יום 1 הוא רק הטיסה", "לא — נוחתים כבר ביום 1"], "k": "d1_arrive", "t": "הנחיתה בקטמנדו עברה ליום 2?", "n": 18}, {"s": "לילה", "opts": ["בטיסה", "במלון בקטמנדו", {"v": "אחר", "more": "איפה?"}], "k": "d1_night", "t": "איפה עוברים את הלילה של יום 1?", "n": 19}]}, {"id": "d2", "nav": "2", "title": "יום 2", "day": 2, "sub": "השתנה", "same": false, "changes": ["נוספו: נחיתה, ונסיעה קצרה למלון בטאמל", "<b>בודהנאט יצא מיום 2<\/b> (הופיע ביום 3)", "\"בוקר בקטמנדו\" יצא מיום 2 (הופיע ביום 3)", "הלינה: \"במלון בטאמל\" "], "old": {"title": "קטמנדו — טאמל, דורבאר ובודהנאט", "body": "בוקר בקטמנדו, בירת נפאל. נפגש עם קאמאל, בחור נפאלי מקומי שיספר את סיפור נפאל, ואיתו נטייל ברגל באזור הטאמל. משם נמשיך לכיכר דורבאר — המקדשים והשווקים — ולמקדש האלה החיה קומרי. בהמשך ניסע לבודהנאט, הסטופה הגדולה באסיה. בערב, ארוחת ערב נאוורית מסורתית.", "stay": "לינה בקטמנדו"}, "new": "הגעה לנמל תעופה Tribhuvan קטמנדו. נסיעה קצרה למלון בטאמל. נפגש עם קאמאל בחור נפאלי מקומי שיספר את סיפור נפאל ואיתו נטייל ברגל באזור הטאמל, משם נמשיך לכיכר דורבאר המקדשים והשווקים, ובמקדש האלה החיה קומרי. ארוחת ערב נאוורית מסורתית. לינה במלון בטאמל קטמנדו.", "items": [{"s": "בודהנאט", "opts": ["כן — בודהנאט ביום 3", "לא — בודהנאט נשאר ביום 2", "בשני הימים"], "k": "d2_boudha", "t": "בודהנאט עבר מיום 2 ליום 3?", "n": 20}, {"s": "קאמאל", "ctx": "לפי הנוסח החדש, הכל ביום 2: נחיתה ← מלון ← קאמאל, טאמל, דורבאר וקומרי ← ארוחת ערב.", "opts": ["כן — באותו יום", {"v": "לא", "more": "מתי?"}], "k": "d2_kamal", "t": "הסיור עם קאמאל — באותו יום של הנחיתה?", "n": 21}, {"s": "מלון", "opts": ["כן — \"לינה במלון בטאמל\" ", "לא — מספיק \"לינה בקטמנדו\" "], "k": "d2_hotel", "t": "לכתוב באתר שהמלון בטאמל?", "n": 22}, {"s": "כותרת", "ctx": "באתר היום: <b>קטמנדו — טאמל, דורבאר ובודהנאט<\/b>. בודהנאט כבר לא ביום הזה, אז <b>הכותרת חייבת להשתנות<\/b>. הצעה:", "proposal": "נחיתה בקטמנדו — טאמל, דורבאר וקומרי", "opts": ["מאשר את ההצעה", {"v": "כותרת אחרת", "more": "איזו?"}], "k": "d2_title", "t": "כותרת ליום 2", "n": 23}]}, {"id": "d3", "nav": "3", "title": "יום 3", "day": 3, "sub": "השתנה", "same": false, "changes": ["<b>\"הנזיר לופסאן\" ← \"נזיר מקומי\"<\/b>", "נוסף בודהנאט (הגיע מיום 2)", "בודהנאט: \"הסטופה הגדולה באסיה\" ← \"מהגדולות בעולם\" ", "נוספה ארוחת ערב במסעדת אוטפלה", "נוסף \"בוקר בקטמנדו\" "], "old": {"title": "מנזר קופאן וטימי, עיר הקדרים", "body": "נסיעה קצרה למנזר קופאן, המשקיף על עמק קטמנדו, ומפגש עם הנזיר לופסאן לשיחה ומדיטציה. משם נסיעה קצרה לטימי, עיר הקדרים.", "stay": "לינה בקטמנדו"}, "new": "בוקר בקטמנדו בירת נפאל, נסיעה קצרה למנזר קופאן המשקיף על עמק קטמנדו. מפגש עם נזיר מקומי לשיחה - מדיטציה. נמשיך לעיר הקדרים טימי ומשם לסטופה מהגדולות בעולם בודאנט. ארוחת ערב במסעדת אוטפלה של המנזר. לינה בקטמנדו.", "items": [{"s": "הנזיר בקופאן", "ctx": "באתר היום הנזיר מופיע בשמו <b>פעמיים<\/b>: ביום 3, <b>ובכרטיס משלו בסקשן החברים<\/b> (\"הנזיר לופסאן · מנזר קופאן · יום 3\"). בנוסח החדש כתבת \"נזיר מקומי\", בלי שם. בטופס הקודם גם ביקשתי ממך תמונה שלו.", "opts": ["לופסאן — להחזיר את שמו ולהשאיר את הכרטיס", "לא ידוע מי יהיה הנזיר — לכתוב \"נזיר מקומי\" ולהוריד את הכרטיס של לופסאן", {"v": "נזיר אחר, ששמו ידוע", "more": "מה שמו?"}, {"v": "אחר", "more": "פרט"}], "k": "d3_monk", "t": "הנזיר בקופאן — לופסאן, או \"נזיר מקומי\"?", "n": 24}, {"s": "תיאור בודהנאט", "ctx": "באתר: <b>\"הסטופה הגדולה באסיה\"<\/b>. כתבת: <b>\"סטופה מהגדולות בעולם\"<\/b>.", "opts": ["מהגדולות בעולם — כמו שכתבתי עכשיו", "הגדולה באסיה — כמו שהיה"], "k": "d3_stupa", "t": "איך לתאר את בודהנאט?", "n": 25}, {"s": "אוטפלה", "ctx": "המנזר היחיד שמוזכר ביום 3 הוא קופאן, ולכן <b>כך זה ייקרא<\/b>. אם הכוונה למנזר אחר, המשפט יטעה.", "opts": ["מנזר קופאן", "מנזר ליד הסטופה בבודהנאט", {"v": "אחר", "more": "פרט"}], "fields": [{"k": "d3_utpala_en", "label": "השם באנגלית (לא חובה)", "ph": "Utpala"}], "k": "d3_utpala", "t": "\"מסעדת אוטפלה של המנזר\" — איזה מנזר?", "n": 26}, {"s": "סדר היום", "ctx": "בוקר בקטמנדו ← מנזר קופאן ← טימי ← בודהנאט ← ארוחת ערב באוטפלה ← לינה בקטמנדו", "opts": ["כן — זה הסדר", {"v": "לא", "more": "מה הסדר הנכון?"}], "k": "d3_order", "t": "סדר היום נכון?", "n": 27}, {"s": "כותרת", "ctx": "באתר היום: <b>מנזר קופאן וטימי, עיר הקדרים<\/b>. בודהנאט נוסף ליום, אז הכותרת כבר לא מלאה. הצעה:", "proposal": "קופאן, טימי ובודהנאט", "opts": ["מאשר את ההצעה", {"v": "כותרת אחרת", "more": "איזו?"}], "k": "d3_title", "t": "כותרת ליום 3", "n": 28}]}, {"id": "d4", "nav": "4", "title": "יום 4", "day": 4, "sub": "ללא שינוי", "same": true, "changes": ["אין שינוי — הטקסט זהה מילה במילה"], "old": {"title": "פאטן, עיר האמנים", "body": "נסיעה לפאטן, עיר האמנים. סיור במרכז העיר בכיכר דורבר פאטן, ביקור במקדש הזהב, וסדנת קערות טיבטיות עם סודיפ — דור רביעי של רוקעי קערות.", "stay": "לינה בפאטן"}, "new": "נסיעה לפאטן עיר האמנים. סיור במרכז העיר דורבר פאטן. מקדש הזהב. סדנת קערות טיבטיות עם סודיפ, דור רביעי של רוקעי קערות. לינה - בפאטן.", "items": [{"s": "אין שינוי", "ctx": "השוויתי מילה במילה. התוכן זהה למה שבאתר, חוץ משגיאות הקלדה שמופיעות ברשימה בסוף.", "opts": ["נכון — אין שינוי", {"v": "יש שינוי", "more": "מה השתנה?"}], "k": "d4_same", "t": "ביום 4 אין שום שינוי?", "n": 29}]}, {"id": "d5", "nav": "5", "title": "יום 5", "day": 5, "sub": "השתנה", "same": false, "changes": ["<b>פוג'ת הבוקר במנזר נמובודהה לא מופיעה<\/b>", "ארוחת הערב של שף הריזורט לא מופיעה", "הסרט בערב לא מופיע", "נוספו: צהריים קלים בריזורט נמובודהה, וירידה <b>לריזורט וישידהי אלייה<\/b>", "<b>הלינה לא מצוינת<\/b>"], "old": {"title": "נמובודהה — המפגש עם בינוד", "body": "נסיעה לנמובודהה. נפגש עם בינוד, הלוחש לצמחים, חבר מקומי שאיתו נטייל בימים הקרובים. במנזר נמובודהה נפגש עם נזיר מקומי ונשתתף בפוג'ת בוקר — נגינה בכלי נגינה מיוחדים וקריאת מנטרות בהיכל התפילה. מהמנזר נלך דרך סטופה עתיקה, שבתוכה מאמינים נמצא האפר של גילגול קודם של סידהארתא, הבודהה הראשון, אל ריזורט נמובודהה המשקיף על רכס הרי ההימלאיה. הריזורט אורגני ואקולוגי, מקום קסום הבנוי בתי אבן ועץ, שנבנה ככפר נפאלי אותנטי. ארוחת ערב של שף הריזורט, ובערב נצפה בסרט.", "stay": "לינה בריזורט נמובודהה"}, "new": "נסיעה לנמובודהה. נפגש עם בינוד (הלוחש לצמחים) חבר מקומי איתו נטייל בימים הקרובים. מהמנזר נלך דרך סטופה עתיקה שבתוכה מאמינים נמצא האפר של גילגול קודם של סידהארתא הבודהה הראשון (מטא בודהה) לריזורט נמובודהה המשקיף על רכס הרי ההימלאיה. הריזורט אורגני ואקולוגי, מקום קסום הבנוי בתי אבן ועץ אשר נבנה ככפר נפאלי אותנטי נאכל ארוחתצהריים קלה ונרד במורד ההר לכיוון ריזורט וישידהי אלייה.", "items": [{"s": "פוג'ת הבוקר", "ctx": "באתר: \"במנזר נמובודהה נפגש עם נזיר מקומי ונשתתף בפוג'ת בוקר — נגינה בכלי נגינה מיוחדים וקריאת מנטרות בהיכל התפילה.\" בנוסח החדש המשפט הזה חסר — <b>אבל המשפט שאחריו עדיין מתחיל ב\"מהמנזר נלך\"<\/b>, כאילו המנזר כבר הוזכר. <b>לפוג'ה יש באתר מסך שלם<\/b>, עם תמונה ואנימציה משלו.", "opts": ["נשארת — שכחתי לכתוב", "בוטלה — אין ביקור במנזר בכלל", "יש ביקור במנזר, אבל בלי פוג'ה", {"v": "אחר", "more": "פרט"}], "k": "d5_puja", "t": "פוג'ת הבוקר במנזר נמובודהה — נשארת?", "n": 30}, {"s": "ארוחת השף", "opts": ["נשארת", "בוטלה", {"v": "השתנתה", "more": "מה במקומה?"}], "k": "d5_dinner", "t": "ארוחת ערב של שף הריזורט", "n": 31}, {"s": "סרט בערב", "ctx": "באתר: \"ובערב נצפה בסרט\".", "opts": ["נשאר", "בוטל"], "k": "d5_film", "t": "הסרט בערב", "n": 32}, {"s": "שם הריזורט", "ctx": "ריזורט חדש שלא מופיע באתר. צריך את השם המדויק בשתי השפות.", "fields": [{"k": "d5_resort_he", "label": "בעברית", "ph": "וישידהי אלייה"}, {"k": "d5_resort_en", "label": "באנגלית", "ph": "Vishuddhi Alaya"}], "k": "d5_resort", "t": "ריזורט וישידהי אלייה — איך כותבים?", "n": 33}, {"s": "לינה", "ctx": "באתר: \"לינה בריזורט נמובודהה\". בנוסח החדש לא כתוב, ויש עכשיו שני ריזורטים.", "opts": ["ריזורט נמובודהה", "ריזורט וישידהי אלייה", {"v": "אחר", "more": "איפה?"}], "k": "d5_sleep", "t": "איפה ישנים בלילה של יום 5?", "n": 34}]}, {"id": "d6", "nav": "6", "title": "יום 6", "day": 6, "sub": "השתנה", "same": false, "changes": ["<b>יום חדש לגמרי<\/b> — כפר נווארי בעמק", "התוכן הקודם של יום 6 (שדות הטמאנג והאוורסט) עבר ליום 7", "הסרט על מטפסת ההרים לא מופיע", "<b>הלינה לא מצוינת<\/b>"], "old": {"title": "בשדות של אנשי הטמאנג", "body": "טיול רגלי בכפרים בסביבה עם בינוד, בנופים ובשדות של אנשי הטמאנג, במבט אל הרי ההימלאיה המזרחיים לעבר אזור הר האוורסט. בערב נצפה בסרט על מטפסת הרים מעוררת השראה.", "stay": "לינה בריזורט נמובודהה"}, "new": "נרד במורד הגבעה לכפר נווארי אותנטי בנופיי העמק, נפגוש את תושבי המקום והחקלאות המקומית, כפר שיצא ממנו אחד מהשחקני קולנוע המפורסמים והקומיקאי הסלבריטאי הנפאלי.", "items": [{"s": "שדות הטמאנג", "opts": ["כן", {"v": "לא", "more": "איפה הם?"}], "k": "d6_moved", "t": "שדות הטמאנג והאוורסט עברו מיום 6 ליום 7?", "n": 35}, {"s": "הירידה", "ctx": "יום 5 כבר מסתיים ב\"נרד במורד ההר לכיוון ריזורט וישידהי אלייה\", ויום 6 מתחיל שוב ב\"נרד במורד הגבעה\". <b>כך זה נקרא כחזרה.<\/b>", "opts": ["ירידה נוספת — מהריזורט אל הכפר", {"v": "אותה ירידה — צריך לנסח אחרת", "more": "איך?"}], "k": "d6_descent", "t": "\"נרד במורד הגבעה\" — זו ירידה נוספת?", "n": 36}, {"s": "השחקן והקומיקאי", "ctx": "אפשר לקרוא את המשפט בשתי דרכים.", "opts": ["אדם אחד — שחקן קולנוע שהוא גם קומיקאי", "שני אנשים — שחקן אחד וקומיקאי אחד"], "k": "d6_celeb", "t": "\"אחד מהשחקני קולנוע המפורסמים והקומיקאי הסלבריטאי\" — אדם אחד או שניים?", "n": 37}, {"s": "שם השחקן", "opts": ["לא — בלי שם", {"v": "כן", "more": "השם, בעברית ובאנגלית"}], "k": "d6_celebname", "t": "לציין באתר את שמו?", "n": 38}, {"s": "שם הכפר", "opts": ["לא — \"כפר נווארי\" מספיק", {"v": "כן", "more": "השם, בעברית ובאנגלית"}], "k": "d6_village", "t": "לציין את שם הכפר?", "n": 39}, {"s": "בינוד ביום 6", "ctx": "בנוסח הקודם יום 6 היה עם בינוד. ביום 6 החדש הוא לא מוזכר. <b>בכרטיס שלו באתר כתוב \"ימים 5–7\".<\/b>", "opts": ["כן — גם ביום 6", "לא — ביום 6 הוא לא איתנו"], "k": "d6_binod", "t": "בינוד איתנו ביום 6?", "n": 40}, {"s": "לינה", "ctx": "באתר: \"לינה בריזורט נמובודהה\". בנוסח החדש לא כתוב.", "opts": ["ריזורט נמובודהה", "ריזורט וישידהי אלייה", {"v": "אחר", "more": "איפה?"}], "k": "d6_sleep", "t": "איפה ישנים בלילה של יום 6?", "n": 41}, {"s": "כותרת", "ctx": "באתר היום: <b>בשדות של אנשי הטמאנג<\/b>. הכותרת הזו עוברת ליום 7. ליום 6 צריך כותרת חדשה. הצעה:", "proposal": "כפר נווארי בעמק", "opts": ["מאשר את ההצעה", {"v": "כותרת אחרת", "more": "איזו?"}], "k": "d6_title", "t": "כותרת ליום 6", "n": 42}]}, {"id": "d7", "nav": "7", "title": "יום 7", "day": 7, "sub": "השתנה", "same": false, "changes": ["נוסף: טיול בשדות הטמאנג מול האוורסט (עבר מיום 6)", "שאר היום — הכפר של בינוד, הסדנה, הטאלי ופנאוטי — <b>ללא שינוי<\/b>"], "old": {"title": "הכפר של בינוד וסדנת אוכל נפאלי", "body": "טיול לכפר של בינוד, סיור בגן הירק וסדנת אוכל נפאלי. ארוחת צהריים — טאלי נאוורי על גג ביתו. בהמשך נסיעה לקטמנדו, עם עצירה בפנאוטי במוזיאון מקומי קטן, במפגש הנהרות ובמקדש הבנוי מעץ.", "stay": "לינה בקטמנדו"}, "new": "בשדות שרואים את האוורסט — טיול רגלי בכפרים בסביבה עם בינוד הלוחש לצמחים, בנופים ובשדות של אנשי הטמאנג ומשקיף להרי ההימלאיה המזרחיים לעבר אזור הר האוורסט. טיול לכפר של בינוד, סיור בגן הירק וסדנת אוכל נפאלי. ארוחת צהריים טאלי נאוורי על גג ביתו. נסיעה לקטמנדו, עצירה בפנאוטי במוזיאון מקומי קטן ובמפגש הנהרות ומקדש הבנוי מעץ. לינה בקטמנדו.", "items": [{"s": "הכל ביום 7", "ctx": "ביום 7 יש עכשיו: טיול רגלי בשדות הטמאנג ← הכפר של בינוד, גן הירק וסדנת אוכל ← טאלי על הגג ← נסיעה לקטמנדו, עם עצירות בפנאוטי.", "opts": ["כן — הכל ביום 7", {"v": "לא", "more": "איך זה מתחלק?"}], "k": "d7_all", "t": "הכל ביום אחד?", "n": 43}, {"s": "סרט המטפסת", "ctx": "באתר הוא בערב של יום 6. בנוסח החדש הוא לא מופיע בשום יום.", "opts": ["בוטל", {"v": "נשאר", "more": "באיזה ערב?"}], "k": "d7_film", "t": "הסרט על מטפסת ההרים", "n": 44}, {"s": "כותרת", "ctx": "באתר היום: <b>הכפר של בינוד וסדנת אוכל נפאלי<\/b>. היום מאחד עכשיו שני דברים, והכותרת מתארת רק אחד מהם. (\"בשדות שרואים את האוורסט\" נשארת כותרת המסך הקולנועי.) הצעה:", "proposal": "שדות הטמאנג, והכפר של בינוד", "opts": ["מאשר את ההצעה", {"v": "כותרת אחרת", "more": "איזו?"}], "k": "d7_title", "t": "כותרת ליום 7", "n": 45}]}, {"id": "d8", "nav": "8", "title": "יום 8", "day": 8, "sub": "השתנה", "same": false, "changes": ["<b>המפגש עם דיפק עבר לכאן<\/b> (היה ביום 9, בפוקרה)", "השקיעה על רכס האנפורנה לא מופיעה", "<b>\"מלון בוטיק נווארי אותנטי\" לא מופיע<\/b> — רק \"בעיירה\" "], "old": {"title": "רפטינג בטריסולי ובנדיפור", "body": "ניסע בבוקר לכיוון בנדיפור. בדרך נעצור לרפטינג על נהר הטריסולי, ונאכל ארוחת צהריים במבשלת בירה על גדת הנהר. נמשיך לבנדיפור, עיירה קטנה ומקסימה למרגלות ההימלאיה הצופה לעבר רכס האנפורנה — עיירה עתיקה עם מבנים נוואריים אותנטיים. נטייל באזור, ובערב נצפה בשקיעה על הרי רכס האנפורנה.", "stay": "לינה בבנדיפור, במלון בוטיק נווארי אותנטי"}, "new": "ואז פתאום הכל נהיה רטוב — נעצור לרפטינג על נהר הטריסולי. נאכל ארוחת צהריים במבשלת בירה על גדת הנהר. נגיע לקראת ערב לעיירה הציורית בהנדיפור. עיירה קטנה ומקסימה למרגלות ההימלאיה הצופה לעבר רכס האנפורנה. עיירה עתיקה עם מבנים נווארים אותנטיים. נטייל באזור לאחר שנפגש עם דיפק המדריך שלנו לימים הקרובים. דיפק פרופסור לאנגלית ותושב פוקרה. הוא יספר לנו אודות האזור. לינה: בעיירה בהנדיפור", "items": [{"s": "המפגש עם דיפק", "ctx": "באתר: ביום 9, בפוקרה. <b>בכרטיס שלו כתוב \"ימים 9–12\".<\/b>", "opts": ["כן — ביום 8 בבנדיפור", "לא — ביום 9 בפוקרה, כמו שהיה"], "k": "d8_dipak", "t": "פוגשים את דיפק ביום 8, בבנדיפור?", "n": 46}, {"s": "ימי דיפק", "ctx": "בימים 9 ו-10 הוא לא מוזכר בנוסח החדש. בימים 11 ו-12 כן.", "opts": ["כן — ברציפות מיום 8 עד יום 12", {"v": "לא", "more": "באילו ימים?"}], "k": "d8_dipakdays", "t": "דיפק איתנו ברציפות עד יום 12?", "n": 47}, {"s": "השקיעה", "opts": ["נשארת", "בוטלה"], "k": "d8_sunset", "t": "השקיעה על רכס האנפורנה בערב", "n": 48}, {"s": "המלון בבנדיפור", "ctx": "באתר: <b>\"לינה בבנדיפור, במלון בוטיק נווארי אותנטי\"<\/b>. כתבת: <b>\"לינה: בעיירה בהנדיפור\"<\/b>.", "opts": ["כן — להשאיר את התיאור", {"v": "לא — המלון השתנה", "more": "מה נכון?"}], "k": "d8_hotel", "t": "\"מלון בוטיק נווארי אותנטי\" — עדיין נכון?", "n": 49}, {"s": "כותרת", "ctx": "באתר היום: <b>רפטינג בטריסולי ובנדיפור<\/b>. הכותרת עדיין מתאימה. להשאיר?", "proposal": "רפטינג בטריסולי ובנדיפור", "opts": ["מאשר את ההצעה", {"v": "כותרת אחרת", "more": "איזו?"}], "k": "d8_title", "t": "כותרת ליום 8", "n": 50}]}, {"id": "d9", "nav": "9", "title": "יום 9", "day": 9, "sub": "השתנה", "same": false, "changes": ["<b>\"כפר 14 האחים\" ← \"כפר 5 האחים\"<\/b>", "הארוחה אצל משפחה מקומית מעל אגם רופה לא מופיעה", "המפגש עם דיפק יצא מיום 9 (עבר ליום 8)", "הלינה לא מצוינת"], "old": {"title": "זריחה, ובדרך לפוקרה", "body": "נקום בזריחה לצפות בהרי ההימלאיה, ונמשיך בנסיעה לפוקרה. נעצור ונבקר באגם בגנאס טל, נבקר בכפר 14 האחים, נטייל במטע קפה ואצל מייצר סלים מבמבוק, ונאכל אצל משפחה מקומית מעל אגם רופה. נפגש עם דיפק, המדריך שלנו לימים הקרובים — פרופסור לאנגלית ותושב פוקרה — שיספר לנו על פוקרה והסביבה. בערב נטייל בעיר באזור הלייקסייד, על גדת אגם פאווה.", "stay": "לינה בפוקרה"}, "new": "אגם שמחזיר הרים — נקום בזריחה לצפות בהרי ההימלאיה, נמשיך בנסיעה לפוקרה. נעצור ונבקר באגם בגנאס טל, נבקר בכפר 5 האחים, נטייל במטע קפה ומייצר סלים מבמבוק. בערב נטייל בעיר באיזור הלייקסייד על גדת האגם פאווה", "items": [{"s": "כפר האחים", "ctx": "באתר: <b>\"כפר 14 האחים\"<\/b>. כתבת: <b>\"כפר 5 האחים\"<\/b>. זה מספר, ואי אפשר לנחש.", "opts": ["5 האחים — הנוסח החדש נכון", "14 האחים — הנוסח הקודם נכון", {"v": "אחר", "more": "פרט"}], "k": "d9_brothers", "t": "\"5 האחים\" או \"14 האחים\"?", "n": 51}, {"s": "ארוחה מעל אגם רופה", "opts": ["בוטלה", "נשארת"], "k": "d9_rupa", "t": "הארוחה אצל משפחה מקומית מעל אגם רופה", "n": 52}, {"s": "לינה", "ctx": null, "opts": ["פוקרה", {"v": "אחר", "more": "איפה?"}], "k": "d9_sleep", "t": "איפה ישנים בלילה של יום 9?", "n": 53}]}, {"id": "d10", "nav": "10", "title": "יום 10", "day": 10, "sub": "ללא שינוי", "same": true, "changes": ["אין שינוי בתוכן — רק שגיאות הקלדה"], "old": {"title": "פאגודת השלום והמפגש עם סאמאר", "body": "בפוקרה נבקר במוזיאון ההרים הבינלאומי ונכיר את הקבוצות האתניות בנפאל. ניסע לפאנדי בנדי, כפרים של קבוצות אתניות שונות, בדרך לפאגודת השלום המשקיפה על עמק פוקרה ועל אגם פאווה. נבקר בבית אותנטי של אחת מהקבוצות האתניות, ובבית ספר מקומי שם נפגוש את מנהל בית הספר ונלמד על מערכת החינוך והדרך המיוחדת של בית הספר הזה. לקראת ערב נלך לפגוש את סאמאר בביתו, בן לקבוצה אתנית קטנה שייחודה בהיותם מוזיקאים שהיו אמונים על בידור המלך בנגינה ובשירה. הוא משמר את מסורת הנגינה על הסרנגי ומלמד את הילדים את הנגינה המיוחדת שהולכת ונעלמת. נשמע קונצרט וריקודים.", "stay": "לינה בפוקרה"}, "new": "מבט אחד על כל העמק — בפוקרה, נבקר במוזיאון ההרים הבינלאומי נכיר את הקבוצות האתניות בנפאל. נסע לפאנדי בנדי, כפרים של קבוצות אתניות שונות בדרך לפאגודת השלום המשקיף על עמק פוקרה והאגם פאווה שמבקש שלום עולמי ומשרה שקט ושלום פנימי. נבקר בבית אותנטי של אחת מהקבוצות האתניות ובבית ספר מקומי שם נפגוש את מנהל בית הספר ונלמד על מערכת החינוך והדרך המיוחדת של בית הספר הזה. בביתו של סאמאר — מסורת שנשארה אצל משפחה אחת — לקראת ערב נלך לפגוש את סאמאר בביתו ששייך לקבוצה אתנית קטנה שיחודה בהיותם מוזיקאים שהיו אמונים על בידור המלך בנגינה ושירה והוא משמר את מסורת נגינה על הסרנגי ומלמד את הילדים את הנגינה המיוחדת שהולכת ונעלמת, נשמע \"קונצרט\" וריקודים.", "items": [{"s": "אין שינוי", "ctx": "השוויתי מילה במילה. התוכן זהה למה שבאתר, חוץ משגיאות הקלדה שמופיעות ברשימה בסוף.", "opts": ["נכון — אין שינוי", {"v": "יש שינוי", "more": "מה השתנה?"}], "k": "d10_same", "t": "ביום 10 אין שום שינוי?", "n": 54}, {"s": "לינה", "ctx": null, "opts": ["פוקרה", {"v": "אחר", "more": "איפה?"}], "k": "d10_sleep", "t": "איפה ישנים בלילה של יום 10?", "n": 55}]}, {"id": "d11", "nav": "11", "title": "יום 11", "day": 11, "sub": "ללא שינוי", "same": true, "changes": ["אין שינוי בתוכן — רק שגיאות הקלדה"], "old": {"title": "דאמפוס והכפר האקולוגי אסטם", "body": "נסיעה בג'יפים לדאמפוס למרגלות האנפורנה — כפר של אנשי הגורונג, שמוצאם מטיבט, אנשי ההרים. זהו הכפר שממנו יוצאים לטרק לאוסטרליין קמפ. נלך עם דיפק בשבילי הכפרים והשדות, בנופים ייחודיים לאזור, אל אסטם — כפר אקולוגי המשקיף לעבר רכס הרי האנפורנה.", "stay": "לינה בריזורט באסטם"}, "new": "כפר אקולוגי מול האנפורנה — נסיעה בג'יפים לדאמפוס למרגלות האנפורנה, כפר של בני קבוצה אתנית — אנשי הגורונג שמוצאם מטיבט, אנשי ההרים. כפר שממנו יוצאים לטרק לאוסטרליין קמפ. נלך עם דיפאק בשבילי הכפרים והשדות בנופים יחודיים לאיזור, לכפר אקולוגי אסטם, המשקיף לעבר רכס הרי האנפורנה. לינה בריזורט באסטם.", "items": [{"s": "אין שינוי", "ctx": "השוויתי מילה במילה. התוכן זהה למה שבאתר, חוץ משגיאות הקלדה שמופיעות ברשימה בסוף.", "opts": ["נכון — אין שינוי", {"v": "יש שינוי", "more": "מה השתנה?"}], "k": "d11_same", "t": "ביום 11 אין שום שינוי?", "n": 56}]}, {"id": "d12", "nav": "12", "title": "יום 12", "day": 12, "sub": "ללא שינוי", "same": true, "changes": ["אין שינוי בתוכן", "הלינה לא מצוינת (\"נגיע למלון\")"], "old": {"title": "זריחה מול האנפורנה וסדנת מומו", "body": "נקום לזריחה מהמקום הקרוב ביותר להרי האנפורנה שנהיה בו. נאכל ארוחת בוקר בריזורט וניסע לפוקרה, לביתו של דיפק, לסדנת הכנת מומו — ונאכל אותם. משם נצא לשדה התעופה לטיסה קצרה לקטמנדו. נגיע למלון ונצא למקדש הקופים, Swayambhunath.", "stay": "לינה בקטמנדו"}, "new": "נקום לזריחה מהמקום הקרוב ביותר להרי האנפורנה שנהיה בו, נאכל ארוחת בוקר בריזורט וניסע לפוקרה לבית של דיפק לסדנת הכנת מומו נאכל אותם ונצא לשדה התעופה לטיסה קצרה לקטמנדו. נגיע למלון ונצא לסוואימבונאט, מקדש הקופים Swayambhunath.", "items": [{"s": "אין שינוי", "ctx": "השוויתי מילה במילה. התוכן זהה למה שבאתר, חוץ משגיאות הקלדה שמופיעות ברשימה בסוף.", "opts": ["נכון — אין שינוי", {"v": "יש שינוי", "more": "מה השתנה?"}], "k": "d12_same", "t": "ביום 12 אין שום שינוי?", "n": 57}, {"s": "לינה", "ctx": "כתבת \"נגיע למלון\" בלי לציין איזה.", "opts": ["קטמנדו — אותו מלון בטאמל", "קטמנדו — מלון אחר", {"v": "אחר", "more": "איפה?"}], "k": "d12_sleep", "t": "איפה ישנים בלילה של יום 12?", "n": 58}]}, {"id": "d13", "nav": "13", "title": "יום 13", "day": 13, "sub": "השתנה", "same": false, "changes": ["<b>יום חדש לגמרי<\/b> — בקטפור ופשופאטינט", "היום החופשי הקודם עבר ליום 14", "שלושה אנשים ביום הזה: <b>קרישנה, רם וסאג'ן הקדר<\/b> — האחרון חדש לגמרי"], "old": {"title": "יום חופשי", "body": "יום חופשי בשווקים של קטמנדו.", "stay": "לינה בקטמנדו"}, "new": "נסיעה קצרה לבקטפור אחת מערי הממלכה העתיקות בנפאל. עיר המאמינים, קדרים וחרשי עץ. נפגוש את קרישנה תושב המקום ומומחה במיתולוגיה ההינדואית שילווה אותנו בסמטאות העיר. נבקר את רם האדם שהחזיר את ייצור הנייר הייחודי לנפאל ובאוסף גילופי העץ שלו. נבקר את סאג'ן הקדר בכיכר הקדרים. לקראת ערב ניסע לפשופאטינט שעל נהר בגמאנטי, הזורם בקטמנדו, בירת נפאל וממשיך לזרום אל הגנגס, הנהר הקדוש בהודו. בו שרפת הגופות סגירת מעגל חיים אחד בגלגל החיים והמוות.", "items": [{"s": "היום החופשי", "opts": ["כן", {"v": "לא", "more": "איפה הוא?"}], "k": "d13_free", "t": "היום החופשי עבר מיום 13 ליום 14?", "n": 59}, {"s": "קרישנה", "ctx": "<b>בטופס מ-27 באוגוסט כתבת:<\/b> \"קרישנה, מדריך בפוקרה יליד המקום מומחה בהינדואיזם\". <b>עכשיו כתבת:<\/b> \"קרישנה תושב המקום ומומחה במיתולוגיה ההינדואית\" — בבקטפור. באתר הוא מופיע היום לצד אניטה, כמדריך מקומי.", "opts": ["תושב בקטפור, ומדריך שם", "מפוקרה, ומגיע איתנו לבקטפור", {"v": "אלה שני אנשים שונים", "more": "מי כל אחד מהם?"}, {"v": "אחר", "more": "פרט"}], "k": "d13_krishna", "t": "קרישנה — מאיפה הוא?", "n": 60}, {"s": "אניטה", "ctx": "אניטה (אשתו של דיפק, מדריכה בפוקרה) מופיעה באתר בפסקת החברים, <b>אבל לא מופיעה בשום יום<\/b> בנוסח החדש.", "opts": [{"v": "מצטרפת אלינו", "more": "באילו ימים?"}, "לא מצטרפת — להוריד אותה מהאתר", "עוד לא ידוע — להשאיר בפסקה, בלי יום"], "k": "d13_anita", "t": "אניטה — איפה היא במסלול?", "n": 61}, {"s": "רם", "ctx": "בטופס מאוגוסט: \"בעל מפעל קטן לייצור נייר ייחודי נפאלי לוקטה... ובביתו אולמות של פסלים וקורות עץ מגולפים\". עכשיו: ביום 13, בבקטפור.", "opts": ["כן — ביום 13 בבקטפור", {"v": "לא", "more": "איפה ומתי?"}], "k": "d13_ram", "t": "פוגשים את רם ביום 13, בבקטפור?", "n": 62}, {"s": "סאג'ן", "ctx": "הוא לא מופיע באתר בשום מקום.", "opts": ["רק להזכיר את שמו ביום 13", "להוסיף אותו גם לסקשן החברים — אשלח פרטים", "לא לציין שם — \"קדר מקומי\" "], "fields": [{"k": "d13_sajan_en", "label": "איך כותבים באנגלית (לא חובה)", "ph": "Sajan"}], "k": "d13_sajan", "t": "סאג'ן הקדר — אדם חדש", "n": 63}, {"s": "שני ביקורי קדרים", "ctx": "ביום 3: \"עיר הקדרים טימי\". ביום 13: \"סאג'ן הקדר בכיכר הקדרים\" בבקטפור.", "opts": ["כן — שניהם", "לא — טימי יורד מיום 3", "לא — כיכר הקדרים בבקטפור יורדת"], "k": "d13_potters", "t": "גם בטימי וגם בבקטפור יש קדרים — שני הביקורים נשארים?", "n": 64}, {"s": "שריפת הגופות", "ctx": "זה אחד הרגעים העוצמתיים בנפאל, ויש מטיילים שזה ירתיע. <b>זו החלטה על ניסוח בלבד<\/b> — לא על התוכנית.", "opts": ["כמו שכתבתי", "לרכך — \"טקסי הפרידה על גדת הנהר\" ", "לא לציין באתר את שריפת הגופות", {"v": "אחר", "more": "פרט"}], "k": "d13_cremation", "t": "שריפת הגופות בפשופאטינט — איך לכתוב באתר?", "n": 65}, {"s": "לינה", "ctx": null, "opts": ["קטמנדו", "בקטפור", {"v": "אחר", "more": "איפה?"}], "k": "d13_sleep", "t": "איפה ישנים בלילה של יום 13?", "n": 66}, {"s": "כותרת", "ctx": "באתר היום: <b>יום חופשי<\/b>. היום החופשי עבר ליום 14, אז ליום 13 צריך כותרת חדשה. הצעה:", "proposal": "בקטפור ופשופאטינט", "opts": ["מאשר את ההצעה", {"v": "כותרת אחרת", "more": "איזו?"}], "k": "d13_title", "t": "כותרת ליום 13", "n": 67}]}, {"id": "d14", "nav": "14", "title": "יום 14", "day": 14, "sub": "השתנה", "same": false, "changes": ["יום חופשי בשווקים (עבר מיום 13)", "<b>חדש:<\/b> אפשרות לביקור בסמאדהי", "היציאה לשדה התעופה <b>לקראת ערב<\/b> — ראה את שאלות התאריכים"], "old": {"title": "חזרה הביתה · 17/10/26", "body": "יציאה לשדה התעופה בקטמנדו, ונחיתה בישראל.", "stay": ""}, "new": "ובלי לוח זמנים — יום חופשי בשווקים של קטמנדו. אפשרות להצטרף אלינו למקום הקבורה הסמאדהי של האיש שחי 137 שנים והיה מורה למנהיגי ארצות ומורים רוחניים. והיום אתר עלייה לרגל, מדיטציה ותפילה. לקראת ערב יציאה לשדה התעופה לטיסה חזרה בישראל.", "items": [{"s": "הסמאדהי", "opts": ["אופציונלי — מי שרוצה מצטרף", "חלק מהתוכנית, לכולם"], "k": "d14_optional", "t": "הביקור בסמאדהי — למי?", "n": 68}, {"s": "שם האיש", "ctx": "כתבת \"האיש שחי 137 שנים והיה מורה למנהיגי ארצות\", בלי שם. <b>טבלת ג'מיני הוסיפה \"שיוואפורי באבא\" — לא אתה.<\/b>", "opts": ["בלי שם — כמו שכתבתי", "כן — \"שיוואפורי באבא\" ", {"v": "שם אחר", "more": "מה השם?"}], "k": "d14_name", "t": "לציין את שם האיש?", "n": 69}, {"s": "137 שנים", "ctx": "זו מסורת מקובלת, אבל לא עובדה מתועדת. באתר של עסק עדיף לא להציג אותה כעובדה.", "opts": ["לכתוב \"שלפי המסורת חי 137 שנים\" ", "לכתוב \"שחי 137 שנים\" — כמו שכתבתי"], "k": "d14_137", "t": "\"חי 137 שנים\" — איך לנסח?", "n": 70}, {"s": "כותרת", "ctx": "באתר: <b>\"חזרה הביתה · 17/10/26\"<\/b>. בפאנל: \"יום אחרון, ובלי לוח זמנים\". כתבת: \"ובלי לוח זמנים\".", "opts": ["יום אחרון, ובלי לוח זמנים", "ובלי לוח זמנים", {"v": "אחר", "more": "איזו?"}], "k": "d14_title", "t": "כותרת ליום 14", "n": 71}]}, {"id": "typos", "nav": "הקלדה", "title": "שגיאות הקלדה", "sub": "שאלה אחת", "typos": [["ארוחתצהריים", "ארוחת צהריים", "יום 5"], ["ימים 7 · ימים 11 · ימים 13", "יום 7 · יום 11 · יום 13", "כותרות"], ["בנופיי העמק", "בנופי העמק", "יום 6"], ["מבנים נווארים", "מבנים נוואריים", "יום 8"], ["באיזור", "באזור", "ימים 9, 11"], ["נסע לפאנדי בנדי", "ניסע לפאנדי בנדי", "יום 10"], ["לפאגודת השלום המשקיף", "לפאגודת השלום המשקיפה", "יום 10"], ["שיחודה · יחודיים", "שייחודה · ייחודיים", "ימים 10, 11"], ["שרפת הגופות", "שריפת הגופות", "יום 13"], ["לטיסה חזרה בישראל", "לטיסה חזרה לישראל", "יום 14"]], "lede": "רק תיקוני הקלדה — אף מילה לא משתנה במשמעות. <b>המשפט על השחקן והקומיקאי לא ברשימה<\/b>, כי התיקון שלו תלוי בתשובה ביום 6.", "items": [{"s": "תיקוני הקלדה", "opts": ["כן — את כולן", {"v": "לא את כולן", "more": "אילו להשאיר?"}, "לא — להשאיר הכל כמו שכתבתי"], "k": "ty_all", "t": "לתקן את כל שגיאות ההקלדה ברשימה?", "n": 72}]}, {"id": "end", "nav": "סיום", "title": "ולסיום", "sub": "לא חובה", "items": [{"s": "הערה כללית", "fields": [{"k": "end_note_t", "label": "כל דבר שלא נשאל כאן", "ph": "כתוב חופשי", "area": true}], "k": "end_note", "t": "משהו נוסף שחשוב שנדע?", "n": 73}]}], "total": 73}</script>
+<script>
+(function(){
+  var KEY = 'magalei_roi_answers_v6';
+  var DATA = JSON.parse(document.getElementById('qdata').textContent);
+  var host = document.getElementById('form');
+  var nav = document.getElementById('nav');
+
+  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+  /* ---------------- render ---------------- */
+  var html = '';
+  var navHtml = '';
+  DATA.sections.forEach(function(sec){
+    navHtml += '<a class="nav__c' + (sec.day ? ' nav__c--day' : '') + (sec.same ? ' nav__c--same' : '') +
+               '" href="#s-' + sec.id + '" data-sec="' + sec.id + '">' + esc(sec.nav) + '</a>';
+
+    html += '<section class="sec' + (sec.same ? ' sec--same' : '') + '" id="s-' + sec.id + '" data-sec="' + sec.id + '">';
+    html += '<div class="group"><h2>' + esc(sec.title) + '</h2><span>' + esc(sec.sub || '') + '</span></div>';
+    if (sec.lede) html += '<p class="lede">' + sec.lede + '</p>';
+
+    if (sec.day) {
+      html += '<div class="dhead' + (sec.same ? ' dhead--same' : '') + '">' +
+        '<p class="dhead__lbl">' + (sec.same ? 'מה השתנה' : 'מה השתנה ביום הזה') + '</p>' +
+        '<ul class="chg">' + sec.changes.map(function(c){ return '<li>' + c + '</li>'; }).join('') + '</ul>' +
+        '<details class="cmp"><summary>לראות את שני הנוסחים המלאים</summary>' +
+          '<div class="cmp__col cmp__col--old"><p class="cmp__h">באתר היום</p>' +
+            '<p class="cmp__t"><b>' + esc(sec.old.title) + '</b></p>' +
+            '<p class="cmp__b">' + esc(sec.old.body) + '</p>' +
+            (sec.old.stay ? '<p class="cmp__s">' + esc(sec.old.stay) + '</p>' : '') +
+          '</div>' +
+          '<div class="cmp__col cmp__col--new"><p class="cmp__h">מה שכתבת</p>' +
+            '<p class="cmp__b">' + esc(sec.new) + '</p>' +
+          '</div>' +
+        '</details></div>';
+    }
+
+    if (sec.typos) {
+      html += '<table class="typos"><thead><tr><th>כתוב</th><th>יתוקן ל־</th><th>איפה</th></tr></thead><tbody>' +
+        sec.typos.map(function(t){
+          return '<tr><td class="was">' + esc(t[0]) + '</td><td class="now">' + esc(t[1]) + '</td><td class="where">' + esc(t[2]) + '</td></tr>';
+        }).join('') + '</tbody></table>';
+    }
+
+    html += '<div class="' + (sec.id === 'names' ? 'qs qs--grid' : 'qs') + '">';
+    sec.items.forEach(function(q){
+      html += '<div class="item q' + (q.spell ? ' q--spell' : '') + '" data-q="' + q.k + '" data-sec="' + sec.id + '" id="q-' + q.k + '">' +
+        '<p class="item__n">שאלה ' + q.n + ' <span class="item__tick">✓ נענה</span></p>' +
+        '<h3 class="q__t" id="t-' + q.k + '">' + q.t + '</h3>';
+      if (q.ctx) html += '<p class="q__ctx">' + q.ctx + '</p>';
+      if (q.proposal) html += '<p class="q__prop"><span>הצעה</span>' + esc(q.proposal) + '</p>';
+      html += '<div class="ask">';
+      if (q.opts) {
+        html += '<div class="opts opts--stack" role="radiogroup" aria-labelledby="t-' + q.k + '">';
+        q.opts.forEach(function(o, i){
+          var v = (typeof o === 'string') ? o : o.v;
+          var note = q.notes && q.notes[i] ? '<small class="opt__note">' + esc(q.notes[i]) + '</small>' : '';
+          html += '<label class="opt"><input type="radio" name="' + q.k + '" value="' + esc(v) + '"' +
+                  ((typeof o === 'object' && o.more) ? ' data-more="' + esc(o.more) + '"' : '') + '>' +
+                  '<span class="opt__dot"></span><span class="opt__l">' + esc(v) + note + '</span></label>';
+        });
+        html += '</div>';
+        if (q.opts.some(function(o){ return typeof o === 'object' && o.more; })) {
+          html += '<div class="write more" id="more-' + q.k + '" hidden><label for="' + q.k + '_t" id="morel-' + q.k + '"></label>' +
+                  '<textarea id="' + q.k + '_t" name="' + q.k + '_t"></textarea></div>';
+        }
+      }
+      (q.fields || []).forEach(function(f){
+        html += '<div class="write"><label for="' + f.k + '">' + esc(f.label) + '</label>' +
+          (f.area ? '<textarea id="' + f.k + '" name="' + f.k + '" placeholder="' + esc(f.ph || '') + '"></textarea>'
+                  : '<input type="text" id="' + f.k + '" name="' + f.k + '" placeholder="' + esc(f.ph || '') + '"' +
+                    (/^[A-Za-z]/.test(f.ph || '') ? ' dir="ltr"' : '') + '>') +
+          '</div>';
+      });
+      html += '</div></div>';
+    });
+    html += '</div>';
+
+    if (sec.day) {
+      html += '<details class="dnote"><summary>הערה נוספת על יום ' + sec.day + ' (לא חובה)</summary>' +
+              '<div class="write"><textarea id="note_' + sec.id + '" name="note_' + sec.id + '" placeholder="כל דבר על היום הזה שלא נשאל"></textarea></div></details>';
+    }
+    html += '</section>';
+  });
+  host.innerHTML = html;
+  nav.innerHTML = navHtml;
+
+  var ALLQ = [];
+  DATA.sections.forEach(function(sec){ sec.items.forEach(function(q){ q.sec = sec; ALLQ.push(q); }); });
+  var fields = [].slice.call(host.querySelectorAll('input, textarea'));
+
+  /* ---------------- conditional "please explain" boxes ---------------- */
+  function syncMore(k){
+    var box = document.getElementById('more-' + k);
+    if (!box) return;
+    var sel = host.querySelector('input[name="' + k + '"]:checked');
+    var label = sel && sel.getAttribute('data-more');
+    box.hidden = !label;
+    if (label) document.getElementById('morel-' + k).textContent = label;
+  }
+
+  /* ---------------- persistence ---------------- */
+  function keyOf(f){ return f.type === 'radio' ? f.name : (f.id || f.name); }
+  function save(){
+    var d = {};
+    fields.forEach(function(f){
+      if (f.type === 'radio') { if (f.checked) d[f.name] = f.value; }
+      else if (f.value.trim()) d[keyOf(f)] = f.value;
+    });
+    try { localStorage.setItem(KEY, JSON.stringify(d)); } catch(e) {}
+  }
+  function restore(){
+    var d = {};
+    try { d = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e) {}
+    fields.forEach(function(f){
+      var k = keyOf(f); if (!(k in d)) return;
+      if (f.type === 'radio') f.checked = (f.value === d[k]); else f.value = d[k];
+    });
+    ALLQ.forEach(function(q){ syncMore(q.k); });
+  }
+
+  /* ---------------- progress ---------------- */
+  function answered(q){
+    if (q.opts) return !!host.querySelector('input[name="' + q.k + '"]:checked');
+    return (q.fields || []).some(function(f){ var e = document.getElementById(f.k); return e && e.value.trim(); });
+  }
+  function refresh(){
+    save();
+    var done = 0;
+    var perSec = {};
+    ALLQ.forEach(function(q){
+      var a = answered(q);
+      document.getElementById('q-' + q.k).classList.toggle('done', a);
+      if (a) done++;
+      var s = perSec[q.sec.id] || (perSec[q.sec.id] = {d:0, t:0});
+      s.t++; if (a) s.d++;
+    });
+    [].forEach.call(nav.querySelectorAll('.nav__c'), function(c){
+      var s = perSec[c.getAttribute('data-sec')];
+      c.classList.toggle('is-done', !!s && s.d === s.t);
+      c.classList.toggle('is-part', !!s && s.d > 0 && s.d < s.t);
+    });
+    var c = document.getElementById('count');
+    c.innerHTML = done === 0 ? 'טרם נענו שאלות · ' + DATA.total + ' בסך הכל'
+      : (done === DATA.total ? '<b>ענית על הכל</b> — אפשר לשלוח'
+                             : 'נענו <b>' + done + '</b> מתוך ' + DATA.total);
+    document.getElementById('next').hidden = (done === DATA.total);
+  }
+
+  /* ---------------- the message ---------------- */
+  function summary(){
+    var L = ['מגלי עולמות — המסלול החדש, התשובות של רועי'];
+    var done = ALLQ.filter(answered).length;
+    L.push('נענו ' + done + ' מתוך ' + DATA.total, '');
+    DATA.sections.forEach(function(sec){
+      var lines = [];
+      sec.items.forEach(function(q){
+        var parts = [];
+        if (q.opts) {
+          var sel = host.querySelector('input[name="' + q.k + '"]:checked');
+          if (sel) {
+            parts.push(sel.value.trim());
+            if (sel.getAttribute('data-more')) {
+              var t = document.getElementById(q.k + '_t');
+              if (t && t.value.trim()) parts.push('   ' + t.value.trim());
+            }
+          }
+        }
+        (q.fields || []).forEach(function(f){
+          var e = document.getElementById(f.k);
+          if (e && e.value.trim()) parts.push((q.fields.length > 1 || q.opts ? f.label + ': ' : '') + e.value.trim());
+        });
+        if (parts.length) lines.push(q.n + '. ' + q.s + ': ' + parts.join('\n   '));
+      });
+      var note = document.getElementById('note_' + sec.id);
+      if (note && note.value.trim()) lines.push('   הערה: ' + note.value.trim());
+      if (lines.length) { L.push('— ' + sec.title + ' —'); L = L.concat(lines); L.push(''); }
+    });
+    return L.join('\n');
+  }
+
+  function copyText(txt, ok, fail){
+    function fb(){
+      var ta = document.createElement('textarea');
+      ta.value = txt; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      var d = false; try { d = document.execCommand('copy'); } catch(e) {}
+      document.body.removeChild(ta); d ? ok() : fail();
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(ok, fb);
+    else fb();
+  }
+  var note = document.getElementById('note');
+  var IDLE = 'התשובות נשמרות אוטומטית בדפדפן שלך.';
+  function say(m){ if (!note) return; note.textContent = m; setTimeout(function(){ note.textContent = IDLE; }, 6000); }
+
+  document.getElementById('send').addEventListener('click', function(){
+    var txt = summary();
+    /* copied first: this message is long, and WhatsApp can clip a long one
+       without saying so */
+    copyText(txt, function(){ say('נפתח וואטסאפ. גם העתקתי את כל התשובות — אם משהו נחתך, פשוט הדבק.'); }, function(){});
+    window.open('https://wa.me/?text=' + encodeURIComponent(txt), '_blank', 'noopener');
+  });
+  document.getElementById('copy').addEventListener('click', function(){
+    copyText(summary(), function(){ say('הועתק. אפשר להדביק בוואטסאפ, במייל או בכל מקום.'); },
+                        function(){ say('לא הצלחתי להעתיק — אפשר לשלוח בוואטסאפ במקום.'); });
+  });
+  document.getElementById('next').addEventListener('click', function(){
+    var q = ALLQ.filter(function(q){ return !answered(q); })[0];
+    if (!q) return;
+    var el = document.getElementById('q-' + q.k);
+    var d = el.closest('details'); if (d) d.open = true;
+    el.scrollIntoView({behavior:'smooth', block:'center'});
+    var first = el.querySelector('input, textarea'); if (first) first.focus({preventScroll:true});
+  });
+
+  fields.forEach(function(f){
+    f.addEventListener('change', function(){ if (f.type === 'radio') syncMore(f.name); refresh(); });
+    f.addEventListener('input', refresh);
+  });
+
+  restore();
+  refresh();
+})();
+</script>
+
+</body>
+</html>
