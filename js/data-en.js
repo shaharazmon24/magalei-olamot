@@ -5,60 +5,60 @@
    ============================================================ */
 
 const ITINERARY_EN = [
-  { d:"Day 1",  t:"Leaving Israel",
-    b:"Departure from Ben Gurion Airport, arriving at Tribhuvan Airport in Kathmandu.",
-    stay:"Overnight at a hotel in Kathmandu" },
+  { d:"Day 1", t:"Leaving Israel",
+    b:"Departure from Ben Gurion Airport.",
+    stay:"Overnight on the flight" },
 
-  { d:"Day 2",  t:"Kathmandu — Thamel, Durbar Square and Boudhanath",
-    b:"Morning in Kathmandu, the capital of Nepal. We meet Kamal, a local Nepali who will tell us the story of his country, and walk with him through the Thamel quarter. From there to Durbar Square — the temples and the markets — and to the temple of the living goddess Kumari. Later we drive to Boudhanath, the largest stupa in Asia. In the evening, a traditional Newari dinner.",
-    stay:"Overnight in Kathmandu" },
+  { d:"Day 2", t:"Landing in Kathmandu — Thamel, Durbar Square and Kumari",
+    b:"Arrival at Tribhuvan Airport in Kathmandu, and a short drive to our hotel in Thamel. We meet Kamal, a local Nepali who will tell us the story of Nepal, and walk with him through the Thamel quarter. From there to Durbar Square — the temples and the markets — and to the temple of the living goddess Kumari. In the evening, a traditional Newari dinner.",
+    stay:"Overnight at a hotel in Thamel" },
 
-  { d:"Day 3",  t:"Kopan Monastery and Thimi, the potters' town",
-    b:"A short drive up to Kopan Monastery, looking out over the Kathmandu valley, and a meeting with the monk Lopsang for conversation and meditation. From there a short drive to Thimi, the town of the potters.",
-    stay:"Overnight in Kathmandu" },
+  { d:"Day 3", t:"Kopan, Thimi and Boudhanath",
+    b:"Morning in Kathmandu, the capital of Nepal. A short drive to Kopan Monastery, overlooking the Kathmandu valley, and a meeting with a local monk for conversation and meditation. We continue to Thimi, the town of potters, and from there to Boudhanath — one of the largest stupas in the world. Dinner at Utpala, the restaurant of the monastery beside the stupa.",
+    stay:"Overnight at a hotel in Thamel" },
 
-  { d:"Day 4",  t:"Patan, the city of artists",
+  { d:"Day 4", t:"Patan, the city of artists",
     b:"We drive to Patan, the city of artists. A walk through Patan Durbar Square, a visit to the Golden Temple, and a Tibetan singing bowl workshop with Sudip — a fourth-generation bowl maker.",
     stay:"Overnight in Patan" },
 
-  { d:"Day 5",  t:"Namobuddha — meeting Binod",
-    b:"We drive to Namobuddha and meet Binod, the plant whisperer, a local friend who will travel with us over the coming days. At the monastery we meet a local monk and join the morning puja — unusual instruments and the reading of mantras in the prayer hall. From the monastery we walk past an ancient stupa, said to hold the ashes of an earlier incarnation of Siddhartha, the first Buddha, to the Namobuddha resort overlooking the Himalayan range. The resort is organic and ecological, a beautiful place of stone and timber houses built as an authentic Nepali village. Dinner by the resort's chef, and a film in the evening.",
-    stay:"Overnight at Namobuddha resort" },
+  { d:"Day 5", t:"Namobuddha — meeting Binod",
+    b:"We drive to Namobuddha. We meet Binod, the plant whisperer, a local friend who will travel with us over the coming days. At Namobuddha monastery we meet a local monk and join the morning puja — unusual instruments and the reading of mantras in the prayer hall. From the monastery we walk past an ancient stupa, said to hold the ashes of an earlier incarnation of Siddhartha, the first Buddha (Meta Buddha), to the Namobuddha resort overlooking the Himalayan range. The resort is organic and ecological, a beautiful place of stone and timber houses built as an authentic Nepali village. We have a light lunch, and head down the mountain to Resort Vishiddhi Alaya. Dinner by the resort's chef, from the resort's own organic garden.",
+    stay:"Overnight at Resort Vishiddhi Alaya" },
 
-  { d:"Day 6",  t:"In the fields of the Tamang people",
-    b:"A walk through the surrounding villages with Binod, through the landscapes and fields of the Tamang people, looking out to the eastern Himalaya toward the Everest region. In the evening, a film about an inspiring woman mountaineer.",
-    stay:"Overnight at Namobuddha resort" },
+  { d:"Day 6", t:"A Newari village in the valley",
+    b:"With Binod we head down the hill, from the resort to an authentic Newari village in the valley landscape. We meet the people of the village and get to know the local farming. This village is the hometown of one of Nepal's famous film actors, who is also a well-known comedian.",
+    stay:"Overnight at Resort Vishiddhi Alaya" },
 
-  { d:"Day 7",  t:"Binod's village and a Nepali cooking workshop",
-    b:"A walk to Binod's village, a tour of his vegetable garden and a Nepali cooking workshop. Lunch is a Newari thali on his rooftop. Later we drive back to Kathmandu, stopping in Panauti at a small local museum, at the meeting of the rivers, and at the temple built of wood.",
-    stay:"Overnight in Kathmandu" },
+  { d:"Day 7", t:"The Tamang fields, and Binod's village",
+    b:"A walk through the surrounding villages with Binod, the plant whisperer, through the landscapes and fields of the Tamang people, looking out to the eastern Himalaya toward the Everest region. From there to Binod's village: a tour of his vegetable garden and a Nepali cooking workshop. Lunch is a Newari thali on his rooftop. Later we drive to Kathmandu, stopping in Panauti at a small local museum, at the meeting of the rivers and at the temple built of wood.",
+    stay:"Overnight at a hotel in Thamel" },
 
-  { d:"Day 8",  t:"Rafting the Trisuli, and on to Bandipur",
-    b:"We set off in the morning toward Bandipur. On the way we stop to raft the Trisuli river, and have lunch at a brewery on the riverbank. We continue to Bandipur, a small and lovely town at the foot of the Himalaya looking out to the Annapurna range — an old town of authentic Newari buildings. We walk the area, and in the evening watch the sun set over the Annapurna.",
+  { d:"Day 8", t:"Rafting the Trisuli, and on to Bandipur",
+    b:"On the way to Bandipur we stop to raft the Trisuli river, if possible, and have lunch at a brewery on the riverbank. Toward evening we reach Bandipur, the picturesque town — a small and lovely town at the foot of the Himalaya, looking out to the Annapurna range, an old town of authentic Newari buildings. We meet Dipak, our guide for the coming days — a professor of English and a Pokhara local — who will tell us about the region. We walk the area, and in the evening watch the sun set over the Annapurna range.",
     stay:"Overnight in Bandipur, at an authentic Newari boutique hotel" },
 
-  { d:"Day 9",  t:"Sunrise, and on to Pokhara",
-    b:"We rise at sunrise to watch the Himalaya, then continue to Pokhara. We stop at Begnas Tal lake, visit the village of the 14 brothers, walk through a coffee plantation and past a bamboo basket maker, and eat with a local family above Rupa lake. We meet Deepak, our guide for the coming days — a professor of English and a Pokhara local — who tells us about the town and the region. In the evening we walk the Lakeside quarter on the shore of Phewa lake.",
+  { d:"Day 9", t:"Sunrise, and on to Pokhara",
+    b:"We rise at sunrise to watch the Himalaya, then continue to Pokhara. We stop at Begnas Tal lake, visit the village of the five brothers (Pachabhaiya), and walk through a coffee plantation and past a bamboo basket maker. In the evening we walk the Lakeside quarter, on the shore of Phewa lake.",
     stay:"Overnight in Pokhara" },
 
   { d:"Day 10", t:"The Peace Pagoda and meeting Samar",
-    b:"In Pokhara we visit the International Mountain Museum and learn about the ethnic groups of Nepal. We drive to Pandy Bandy, villages of different ethnic groups, on the way to the Peace Pagoda overlooking the Pokhara valley and Phewa lake. We visit an authentic home of one of the ethnic groups, and a local school where we meet the head teacher and learn about the education system and this school's particular approach. Toward evening we go to meet Samar at his home. He belongs to a small ethnic group whose distinction is that they were the musicians entrusted with entertaining the king through playing and song. He keeps the sarangi tradition alive and teaches the children a way of playing that is slowly disappearing. We hear a concert, and there is dancing.",
+    b:"Anita, a guide in Pokhara and Dipak's wife, joins us today. In Pokhara we visit the International Mountain Museum and learn about the ethnic groups of Nepal. We drive to Pumdi Bhumdi, villages of different ethnic groups, and to the Shiva statue, on the way to the Peace Pagoda overlooking the Pokhara valley and Phewa lake — a pagoda that calls for world peace and brings a sense of calm and inner peace. We visit an authentic home of one of the ethnic groups, and a local school where we meet the head teacher and learn about the education system and this school's particular approach. Toward evening we go to meet Samar at his home; he belongs to a small ethnic group whose distinction is that they were the musicians entrusted with entertaining the king through playing and song. He keeps the sarangi tradition alive and teaches the children a way of playing that is slowly disappearing. We hear a concert, and there is dancing.",
     stay:"Overnight in Pokhara" },
 
   { d:"Day 11", t:"Dhampus and the eco-village of Astam",
-    b:"We drive by jeep to Dhampus at the foot of the Annapurna — a village of the Gurung people, mountain people whose origins are in Tibet. This is the village trekkers set out from for Australian Camp. We walk with Deepak along the village paths and through the fields, in landscapes particular to this region, to Astam — an ecological village looking out toward the Annapurna range.",
+    b:"We drive by jeep to Dhampus at the foot of the Annapurna — a village of the Gurung people, mountain people whose origins are in Tibet. This is the village trekkers set out from for Australian Camp. We walk with Dipak along the village paths and through the fields, in landscapes particular to this region, to Astam — an ecological village looking out toward the Annapurna range.",
     stay:"Overnight at a resort in Astam" },
 
   { d:"Day 12", t:"Sunrise over the Annapurna, and a momo workshop",
-    b:"We rise for sunrise from the closest point to the Annapurna we will reach. Breakfast at the resort, then a drive to Pokhara, to Deepak's home, for a momo-making workshop — and we eat them. From there to the airport for a short flight to Kathmandu. We reach the hotel and head out to the monkey temple, Swayambhunath.",
-    stay:"Overnight in Kathmandu" },
+    b:"We rise for sunrise from the closest point to the Annapurna we will reach. We have breakfast at the resort and drive to Pokhara, to Dipak's home, for a momo-making workshop — and we eat them. From there to the airport for a short flight to Kathmandu. We reach the hotel and head out to Swayambhunath, the monkey temple.",
+    stay:"Overnight at a hotel in Thamel" },
 
-  { d:"Day 13", t:"A free day",
-    b:"A free day in the markets of Kathmandu.",
-    stay:"Overnight in Kathmandu" },
+  { d:"Day 13", t:"Bhaktapur and Pashupatinath",
+    b:"A short drive to Bhaktapur, one of the ancient royal cities of Nepal — a city of believers, potters and woodcarvers. We meet Krishna, a local resident and an expert in Hindu mythology, who will guide us through the city's lanes. We visit Ram, the man who brought the making of Nepal's unique paper back to the country, and see his collection of wood carvings. We visit Sajan the potter, in Potters' Square. Toward evening we drive to Pashupatinath, where the dead are cremated on the Bagmati river, sacred to Hindus — a river that flows through Kathmandu, the capital of Nepal, and on into the Ganges, the holy river of India. The closing of one life's circle in the wheel of life and death.",
+    stay:"Overnight at a hotel in Thamel" },
 
-  { d:"Day 14", t:"Home · 17/10/26",
-    b:"Departure to Kathmandu airport, and landing in Israel.",
+  { d:"Day 14", t:"A last day, with no schedule",
+    b:"A free day in the markets of Kathmandu. Anyone who wishes can join us at the samadhi, the burial place of Shivapuri Baba — the man who lived 137 years and was a teacher to national leaders and spiritual teachers — which today is a place of pilgrimage, meditation and prayer. Toward evening we leave for the airport for the flight home, landing in Israel the next day.",
     stay:"" }
 ];
 

@@ -101,7 +101,7 @@
  "T10": {
   "frames": 24,
   "from": "S08-namobuddha-puja",
-  "to": "S10-tamang-terraces",
+  "to": "S27-newari-village",
   "kind": "life",
   "camera": "locked",
   "desktopKB": 4673,
@@ -178,7 +178,7 @@
  "T17": {
   "frames": 24,
   "from": "S18-astam-marigold",
-  "to": "S20-kathmandu-market",
+  "to": "S12-momo-hands-v2",
   "kind": "life",
   "camera": "locked",
   "desktopKB": 9235,
@@ -211,11 +211,55 @@
  "T20": {
   "frames": 32,
   "from": "S04-monks-procession",
-  "to": "S12-momo-hands-v2",
+  "to": "S29-price-incense",
   "kind": "life",
   "camera": "locked",
   "desktopKB": 3203,
   "mobileKB": 1960,
+  "desktopW": 2400,
+  "mobileW": 1000
+ },
+ "T21": {
+  "frames": 32,
+  "from": "S27-newari-village",
+  "to": "S10-tamang-terraces",
+  "kind": "life",
+  "camera": "locked",
+  "desktopKB": 9982,
+  "mobileKB": 4364,
+  "desktopW": 2400,
+  "mobileW": 1000
+ },
+ "T22": {
+  "frames": 24,
+  "from": "S12-momo-hands-v2",
+  "to": "S28-bhaktapur-nyatapola",
+  "kind": "life",
+  "camera": "locked",
+  "desktopKB": 6467,
+  "mobileKB": 5400,
+  "desktopW": 2400,
+  "mobileW": 1000
+ },
+ "T23": {
+  "frames": 24,
+  "from": "S28-bhaktapur-nyatapola",
+  "to": "S20-kathmandu-market",
+  "kind": "life",
+  "camera": "locked",
+  "desktopKB": 4742,
+  "mobileKB": 4380,
+  "desktopW": 2400,
+  "mobileW": 1000
+ },
+ "T24": {
+  "frames": 32,
+  "from": "S29-price-incense",
+  "to": "S09-namobuddha-ridge",
+  "kind": "life",
+  "camera": "locked",
+  "desktopKB": 2832,
+  "mobileKB": 2597,
   "desktopW": 2400,
   "mobileW": 1000
  }

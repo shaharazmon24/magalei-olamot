@@ -585,7 +585,7 @@
      and a map that contradicts the itinerary is worse than none.
      ------------------------------------------------------------ */
   var MAP_STOPS = [
-    {he:'קטמנדו',    en:'Kathmandu',   lon:85.324, lat:27.717, days:[0,1,6,11,12,13], dx:-96, dy:-34},
+    {he:'קטמנדו',    en:'Kathmandu',   lon:85.324, lat:27.717, days:[1,6,11,12,13], dx:-96, dy:-34},
     {he:'מנזר קופאן', en:'Kopan',       lon:85.362, lat:27.744, days:[2],       dx: 82, dy:-70},
     {he:'פאטן',      en:'Patan',       lon:85.324, lat:27.667, days:[3],       dx:-88, dy: 44},
     {he:'נמובודהה',  en:'Namobuddha',  lon:85.584, lat:27.571, days:[4,5,6],   dx: 26, dy: 54},
@@ -593,7 +593,10 @@
     {he:'בנדיפור',   en:'Bandipur',    lon:84.417, lat:27.933, days:[7],       dx:  0, dy:-38},
     {he:'פוקרה',     en:'Pokhara',     lon:83.986, lat:28.209, days:[8,9,11],  dx:  6, dy: 50},
     {he:'דאמפוס',    en:'Dhampus',     lon:83.850, lat:28.310, days:[10],      dx: 88, dy:-28},
-    {he:'אסטם',      en:'Astam',       lon:83.870, lat:28.262, days:[10,11],   dx:-74, dy: 40}
+    {he:'אסטם',      en:'Astam',       lon:83.870, lat:28.262, days:[10,11],   dx:-74, dy: 40},
+    /* day 13 comes after the flight back, so Bhaktapur is not on the road west:
+       it is drawn as a stop but kept out of the route line */
+    {he:'בקטפור',    en:'Bhaktapur',   lon:85.428, lat:27.672, days:[12],      dx: 82, dy:  8, offRoute:true}
   ];
   var MAP_PEAKS = [
     {he:'אנפורנה', en:'Annapurna', lon:83.820, lat:28.596},
@@ -676,7 +679,8 @@
     });
 
     /* ---- the route ---- */
-    var pts = MAP_STOPS.map(function (s) { return mapPt(s.lon, s.lat); });
+    var pts = MAP_STOPS.filter(function (s) { return !s.offRoute; })
+                       .map(function (s) { return mapPt(s.lon, s.lat); });
     var d = 'M' + pts[0][0].toFixed(1) + ',' + pts[0][1].toFixed(1);
     for (var i = 0; i < pts.length - 1; i++) {
       var p0 = pts[i-1] || pts[i], p1 = pts[i], p2 = pts[i+1], p3 = pts[i+2] || p2;
@@ -717,7 +721,7 @@
       var lbl = E('text', {x:lx, y:ly, 'class':'jstop__lbl', 'text-anchor':'middle'});
       lbl.textContent = he ? s.he : s.en; g.appendChild(lbl);
       /* the day numbers are read off ITINERARY, never typed here.
-         Contiguous runs collapse; gaps do NOT. Kathmandu is days 1, 2, 7 and
+         Contiguous runs collapse; gaps do NOT. Kathmandu is days 2, 7 and
          12-14, and writing that as "1-14" would claim the whole trip happens
          there. Pokhara has the same trap. */
       var day = E('text', {x:lx, y:ly + (up ? -20 : 20), 'class':'jstop__day', 'text-anchor':'middle'});
@@ -737,6 +741,7 @@
     /* distance of each stop along the path, measured once */
     var len = route.getTotalLength();
     mapLens = MAP_STOPS.map(function (s) {
+      if (s.offRoute) return len;            /* after the whole road and the flight */
       var c = mapPt(s.lon, s.lat), best = 0, bd = 1e9;
       for (var L = 0; L <= len; L += len / 400) {
         var pt = route.getPointAtLength(L);
@@ -952,7 +957,8 @@
   /* stop names on the journey rail follow the language too */
   var STOPS_EN = { 'קטמנדו':'Kathmandu', 'קופאן':'Kopan', 'טימי':'Thimi', 'פאטן':'Patan',
     'נמובודהה':'Namobuddha', 'הטריסולי':'Trisuli', 'בנדיפור':'Bandipur',
-    'פוקרה':'Pokhara', 'סאמאר':'Samar', 'אסטם':'Astam', 'חזרה':'Return' };
+    'פוקרה':'Pokhara', 'פאגודת השלום':'Peace Pagoda', 'סאמאר':'Samar', 'אסטם':'Astam',
+    'בקטפור':'Bhaktapur', 'חזרה':'Return' };
   function buildRailLabels() {
     railItems.forEach(function (b, i) {
       var he = stops[i].name;
@@ -1129,8 +1135,9 @@
       if (v !== undefined) el.placeholder = v;
     });
 
-    // the departure meta rows repeat one string
-    document.querySelectorAll('.dep__meta').forEach(function (el) {
+    // the departure meta rows repeat one string - but only the rows that carry it:
+    // the 2027 card's row says "dates to be announced" and must keep its own key
+    document.querySelectorAll('.dep__meta[data-i18n="dates.meta"]').forEach(function (el) {
       var v = t('dates.meta'); if (v) el.textContent = v;
     });
 

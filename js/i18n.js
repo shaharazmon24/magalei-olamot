@@ -13,7 +13,7 @@ const I18N = {
     /* hero */
     "hero.h1a":"מסע רחוק", "hero.h1b":"למקום קרוב",
     "hero.sub":"טיולי בוטיק לנפאל",
-    "hero.m1":"14 ימים", "hero.m2":"10–12 מטיילים", "hero.m3":"4–17 באוקטובר 2026",
+    "hero.m1":"שבועיים", "hero.m2":"10–12 מטיילים", "hero.m3":"4–18 באוקטובר 2026",
     "hero.cta1":"לשריין מקום", "hero.cta2":"לראות את המסלול",
     "hero.cue":"גללו והמסע מתחיל",
 
@@ -32,13 +32,13 @@ const I18N = {
     /* dates */
     "a11y.skip":"דלג לתוכן הראשי",
     "dates.kicker":"הטיולים הבאים", "dates.h":"הטיולים של 2026",
-    "dates.d1":"16–29 בספטמבר 2026", "dates.d2":"4–17 באוקטובר 2026",
-    "dates.meta":"14 ימים · קבוצה של 10–12 מטיילים",
+    "dates.d1":"16–30 בספטמבר 2026", "dates.d2":"4–18 באוקטובר 2026",
+    "dates.meta":"שבועיים · קבוצה של 10–12 מטיילים",
     "dates.full":"מלא", "dates.open":"ההרשמה בעיצומה",
     "dates.d3":"היציאות של 2027",
     "dates.soon":"התאריכים ייקבעו בקרוב",
     "dates.notify":"רוצה לדעת ראשון",
-    "dates.note":"הטיסה לקטמנדו ב-4 באוקטובר. נחיתה בנמל התעופה הבינלאומי טריבהוואן, קטמנדו.",
+    "dates.note":"הטיסה לקטמנדו ב-4 באוקטובר. נחיתה בנמל התעופה הבינלאומי Tribhuvan, קטמנדו.",
     "dates.cta":"לבדוק זמינות",
 
     /* itinerary */
@@ -55,7 +55,7 @@ const I18N = {
     /* hosts */
     "hosts.kicker":"האנשים שתפגשו",
     "hosts.h":"זה לא מסלול.<br>אלה חברים שלנו.",
-    "hosts.more":"ולצידם, לאורך המסע, מצטרפים אלינו עוד חברים. <strong>אניטה וקרישנה</strong>, מדריכים מקומיים שנולדו וגדלו באזור. <strong>ראם</strong>, שמייצר נייר לוקטה משיח הדפנה ההררי, ובביתו אולמות של פסלים וקורות עץ מגולפים — מעין מוזיאון פרטי. <strong>קרוויקה</strong>, אשת עסקים שמנהלת חברת הייטק בקטמנדו. <strong>וסהילנדרה</strong>, חבר קרוב, מפכ\"ל משטרת נפאל לשעבר שהיום מוביל מיזמים חברתיים בקהילה.",
+    "hosts.more":"ולצידם, לאורך המסע, מצטרפים אלינו עוד חברים. <strong>אניטה</strong>, מדריכה בפוקרה ואשתו של דיפאק. <strong>קרישנה</strong>, תושב בקטפור ומומחה במיתולוגיה ההינדואית, שמלווה אותנו בסמטאות העיר. <strong>קרוויקה</strong>, אשת עסקים שמנהלת חברת הייטק בקטמנדו. <strong>וסהילנדרה</strong>, חבר קרוב, מפכ\"ל משטרת נפאל לשעבר שהיום מוביל מיזמים חברתיים בקהילה.",
     "hosts.lede":"בכל טיול אנחנו לוקחים אתכם אל אנשים שהכרנו לאורך השנים. הם לא מדריכים ששכרנו — הם פותחים לכם את הבית, את הסדנה ואת השולחן שלהם.",
 
     /* price */
@@ -95,7 +95,7 @@ const I18N = {
     "c.fn":"שם פרטי *", "c.ln":"שם משפחה *", "c.em":"אימייל *", "c.ph":"טלפון *",
     "c.dep":"איזו יציאה מעניינת אתכם?", "c.ppl":"כמה מטיילים?", "c.room":"סוג חדר",
     "c.msg":"נשמח להכיר", "c.msgPh":"ספרו לנו קצת על עצמכם, או שאלו אותנו כל דבר",
-    "c.dep1":"4–17 באוקטובר 2026", "c.dep2":"16–29 בספטמבר 2026 — מלא", "c.dep3":"יציאה עתידית / עדיין לא בטוח",
+    "c.dep1":"4–18 באוקטובר 2026", "c.dep2":"16–30 בספטמבר 2026 — מלא", "c.dep3":"יציאה עתידית / עדיין לא בטוח",
     "c.ppl4":"4 ומעלה",
     "c.room1":"חדר זוגי", "c.room2":"חדר יחיד (תוספת 500$)", "c.room3":"עדיין לא יודע",
     "c.consent":"אני מאשר/ת שתחזרו אליי בטלפון, בוואטסאפ או במייל בנוגע לפנייה זו.",
@@ -125,7 +125,7 @@ const I18N = {
 
     "hero.h1a":"A Far Journey", "hero.h1b":"to a Close Place",
     "hero.sub":"Boutique Journeys to Nepal",
-    "hero.m1":"14 days", "hero.m2":"10–12 travellers", "hero.m3":"4–17 October 2026",
+    "hero.m1":"Two weeks", "hero.m2":"10–12 travellers", "hero.m3":"4–18 October 2026",
     "hero.cta1":"Reserve a Place", "hero.cta2":"See the Route",
     "hero.cue":"Scroll, and the journey begins",
 
@@ -142,8 +142,8 @@ const I18N = {
 
     "a11y.skip":"Skip to main content",
     "dates.kicker":"Upcoming Journeys", "dates.h":"2026 Departures",
-    "dates.d1":"16–29 September 2026", "dates.d2":"4–17 October 2026",
-    "dates.meta":"14 days · a group of 10–12 travellers",
+    "dates.d1":"16–30 September 2026", "dates.d2":"4–18 October 2026",
+    "dates.meta":"Two weeks · a group of 10–12 travellers",
     "dates.full":"Full", "dates.open":"Now Booking",
     "dates.d3":"The 2027 departures",
     "dates.soon":"Dates to be announced",
@@ -163,7 +163,7 @@ const I18N = {
 
     "hosts.kicker":"The People You'll Meet",
     "hosts.h":"It isn't an itinerary.<br>They're our friends.",
-    "hosts.more":"And alongside them, throughout the journey, more friends join us. <strong>Anita and Krishna</strong>, local guides born and raised in the region. <strong>Ram</strong>, who makes lokta paper from the mountain daphne shrub, and whose home holds halls of sculptures and carved wooden beams — a private museum of sorts. <strong>Karvika</strong>, a businesswoman running a high-tech company in Kathmandu. And <strong>Shailendra</strong>, a close friend and former chief of the Nepal Police, who today leads social ventures in his community.",
+    "hosts.more":"And alongside them, throughout the journey, more friends join us. <strong>Anita</strong>, a guide in Pokhara and Dipak's wife. <strong>Krishna</strong>, a Bhaktapur local and an expert in Hindu mythology, who guides us through the city's lanes. <strong>Karvika</strong>, a businesswoman running a high-tech company in Kathmandu. And <strong>Shailendra</strong>, a close friend and former chief of the Nepal Police, who today leads social ventures in his community.",
     "hosts.lede":"On every journey we bring you to people we've come to know over the years. They aren't guides we hired — they open their home, their workshop and their table to you.",
 
     "price.kicker":"Pricing", "price.h":"What all this costs",
@@ -199,7 +199,7 @@ const I18N = {
     "c.fn":"First name *", "c.ln":"Last name *", "c.em":"Email *", "c.ph":"Phone *",
     "c.dep":"Which departure interests you?", "c.ppl":"How many travellers?", "c.room":"Room type",
     "c.msg":"Tell us about yourself", "c.msgPh":"A little about you, or anything you'd like to ask",
-    "c.dep1":"4–17 October 2026", "c.dep2":"16–29 September 2026 — full", "c.dep3":"A future departure / not sure yet",
+    "c.dep1":"4–18 October 2026", "c.dep2":"16–30 September 2026 — full", "c.dep3":"A future departure / not sure yet",
     "c.ppl4":"4 or more",
     "c.room1":"Shared double", "c.room2":"Single room (+$500)", "c.room3":"Not sure yet",
     "c.consent":"I agree that you may contact me by phone, WhatsApp or email about this enquiry.",
