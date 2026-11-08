@@ -537,6 +537,17 @@ section{position:relative}
 .social svg{width:19px;height:19px}
 .ftr__fine{margin-top:2rem;font-size:.72rem;color:var(--paper-3);letter-spacing:.05em}
 
+/* Baobab Web Studio credit: the last line of the footer, in the footer's own
+   secondary text colour (inherited, so the mark follows it via currentColor).
+   Not a link yet: the studio's site is not live. */
+.baobab-credit { display: inline-flex; align-items: center; gap: .45em; margin: 0; font-size: .75rem; line-height: 1.4; color: inherit; }
+.baobab-credit-mark { height: 1.25em; width: auto; flex: none; }
+.ftr__credit{margin-top:.9rem;color:var(--paper-3)}
+/* On a phone the floating WhatsApp button sits over the bottom corner of the
+   screen, which is exactly where the last line of the footer ends up when you
+   reach the end of the page. Room under the credit keeps it clear of the button. */
+@media (max-width:560px){.ftr{padding-bottom:5rem}}
+
 /* ============================================================
    RESPONSIVE
    ============================================================ */

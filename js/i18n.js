@@ -110,6 +110,7 @@ const I18N = {
     /* footer + form messages */
     "ftr.tag":"מסע רחוק למקום קרוב",
     "ftr.a11y":"הצהרת נגישות", "ftr.fine":"מגלי עולמות · טיולי בוטיק לנפאל",
+    "ftr.credit":"עיצוב ובנייה: <span dir=\"ltr\">Baobab Web Studio</span>",
     "form.missing":"נשארו עוד כמה פרטים למלא.",
     "form.badEmail":"כתובת האימייל לא נראית תקינה.",
     "form.consent":"צריך לאשר שנוכל לחזור אליכם.",
@@ -213,6 +214,7 @@ const I18N = {
 
     "ftr.tag":"A far journey to a close place",
     "ftr.a11y":"Accessibility statement", "ftr.fine":"Magalei Olamot · Boutique Journeys to Nepal",
+    "ftr.credit":"Design &amp; build: Baobab Web Studio",
     "form.missing":"A few details are still missing.",
     "form.badEmail":"That email address doesn't look right.",
     "form.consent":"Please confirm we may get back to you.",
