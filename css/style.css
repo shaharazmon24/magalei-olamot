@@ -540,7 +540,7 @@ section{position:relative}
 /* Baobab Web Studio credit: the last line of the footer, in the footer's own
    secondary text colour (inherited, so the mark follows it via currentColor).
    Not a link yet: the studio's site is not live. */
-.baobab-credit { display: inline-flex; align-items: center; gap: .45em; margin: 0; font-size: .75rem; line-height: 1.4; color: inherit; }
+.baobab-credit { display: inline-flex; align-items: center; gap: .45em; margin: 0; font-size: .72rem; line-height: 1.4; color: inherit; }
 .baobab-credit-mark { height: 1.25em; width: auto; flex: none; }
 .ftr__credit{margin-top:.9rem;color:var(--paper-3)}
 /* On a phone the floating WhatsApp button sits over the bottom corner of the
