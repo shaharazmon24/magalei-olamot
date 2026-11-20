@@ -13,7 +13,7 @@ const I18N = {
     /* hero */
     "hero.h1a":"מסע רחוק", "hero.h1b":"למקום קרוב",
     "hero.sub":"טיולי בוטיק לנפאל",
-    "hero.m1":"שבועיים", "hero.m2":"10–12 מטיילים", "hero.m3":"4–18 באוקטובר 2026",
+    "hero.m1":"שבועיים", "hero.m2":"10–12 מטיילים", "hero.m3":"מרץ–אפריל 2027",
     "hero.cta1":"לשריין מקום", "hero.cta2":"לראות את המסלול",
     "hero.cue":"גללו והמסע מתחיל",
 
@@ -31,14 +31,13 @@ const I18N = {
 
     /* dates */
     "a11y.skip":"דלג לתוכן הראשי",
-    "dates.kicker":"הטיולים הבאים", "dates.h":"הטיולים של 2026",
-    "dates.d1":"16–30 בספטמבר 2026", "dates.d2":"4–18 באוקטובר 2026",
+    "dates.kicker":"הטיולים הבאים", "dates.h":"הטיולים של 2027",
+    "dates.d1":"28 במרץ – 10 באפריל 2027", "dates.d2":"14–27 באפריל 2027",
+    "dates.p1":"16–30 בספטמבר 2026", "dates.p2":"4–18 באוקטובר 2026",
     "dates.meta":"שבועיים · קבוצה של 10–12 מטיילים",
     "dates.full":"מלא", "dates.open":"ההרשמה בעיצומה",
-    "dates.d3":"הטיולים של 2027",
-    "dates.soon":"התאריכים ייקבעו בקרוב",
-    "dates.notify":"רוצה לדעת ראשון",
-    "dates.note":"הטיסה לקטמנדו ב-4 באוקטובר. נחיתה בנמל התעופה הבינלאומי Tribhuvan, קטמנדו.",
+    "dates.pasth":"טיולים שכבר יצאו", "dates.past":"התקיים",
+    "dates.note":"הטיסה לקטמנדו ביום הראשון של הטיול. נחיתה בנמל התעופה הבינלאומי Tribhuvan, קטמנדו.",
     "dates.cta":"לבדוק זמינות",
 
     /* itinerary */
@@ -95,7 +94,7 @@ const I18N = {
     "c.fn":"שם פרטי *", "c.ln":"שם משפחה *", "c.em":"אימייל *", "c.ph":"טלפון *",
     "c.dep":"איזו יציאה מעניינת אתכם?", "c.ppl":"כמה מטיילים?", "c.room":"סוג חדר",
     "c.msg":"נשמח להכיר", "c.msgPh":"ספרו לנו קצת על עצמכם, או שאלו אותנו כל דבר",
-    "c.dep1":"4–18 באוקטובר 2026", "c.dep2":"16–30 בספטמבר 2026 — מלא", "c.dep3":"יציאה עתידית / עדיין לא בטוח",
+    "c.dep1":"28 במרץ – 10 באפריל 2027", "c.dep2":"14–27 באפריל 2027", "c.dep3":"יציאה עתידית / עדיין לא בטוח",
     "c.ppl4":"4 ומעלה",
     "c.room1":"חדר זוגי", "c.room2":"חדר יחיד (תוספת 500$)", "c.room3":"עדיין לא יודע",
     "c.consent":"אני מאשר/ת שתחזרו אליי בטלפון, בוואטסאפ או במייל בנוגע לפנייה זו.",
@@ -126,7 +125,7 @@ const I18N = {
 
     "hero.h1a":"A Far Journey", "hero.h1b":"to a Close Place",
     "hero.sub":"Boutique Journeys to Nepal",
-    "hero.m1":"Two weeks", "hero.m2":"10–12 travellers", "hero.m3":"4–18 October 2026",
+    "hero.m1":"Two weeks", "hero.m2":"10–12 travellers", "hero.m3":"March–April 2027",
     "hero.cta1":"Reserve a Place", "hero.cta2":"See the Route",
     "hero.cue":"Scroll, and the journey begins",
 
@@ -142,14 +141,13 @@ const I18N = {
     "man3.p2":"Travelling with us is a vivid experience of flavours, of powerful nature, and of meeting remarkable people. A great many small, magical moments that stay with you long afterwards.",
 
     "a11y.skip":"Skip to main content",
-    "dates.kicker":"Upcoming Journeys", "dates.h":"2026 Departures",
-    "dates.d1":"16–30 September 2026", "dates.d2":"4–18 October 2026",
+    "dates.kicker":"Upcoming Journeys", "dates.h":"2027 Departures",
+    "dates.d1":"28 March – 10 April 2027", "dates.d2":"14–27 April 2027",
+    "dates.p1":"16–30 September 2026", "dates.p2":"4–18 October 2026",
     "dates.meta":"Two weeks · a group of 10–12 travellers",
     "dates.full":"Full", "dates.open":"Now Booking",
-    "dates.d3":"The 2027 departures",
-    "dates.soon":"Dates to be announced",
-    "dates.notify":"Tell me first",
-    "dates.note":"Flight to Kathmandu on 4 October. Arrival at Tribhuvan International Airport, Kathmandu.",
+    "dates.pasth":"Journeys already run", "dates.past":"Completed",
+    "dates.note":"The flight to Kathmandu leaves on the first day. Arrival at Tribhuvan International Airport, Kathmandu.",
     "dates.cta":"Check Availability",
 
     "itin.kicker":"The Itinerary", "itin.h":"Fourteen days, one by one",
@@ -200,7 +198,7 @@ const I18N = {
     "c.fn":"First name *", "c.ln":"Last name *", "c.em":"Email *", "c.ph":"Phone *",
     "c.dep":"Which departure interests you?", "c.ppl":"How many travellers?", "c.room":"Room type",
     "c.msg":"Tell us about yourself", "c.msgPh":"A little about you, or anything you'd like to ask",
-    "c.dep1":"4–18 October 2026", "c.dep2":"16–30 September 2026 — full", "c.dep3":"A future departure / not sure yet",
+    "c.dep1":"28 March – 10 April 2027", "c.dep2":"14–27 April 2027", "c.dep3":"A future departure / not sure yet",
     "c.ppl4":"4 or more",
     "c.room1":"Shared double", "c.room2":"Single room (+$500)", "c.room3":"Not sure yet",
     "c.consent":"I agree that you may contact me by phone, WhatsApp or email about this enquiry.",

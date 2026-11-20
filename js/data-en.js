@@ -119,7 +119,7 @@ const FAQ_EN = [
   { q:"How much money should I bring beyond the price?",
     a:"This is a trip without a wallet — everything during the trip is included, apart from souvenirs and the like." },
 
-  { q:"What is the weather like in October?",
+  { q:"What is the weather like on these dates?",
     a:"We travel in Nepal between the summer and the monsoon on one side, and the cold winter with its short days and early darkness on the other. From mid-March to mid-May, and from mid-September to mid-November, the weather is spring-like." },
 
   { q:"Is there internet? Can my family reach me?",

@@ -974,7 +974,7 @@
      ------------------------------------------------------------ */
   function waHref() {
     var dep = document.getElementById('dep');
-    var chosen = dep && dep.value ? dep.value : 'אוקטובר 2026';
+    var chosen = dep && dep.value ? dep.value : 'מרץ–אפריל 2027';
     var base = (typeof t === 'function' && t('wa.msg')) || 'היי רועי, הגעתי דרך האתר של מגלי עולמות ואשמח לשמוע עוד על הטיול לנפאל';
     var msg = base + ' (' + chosen + ').';
     return 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg);

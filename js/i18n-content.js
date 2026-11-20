@@ -107,7 +107,7 @@
 
     /* ---- loose ---- */
     "dates.meta":"שבועיים · קבוצה של 10–12 מטיילים",
-    "dates.note":"הטיסה לקטמנדו ב-4 באוקטובר. נחיתה בנמל התעופה הבינלאומי Tribhuvan, קטמנדו.",
+    "dates.note":"הטיסה לקטמנדו ביום הראשון של הטיול. נחיתה בנמל התעופה הבינלאומי Tribhuvan, קטמנדו.",
     "itin.note":"בכל בוקר, לפני ארוחת הבוקר, מוזמנים להתחיל את היום עם צ'י קונג ומדיטציה עם עדי.",
     "itin.flex":"נפאל אינה שוויץ, וזה חלק מהיופי. מזג אוויר, דרכים ומזל עשויים לשנות סדר יום — המסלול גמיש, הכיוון לא.",
     "price.allin":"כשאנחנו אומרים מחיר כולל הכל — הכוונה להכל.",
@@ -217,7 +217,7 @@
     "st6":"We invite you to travel with us — to create together a space that allows, accepts and supports. From our experience leading groups and courses, a shared space like that makes room for discovery and for personal growth.",
 
     "dates.meta":"Two weeks · a group of 10–12 travellers",
-    "dates.note":"Flight to Kathmandu on 4 October. Arrival at Tribhuvan International Airport, Kathmandu.",
+    "dates.note":"The flight to Kathmandu leaves on the first day. Arrival at Tribhuvan International Airport, Kathmandu.",
     "itin.note":"Every morning, before breakfast, you're welcome to begin the day with Qi Gong and meditation with Adi.",
     "itin.flex":"Nepal is not Switzerland, and that is part of the beauty. Weather, roads and luck may reorder a day — the route is flexible, the direction is not.",
     "price.allin":"When we say all-inclusive — we mean all of it.",

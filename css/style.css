@@ -350,6 +350,18 @@ section{position:relative}
 .badge--full{background:rgba(154,107,98,.18);color:#d8a49a;border:1px solid rgba(154,107,98,.45)}
 .badge--open{background:rgba(127,168,122,.16);color:#a8d0a2;border:1px solid rgba(127,168,122,.45)}
 
+/* departures that have already run: present, but clearly behind the live ones.
+   A quieter ground and a neutral badge - never a strike-through, which reads
+   as cancelled rather than completed. The ground is darker than a live
+   card (.72 against .6), so it recedes AND its text contrast can only
+   improve over whatever the background photograph is doing there. */
+.deps__lbl{margin:2.6rem 0 0;font-size:.7rem;font-weight:600;letter-spacing:.2em;color:var(--paper-2)}
+.deps--past{margin-top:.9rem}
+.dep--past{background:rgba(10,11,13,.72);border-color:rgba(244,241,234,.09)}
+.dep--past:hover{border-color:rgba(244,241,234,.16);background:rgba(10,11,13,.78)}
+.dep--past .dep__date{color:var(--paper-2);font-size:clamp(1.05rem,2vw,1.32rem)}
+.badge--past{background:rgba(244,241,234,.06);color:var(--paper-2);border:1px solid rgba(244,241,234,.24)}
+
 /* ============================================================
    ITINERARY
    ============================================================ */
@@ -567,6 +579,9 @@ section{position:relative}
   .host{background:rgba(10,11,13,.86)}
   .quote{background:rgba(10,11,13,.8)}
   .dep{background:rgba(10,11,13,.8)}
+  /* the phone tint flattens every card to the same value, so the past
+     group needs its own darker tint here too or the distinction is lost */
+  .dep--past{background:rgba(10,11,13,.92)}
   .ptable{background:rgba(10,11,13,.8)}
   .policy{background:rgba(10,11,13,.8)}
   .pair>div{background:rgba(16,19,25,.9)}
